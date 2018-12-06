@@ -715,7 +715,7 @@ function array_chunk(array $input, $size, $preserve_keys = null) { }
  * @param array $values <p>
  * Array of values to be used
  * </p>
- * @return array the combined array, false if the number of elements
+ * @return array|false the combined array, false if the number of elements
  * for each array isn't equal or if the arrays are empty.
  * @since 5.0
  */
@@ -735,6 +735,30 @@ function array_combine(array $keys, array $values) { }
  * @since 5.0
  */
 function array_key_exists($key, array $search) { }
+
+/**
+ * Gets the first key of an array
+ *
+ * Get the first key of the given array without affecting the internal array pointer.
+ *
+ * @link https://secure.php.net/array_key_first
+ * @param array $array An array
+ * @return mixed Returns the first key of array if the array is not empty; NULL otherwise.
+ * @since 7.3
+ */
+function array_key_first(array $array) { }
+
+/**
+ * Gets the last key of an array
+ *
+ * Get the last key of the given array without affecting the internal array pointer.
+ *
+ * @link https://secure.php.net/array_key_last
+ * @param array $array An array
+ * @return mixed Returns the last key of array if the array is not empty; NULL otherwise.
+ * @since 7.3
+ */
+function array_key_last(array $array) { }
 
 /**
  * &Alias; <function>current</function>
