@@ -71,6 +71,26 @@ class PDO  {
 	const SQLITE_DETERMINISTIC = 2048;
 
 	/**
+	 * @since 7.3
+	 */
+	const SQLITE_OPEN_READONLY = 1;
+
+	/**
+	 * @since 7.3
+	 */
+	const SQLITE_OPEN_READWRITE = 2;
+
+	/**
+	 * @since 7.3
+	 */
+	const SQLITE_OPEN_CREATE = 4;
+
+	/**
+	 * @since 7.3
+	 */
+	const SQLITE_ATTR_OPEN_FLAGS = 1000;
+
+	/**
 	 * Represents the SQL large object data type.
 	 * @link https://php.net/manual/en/pdo.constants.php#pdo.constants.param-lob
 	 */
@@ -816,6 +836,7 @@ class PDO  {
 	 * @param string $username [optional]
 	 * @param string $passwd [optional]
 	 * @param array $options [optional]
+	 * @throws PDOException if the attempt to connect to the requested database fails.
 	 */
 	public function __construct ($dsn, $username, $passwd, $options) {}
 
@@ -879,6 +900,7 @@ class PDO  {
 	 * Commits a transaction
 	 * @link https://php.net/manual/en/pdo.commit.php
 	 * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
+	 * @throws PDOException if there is no active transaction.
 	 */
 	public function commit () {}
 
@@ -887,6 +909,7 @@ class PDO  {
 	 * Rolls back a transaction
 	 * @link https://php.net/manual/en/pdo.rollback.php
 	 * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
+	 * @throws PDOException if there is no active transaction.
 	 */
 	public function rollBack () {}
 

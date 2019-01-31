@@ -1045,6 +1045,7 @@ class ReflectionClass implements Reflector {
 	 * The property name.
 	 * </p>
 	 * @return ReflectionProperty A <b>ReflectionProperty</b>.
+	 * @throws ReflectionException If no property exists by that name.
 	 * @since 5.0
 	 */
 	public function getProperty ($name) {}
@@ -2098,7 +2099,7 @@ class ReflectionClassConstant implements Reflector {
      * Checks if class constant is public
      * @since 7.1
      * @link https://php.net/manual/en/reflectionclassconstant.ispublic.php
-     * @param bool
+     * @return bool
      */
 	public function isPublic() {}
 
