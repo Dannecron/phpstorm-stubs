@@ -291,7 +291,7 @@ function str_pad ($input, $pad_length, $pad_string = " ", $pad_type = STR_PAD_RI
  * @since 4.0
  * @since 5.0
  */
-function chop ($str, $character_mask) {}
+function chop ($str, $character_mask = null) {}
 
 /**
  * &Alias; <function>strstr</function>
@@ -660,7 +660,7 @@ function link (string $target , string $link):bool {}
  * @since 4.0
  * @since 5.0
  */
-function unlink ($filename, $context = null) {}
+function unlink ($filename, $context = null):bool {}
 
 /**
  * Execute an external program
@@ -993,16 +993,20 @@ function srand ($seed = null, $mode = MT_RAND_MT19937) {}
 function getrandmax () {}
 
 /**
- * Generate a better random value
+ * Generate a random value via the Mersenne Twister Random Number Generator
  * @link https://php.net/manual/en/function.mt-rand.php
- * @param $min [optional]
- * @param $max [optional]
+ * @param int $min [optional] <p>
+ * Optional lowest value to be returned (default: 0)
+ * </p>
+ * @param int $max [optional] <p>
+ * Optional highest value to be returned (default: mt_getrandmax())
+ * </p>
  * @return int A random integer value between min (or 0)
  * and max (or mt_getrandmax, inclusive)
  * @since 4.0
  * @since 5.0
  */
-function mt_rand ($min, $max) {}
+function mt_rand ($min = 0, $max = null) {}
 
 /**
  * Seed the better random number generator

@@ -7,6 +7,7 @@ use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Expr\ConstFetch;
 use PhpParser\Node\Expr\FuncCall;
 use PhpParser\Node\Expr\StaticCall;
+use PhpParser\Node\Name;
 use PhpParser\Node\Scalar\String_;
 use PHPUnit\Framework\TestCase;
 use StubTests\Model\PHPConst;
@@ -114,12 +115,15 @@ class StubsMetaExpectedArgumentsTest extends TestCase
     public function testRegisteredArgumentsSetExists()
     {
         foreach (self::$expectedArguments as $argument) {
+            $usedArgumentsSet = [];
             foreach ($argument->getExpectedArguments() as $argumentsSet) {
                 if ($argumentsSet instanceof FuncCall && ((string)$argumentsSet->name) === 'argumentsSet') {
                     $args = $argumentsSet->args;
                     self::assertGreaterThanOrEqual(1, count($args), 'argumentsSet call should provide set name');
                     $name = $args[0]->value->value;
                     self::assertContains($name, self::$registeredArgumentsSet, 'Can\'t find registered argument set: ' . $name);
+                    self::assertArrayNotHasKey($name, $usedArgumentsSet, $name . ' argumentsSet used more then once for ' . self::getFqn($argument->getFunctionReference()));
+                    $usedArgumentsSet[$name] = $name;
                 }
             }
         }
@@ -175,6 +179,17 @@ class StubsMetaExpectedArgumentsTest extends TestCase
         foreach(self::$registeredArgumentsSet as $name) {
             self::assertArrayNotHasKey($name, $registeredArgumentsSet, 'Set with name ' . $name . ' already registered');
             $registeredArgumentsSet[$name] = $name;
+        }
+    }
+
+    public function testReferencesAreAbsolute()
+    {
+        foreach (self::$expectedArguments as $argument) {
+            $expr = $argument->getFunctionReference();
+            if ($expr !== null) {
+                $name = $expr instanceof StaticCall ? $expr->class : $expr->name;
+                self::assertTrue($name->getAttribute('originalName')->isFullyQualified(), self::getFqn($expr) . ' should be fully qualified');
+            }
         }
     }
 
