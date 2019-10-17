@@ -243,7 +243,7 @@ function each (array &$array) {}
  * </td>
  * </tr>
  * <tr valign="top">
- * <td>6143</td>
+ * <td>32767</td>
  * <td>
  * E_ALL
  * </td>
@@ -611,7 +611,7 @@ function user_error ($message, $error_type = E_USER_NOTICE) {}
 /**
  * Sets a user-defined error handler function
  * @link https://php.net/manual/en/function.set-error-handler.php
- * @param callable $error_handler <p>
+ * @param callable|null $error_handler <p>
  * The user function needs to accept two parameters: the error code, and a
  * string describing the error. Then there are three optional parameters 
  * that may be supplied: the filename in which the error occurred, the
@@ -636,7 +636,7 @@ function user_error ($message, $error_type = E_USER_NOTICE) {}
  * <i>error_handler</i> will be called for every error
  * regardless to the setting of the error_reporting setting.
  * </p>
- * @return mixed a string containing the previously defined error handler (if any). If
+ * @return callable|null a string containing the previously defined error handler (if any). If
  * the built-in error handler is used null is returned. null is also returned
  * in case of an error such as an invalid callback. If the previous error handler
  * was a class method, this function will return an indexed array with the class
@@ -866,7 +866,11 @@ function get_extension_funcs ($module_name) {}
  * [E_USER_ERROR] => 256
  * [E_USER_WARNING] => 512
  * [E_USER_NOTICE] => 1024
- * [E_ALL] => 2047
+ * [E_STRICT] => 2048
+ * [E_RECOVERABLE_ERROR] => 4096
+ * [E_DEPRECATED] => 8192
+ * [E_USER_DEPRECATED] => 16384
+ * [E_ALL] => 32767
  * [TRUE] => 1
  * )
  * [pcre] => Array

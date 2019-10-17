@@ -36,8 +36,8 @@ class SplFileInfo  {
         /**
          * Gets the file extension
          * @link https://php.net/manual/en/splfileinfo.getextension.php
-	 * @return string a string containing the file extension, or an
-	 * empty string if the file has no extension.
+         * @return string a string containing the file extension, or an
+         * empty string if the file has no extension.
          * @since 5.3.6
          */
         public function getExtension () {}
@@ -410,7 +410,7 @@ class FilesystemIterator extends DirectoryIterator {
         /**
          * The current file
          * @link https://php.net/manual/en/filesystemiterator.current.php
-         * @return mixed The filename, file information, or $this depending on the set flags.
+         * @return string|SplFileInfo|self The filename, file information, or $this depending on the set flags.
          * See the FilesystemIterator constants.
          * @since 5.3.0
          */
@@ -517,7 +517,7 @@ class RecursiveDirectoryIterator extends FilesystemIterator implements Recursive
         /**
          * The current file
          * @link https://php.net/manual/en/filesystemiterator.current.php
-         * @return mixed The filename, file information, or $this depending on the set flags.
+         * @return string|SplFileInfo|self The filename, file information, or $this depending on the set flags.
          * See the FilesystemIterator constants.
          * @since 5.3.0
          */
@@ -791,7 +791,7 @@ class SplFileObject extends SplFileInfo implements RecursiveIterator, SeekableIt
 	 * @param mixed $_ [optional] <p>
 	 * The optional assigned values.
 	 * </p>
-	 * @return mixed If only one parameter is passed to this method, the values parsed will be
+	 * @return array|int If only one parameter is passed to this method, the values parsed will be
          * returned as an array. Otherwise, if optional parameters are passed, the
          * function will return the number of assigned values. The optional
          * parameters must be passed by reference.
@@ -811,7 +811,7 @@ class SplFileObject extends SplFileInfo implements RecursiveIterator, SeekableIt
 	 * the end of <i>string</i> is reached, whichever comes
          * first.
          * </p>
-	 * @return int the number of bytes written, or null on error.
+         * @return int the number of bytes written, or 0 on error.
          * @since 5.1.0
          */
         public function fwrite ($str, $length = null) {}
@@ -1147,7 +1147,7 @@ class SplDoublyLinkedList implements Iterator, Countable, ArrayAccess, Serializa
         /**
          * Return current node index
          * @link https://php.net/manual/en/spldoublylinkedlist.key.php
-         * @return mixed The current node index.
+         * @return string|float|int|bool|null The current node index.
          * @since 5.3.0
          */
         public function key () {}
@@ -1323,7 +1323,7 @@ abstract class SplHeap implements Iterator, Countable {
         /**
          * Return current node index
          * @link https://php.net/manual/en/splheap.key.php
-         * @return mixed The current node index.
+         * @return int The current node index.
          * @since 5.3.0
          */
         public function key () {}
@@ -1461,7 +1461,7 @@ class SplMinHeap extends SplHeap {
         /**
          * Return current node index
          * @link https://php.net/manual/en/splheap.key.php
-         * @return mixed The current node index.
+         * @return int The current node index.
          * @since 5.3.0
          */
         public function key () {}
@@ -1623,7 +1623,7 @@ class SplPriorityQueue implements Iterator, Countable {
         /**
          * Return current node index
          * @link https://php.net/manual/en/splpriorityqueue.key.php
-         * @return mixed The current node index.
+         * @return int The current node index.
          * @since 5.3.0
          */
         public function key () {}
