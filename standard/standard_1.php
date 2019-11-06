@@ -368,7 +368,7 @@ function strrchr ($haystack, $needle) {}
  * The input string.
  * </p>
  * @return string the shuffled string.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function str_shuffle ($str) {}
@@ -389,7 +389,7 @@ function str_shuffle ($str) {}
  * </p>
  * @return string[]|int an array or an integer, depending on the
  * format chosen.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function str_word_count ($string, $format = null, $charlist = null) {}
@@ -494,7 +494,7 @@ function strcoll ($str1, $str2) {}
  * string will be returned unchanged.
  * Non-numeric number causes returning &null; and
  * emitting E_WARNING.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  * @deprecated 7.4
  */
@@ -526,8 +526,14 @@ function money_format ($format, $number) {}
  * </p>
  * <p>
  * Using a negative start
- * ]]>
  * </p>
+ * <pre>
+ * <?php
+ * $rest = substr("abcdef", -1);    // returns "f"
+ * $rest = substr("abcdef", -2);    // returns "ef"
+ * $rest = substr("abcdef", -3, 1); // returns "d"
+ * ?>
+ * </pre>
  * @param int $length [optional] <p>
  * If length is given and is positive, the string
  * returned will contain at most length characters
@@ -546,8 +552,15 @@ function money_format ($format, $number) {}
  * If length is given and is 0,
  * false or &null; an empty string will be returned.
  * </p>
- * Using a negative length
- * ]]>
+ * Using a negative length:
+ * <pre>
+ * <?php
+ * $rest = substr("abcdef", 0, -1);  // returns "abcde"
+ * $rest = substr("abcdef", 2, -1);  // returns "cde"
+ * $rest = substr("abcdef", 4, -4);  // returns false
+ * $rest = substr("abcdef", -3, -1); // returns "de"
+ * ?>
+ * </pre>
  * @return string|false the extracted part of string or false on failure.
  * @since 4.0
  * @since 5.0
@@ -624,7 +637,7 @@ function ucfirst ($str) {}
  * The input string.
  * </p>
  * @return string the resulting string.
- * @since 5.3.0
+ * @since 5.3
  */
 function lcfirst ($str) {}
 
@@ -701,14 +714,28 @@ function addslashes ($str) {}
  * When you define a sequence of characters in the charlist argument
  * make sure that you know what characters come between the
  * characters that you set as the start and end of the range.
- * ]]>
+ * </p>
+ * <pre>
+ * <?php
+ * echo addcslashes('foo[ ]', 'A..z');
+ * // output:  \f\o\o\[ \]
+ * // All upper and lower-case letters will be escaped
+ * // ... but so will the [\]^_`
+ * ?>
+ * </pre>
+ * <p>
  * Also, if the first character in a range has a higher ASCII value
  * than the second character in the range, no range will be
  * constructed. Only the start, end and period characters will be
  * escaped. Use the ord function to find the
  * ASCII value for a character.
- * ]]>
  * </p>
+ * <pre>
+ * <?php
+ * echo addcslashes("zoo['.']", 'z..A');
+ * // output:  \zoo['\.']
+ * ?>
+ * </pre>
  * <p>
  * Be careful if you choose to escape characters 0, a, b, f, n, r,
  * t and v. They will be converted to \0, \a, \b, \f, \n, \r, \t
