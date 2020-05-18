@@ -199,7 +199,7 @@ function openssl_spki_new(&$privkey, &$challenge, $algorithm = 0) {}
 function openssl_spki_verify(&$spkac) {}
 
 /**
- * Exports the challenge assoicated with a signed public key and challenge
+ * Exports the challenge associated with a signed public key and challenge
  * @link https://php.net/manual/en/function.openssl-spki-export-challenge.php
  * @param string $spkac <p>Expects a valid signed public key and challenge</p>
  * @return string|null Returns the associated challenge string or NULL on failure.
@@ -610,7 +610,7 @@ function openssl_digest($data, $method, $raw_output = false) { }
  * The cipher method. For a list of available cipher methods, use {@see openssl_get_cipher_methods()}.
  * </p>
  * @param string $key <p>
- * The key. 
+ * The key.
  * </p>
  * @param int $options [optional] <p>
  * options is a bitwise disjunction of the flags OPENSSL_RAW_DATA and OPENSSL_ZERO_PADDING.

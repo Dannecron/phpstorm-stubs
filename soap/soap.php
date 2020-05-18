@@ -255,7 +255,7 @@ class SoapClient  {
      * <b>SOAP_SSL_METHOD_SSLv3</b> or
      * <b>SOAP_SSL_METHOD_SSLv23</b>.
      * </p>
-     * @throws SoapFault A SoapFault exception will be thrown if the wsdl URI cannot be loaded. 
+     * @throws SoapFault A SoapFault exception will be thrown if the wsdl URI cannot be loaded.
      * @since 5.0.1
      */
     public function __construct ($wsdl, array $options = null) {}
@@ -349,7 +349,7 @@ class SoapClient  {
 	 * Returns list of available SOAP functions
 	 * @link https://php.net/manual/en/soapclient.getfunctions.php
 	 * @return array The array of SOAP function prototypes, detailing the return type,
-	 * the function name and type-hinted paramaters.
+	 * the function name and type-hinted parameters.
 	 * @since 5.0.1
 	 */
 	public function __getFunctions () {}

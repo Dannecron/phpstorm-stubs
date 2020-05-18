@@ -144,10 +144,10 @@ function finfo_file ($finfo, $file_name, $options = null, $context = null) {}
  * </p>
  * @param resource $context [optional] <p>
  * </p>
- * @param string $string 
+ * @param string $string
  * @param int $options [optional] One or disjunction of more
  * <a href="https://php.net/manual/en/fileinfo.constants.php">Fileinfo</a> constants.
- * @param resource $context [optional] 
+ * @param resource $context [optional]
  * @return string a textual description of the <i>string</i>
  * argument, or <b>FALSE</b> if an error occurred.
  */
@@ -159,7 +159,7 @@ function finfo_buffer ($finfo ,$string, $options = FILEINFO_NONE, $context = NUL
  * @param string $filename <p>
  * Path to the tested file.
  * </p>
- * @return string the content type in MIME format, like 
+ * @return string the content type in MIME format, like
  * text/plain or application/octet-stream.
  */
 function mime_content_type ($filename) {}
@@ -221,7 +221,7 @@ define ('FILEINFO_PRESERVE_ATIME', 128);
 define ('FILEINFO_RAW', 256);
 
 /**
- * Returns the file extension appropiate for a the MIME type detected in the file.
+ * Returns the file extension appropriate for a the MIME type detected in the file.
  * For types that commonly have multiple file extensions, such as JPEG images, then the return value is multiple extensions speparated by a forward slash e.g.: "jpeg/jpg/jpe/jfif".
  * For unknown types not available in the magic.mime database, then return value is "???". Available since PHP 7.2.0.
  * @since 7.2

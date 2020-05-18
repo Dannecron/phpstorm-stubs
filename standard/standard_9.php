@@ -126,7 +126,9 @@ function array_reverse(array $array, $preserve_keys = null) { }
  * The input array.
  * </p>
  * @param callback $function <p>
- * The callback function.
+ * The callback function. Signature is <pre>callback ( mixed $carry , mixed $item ) : mixed</pre>
+ * <blockquote>mixed <var>$carry</var> <p>The return value of the previous iteration; on the first iteration it holds the value of <var>$initial</var>.</p></blockquote>
+ * <blockquote>mixed <var>$item</var> <p>Holds the current iteration value of the <var>$input</var></p></blockquote>
  * </p>
  * @param mixed $initial [optional] <p>
  * If the optional initial is available, it will
@@ -138,6 +140,13 @@ function array_reverse(array $array, $preserve_keys = null) { }
  * <p>
  * If the array is empty and initial is not passed,
  * array_reduce returns null.
+ * </p>
+ * <br/>
+ * <p>
+ * Example use:
+ * <blockquote><pre>array_reduce(['2', '3', '4'], function($ax, $dx) { return $ax . ", {$dx}"; }, '1')  // Returns '1, 2, 3, 4'</pre></blockquote>
+ * <blockquote><pre>array_reduce(['2', '3', '4'], function($ax, $dx) { return $ax + (int)$dx; }, 1)  // Returns 10</pre></blockquote>
+ * <br/>
  * @meta
  */
 function array_reduce(array $input, $function, $initial = null) { }
@@ -198,11 +207,10 @@ function array_change_key_case(array $input, $case = null) { }
  * @param int $num_req [optional] <p>
  * Specifies how many entries you want to pick.
  * </p>
- * @return mixed If you are picking only one entry, array_rand
+ * @return int|string|array If you are picking only one entry, array_rand
  * returns the key for a random entry. Otherwise, it returns an array
  * of keys for the random entries. This is done so that you can pick
  * random keys as well as values out of the array.
- * @meta
  */
 function array_rand(array $input, $num_req = null) { }
 
@@ -1022,7 +1030,7 @@ function stream_isatty($name) {}
  * This method is called upon filter shutdown (typically, this is also
  * during stream shutdown), and is executed after
  * the flush method is called. If any resources
- * were allocated or initialzed during onCreate()
+ * were allocated or initialized during onCreate()
  * this would be the time to destroy or dispose of them.
  * </p>
  * @return bool true on success or false on failure.

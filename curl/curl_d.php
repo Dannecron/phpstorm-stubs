@@ -288,7 +288,7 @@ define ('CURLOPT_PASSWDFUNCTION', -1);
 /**
  * <b>TRUE</b> to follow any "<em>Location: </em>" header that the server sends as part of the HTTP header
  * (note this is recursive, PHP will follow as many "Location: " headers that it is sent, unless <b>CURLOPT_MAXREDIRS</b> is set).
- * This constant is not available when open_basedir 
+ * This constant is not available when open_basedir
  * or safe_mode are enabled.
  * @link https://www.php.net/manual/en/function.curl-setopt.php
  */
@@ -3319,7 +3319,7 @@ define("CURLPROTO_RTMPTE",4194304);
  */
 define("CURLPROTO_RTMPTS",16777216);
 /**
- * Return value for the <b>CURLOPT_FNMATCH_FUNCTION</b> if an error was occured.
+ * Return value for the <b>CURLOPT_FNMATCH_FUNCTION</b> if an error was occurred.
  * @link https://curl.haxx.se/libcurl/c/CURLOPT_FNMATCH_FUNCTION.html
  */
 define("CURL_FNMATCHFUNC_FAIL",2);
