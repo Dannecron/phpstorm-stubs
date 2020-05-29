@@ -173,7 +173,7 @@ abstract class ReflectionFunctionAbstract implements Reflector {
 	/**
 	 * Gets file name
 	 * @link https://php.net/manual/en/reflectionfunctionabstract.getfilename.php
-	 * @return string The file name.
+	 * @return string|false The file name.
 	 */
 	public function getFileName () {}
 
@@ -914,7 +914,7 @@ class ReflectionClass implements Reflector {
 	/**
 	 * Gets the constructor of the class
 	 * @link https://php.net/manual/en/reflectionclass.getconstructor.php
-	 * @return ReflectionMethod A <b>ReflectionMethod</b> object reflecting the class' constructor, or <b>NULL</b> if the class
+	 * @return ReflectionMethod|null A <b>ReflectionMethod</b> object reflecting the class' constructor, or <b>NULL</b> if the class
 	 * has no constructor.
 	 */
 	public function getConstructor () {}
@@ -2045,6 +2045,16 @@ final class ReflectionReference
 	private function __construct() {}
 
 	private function __clone() {}
+}
+
+/**
+ * @since 8.0
+ */
+class ReflectionUnionType extends ReflectionType {
+	/**
+	 * @return ReflectionType[]
+	 */
+	public function getTypes() {}
 }
 
 // End of Reflection v.$Id: bcdcdaeea3aba34a8083bb62c6eda69ff3c3eab5 $
