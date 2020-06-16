@@ -193,15 +193,14 @@ function metaphone ($str, $phonemes = 0) {}
  * Default value 0 means that the function is called only in the end,
  * other special value 1 sets chunk_size to 4096.
  * </p>
- * @param bool $erase [optional] <p>
- * If the optional parameter erase is set to false,
- * the buffer will not be deleted until the script finishes.
- * This causes that flushing and cleaning functions would issue a notice
- * and return false if called.
+ * @param int $flags [optional] <p>
+ * The flags parameter is a bitmask that controls the operations that can be performed on the output buffer.
+ * The default is to allow output buffers to be cleaned, flushed and removed, which can be set explicitly via
+ * PHP_OUTPUT_HANDLER_CLEANABLE | PHP_OUTPUT_HANDLER_FLUSHABLE | PHP_OUTPUT_HANDLER_REMOVABLE, or PHP_OUTPUT_HANDLER_STDFLAGS as shorthand.
  * </p>
  * @return bool true on success or false on failure.
  */
-function ob_start ($output_callback = null, $chunk_size = null, $erase = null) {}
+function ob_start ($output_callback = null, $chunk_size = null, $flags = PHP_OUTPUT_HANDLER_STDFLAGS) {}
 
 /**
  * Flush (send) the output buffer
@@ -633,7 +632,7 @@ function count ($var, $mode = COUNT_NORMAL) {}
 /**
  * Set the internal pointer of an array to its last element
  * @link https://php.net/manual/en/function.end.php
- * @param array|object $array <p>
+ * @param array $array <p>
  * The array. This array is passed by reference because it is modified by
  * the function. This means you must pass it a real variable and not
  * a function returning an array because only actual variables may be
@@ -647,7 +646,7 @@ function end (array &$array) {}
 /**
  * Rewind the internal array pointer
  * @link https://php.net/manual/en/function.prev.php
- * @param array|object $array <p>
+ * @param array $array <p>
  * The input array.
  * </p>
  * @return mixed the array value in the previous place that's pointed to by
@@ -660,7 +659,7 @@ function prev (array &$array) {}
 /**
  * Advance the internal array pointer of an array
  * @link https://php.net/manual/en/function.next.php
- * @param array|object $array <p>
+ * @param array $array <p>
  * The array being affected.
  * </p>
  * @return mixed the array value in the next place that's pointed to by the
@@ -672,7 +671,7 @@ function next (array &$array) {}
 /**
  * Set the internal pointer of an array to its first element
  * @link https://php.net/manual/en/function.reset.php
- * @param array|object $array <p>
+ * @param array $array <p>
  * The input array.
  * </p>
  * @return mixed the value of the first array element, or false if the array is
@@ -684,7 +683,7 @@ function reset (array &$array) {}
 /**
  * Return the current element in an array
  * @link https://php.net/manual/en/function.current.php
- * @param array|object $array <p>
+ * @param array $array <p>
  * The array.
  * </p>
  * @return mixed The current function simply returns the
@@ -699,7 +698,7 @@ function current (array $array) {}
 /**
  * Fetch a key from an array
  * @link https://php.net/manual/en/function.key.php
- * @param array|object $array <p>
+ * @param array $array <p>
  * The array.
  * </p>
  * @return int|string|null The key function simply returns the
