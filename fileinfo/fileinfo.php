@@ -76,7 +76,7 @@ class finfo  {
  * A .mime and/or .mgc suffix is added if
  * needed.
  * </p>
- * @return resource a magic database resource on success or <b>FALSE</b> on failure.
+ * @return resource|false a magic database resource on success or <b>FALSE</b> on failure.
  */
 function finfo_open ($options = null, $magic_file = null) {}
 
@@ -151,7 +151,7 @@ function finfo_file ($finfo, $file_name, $options = null, $context = null) {}
  * @return string a textual description of the <i>string</i>
  * argument, or <b>FALSE</b> if an error occurred.
  */
-function finfo_buffer ($finfo ,$string, $options = FILEINFO_NONE, $context = NULL) {}
+function finfo_buffer ($finfo ,$string, $options = FILEINFO_NONE, $context = null) {}
 
 /**
  * Detect MIME Content-type for a file

@@ -7,6 +7,12 @@
  * @link https://php.net/manual/en/class.ziparchive.php
  */
 class ZipArchive implements Countable {
+	/**
+	 * Zip library version
+	 * @link https://php.net/manual/en/zip.constants.php
+	 * @since 7.4.3
+	 */
+	const LIBZIP_VERSION = '1.5.1';
 
 	/**
 	 * Create the archive if it does not exist.
@@ -1028,7 +1034,7 @@ function zip_close ($zip) {}
  * @param resource $zip <p>
  * A ZIP file previously opened with <b>zip_open</b>.
  * </p>
- * @return resource a directory entry resource for later use with the
+ * @return resource|false a directory entry resource for later use with the
  * zip_entry_... functions, or <b>FALSE</b> if
  * there are no more entries to read, or an error code if an error
  * occurred.

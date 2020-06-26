@@ -6,7 +6,7 @@
  * Represents an element in an XML document.
  * @link https://php.net/manual/en/class.simplexmlelement.php
  */
-class SimpleXMLElement implements Traversable, ArrayAccess, Countable {
+class SimpleXMLElement implements Traversable, ArrayAccess, Countable, Iterator {
 
 	/**
 	 * Creates a new SimpleXMLElement object
@@ -224,7 +224,7 @@ class SimpleXMLElement implements Traversable, ArrayAccess, Countable {
      * Class provides access to children by position, and attributes by name
      * private Method not callable directly, stub exists for typehint only
      * @param string|int $offset
-     * @return SimpleXMLElement Either a named attribute or an element from a list of children
+     * @return static Either a named attribute or an element from a list of children
      */
     private function offsetGet ($offset) {}
 
@@ -244,6 +244,41 @@ class SimpleXMLElement implements Traversable, ArrayAccess, Countable {
      * @return void
      */
     private function offsetUnset ($offset) {}
+
+    /**
+     * Rewind to the first element
+     * @link https://php.net/manual/en/simplexmliterator.rewind.php
+     * @return void No value is returned.
+     */
+    private function rewind () {}
+
+    /**
+     * Check whether the current element is valid
+     * @link https://php.net/manual/en/simplexmliterator.valid.php
+     * @return bool <b>TRUE</b> if the current element is valid, otherwise <b>FALSE</b>
+     */
+    private function valid () {}
+
+    /**
+     * Returns the current element
+     * @link https://php.net/manual/en/simplexmliterator.current.php
+     * @return static|null the current element as a <b>SimpleXMLElement</b> object or <b>NULL</b> on failure.
+     */
+    private function current () {}
+
+    /**
+     * Return current key
+     * @link https://php.net/manual/en/simplexmliterator.key.php
+     * @return string|false the XML tag name of the element referenced by the current <b>SimpleXMLIterator</b> object or <b>FALSE</b>
+     */
+    private function key () {}
+
+    /**
+     * Move to next element
+     * @link https://php.net/manual/en/simplexmliterator.next.php
+     * @return void No value is returned.
+     */
+    private function next () {}
 }
 
 /**
@@ -269,14 +304,14 @@ class SimpleXMLIterator extends SimpleXMLElement implements RecursiveIterator, C
 	/**
 	 * Returns the current element
 	 * @link https://php.net/manual/en/simplexmliterator.current.php
-	 * @return mixed the current element as a <b>SimpleXMLIterator</b> object or <b>NULL</b> on failure.
+	 * @return static|null the current element as a <b>SimpleXMLIterator</b> object or <b>NULL</b> on failure.
 	 */
 	public function current () {}
 
 	/**
 	 * Return current key
 	 * @link https://php.net/manual/en/simplexmliterator.key.php
-	 * @return mixed the XML tag name of the element referenced by the current <b>SimpleXMLIterator</b> object or <b>FALSE</b>
+	 * @return string|false the XML tag name of the element referenced by the current <b>SimpleXMLIterator</b> object or <b>FALSE</b>
 	 */
 	public function key () {}
 

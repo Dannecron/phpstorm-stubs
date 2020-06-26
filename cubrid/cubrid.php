@@ -33,11 +33,11 @@
  * a new connection, even if cubrid_connect() was called
  * before with the same parameters.
  * </p>
- * @return resource <p>
+ * @return resource|false <p>
  * a CUBRID connection identifier on success or false on failure.
  * </p>
  */
-function cubrid_connect ($host, $port, $dbname, $userid = 'PUBLIC', $passwd = '', $new_link = FALSE) {}
+function cubrid_connect ($host, $port, $dbname, $userid = 'PUBLIC', $passwd = '', $new_link = false) {}
 
 /**
  * (PHP 5, CUBRID &gt;= 8.3.1)<br/>
@@ -65,11 +65,11 @@ function cubrid_connect ($host, $port, $dbname, $userid = 'PUBLIC', $passwd = ''
  * a new connection, even if cubrid_connect() was called
  * before with the same parameters.
  * </p>
- * @return resource <p>
+ * @return resource|false <p>
  * a CUBRID connection identifier on success or false on failure.
  * </p>
  */
-function cubrid_connect_with_url ($conn_url, $userid = 'PUBLIC', $passwd = '', $new_link = FALSE) {}
+function cubrid_connect_with_url ($conn_url, $userid = 'PUBLIC', $passwd = '', $new_link = false) {}
 
 /**
  * (PHP 5, CUBRID &gt;= 8.3.1)<br/>
@@ -92,7 +92,7 @@ function cubrid_connect_with_url ($conn_url, $userid = 'PUBLIC', $passwd = '', $
  * User password. Default value is empty string, i.e. no
  * password is defined.
  * </p>
- * @return resource <p>
+ * @return resource|false <p>
  * Connection identifier, when process is successful.
  * FALSE, when process is unsuccessful.
  * </p>
@@ -115,7 +115,7 @@ function cubrid_pconnect ($host, $port, $dbname, $userid = 'PUBLIC', $passwd = '
  * User password. Default value is empty string, i.e. no
  * password is defined.
  * </p>
- * @return resource <p>
+ * @return resource|false <p>
  * Connection identifier, when process is successful.
  * FALSE, when process is unsuccessful.
  * </p>
@@ -161,7 +161,7 @@ function cubrid_disconnect ($conn_identifier = null) {}
  * is not specified, the last connection opened by
  * cubrid_connect() is assumed.
  * </p>
- * @return resource <ul><li>
+ * @return resource|bool <ul><li>
  * For SELECT, SHOW, DESCRIBE, EXPLAIN and other statements
  * returning resultset, cubrid_query() returns a resource
  * on success, or false on error.
@@ -207,7 +207,7 @@ function cubrid_query ($query, $conn_identifier = null) {}
  * Query execution option CUBRID_INCLUDE_OID, CUBRID_ASYNC,
  * CUBRID_EXEC_QUERY_ALL.
  * </p>
- * @return resource <p>
+ * @return resource|bool <p>
  * Request identifier, when process is successful,
  * or FALSE, when process is unsuccessful.
  * </p>
@@ -341,7 +341,7 @@ function cubrid_col_size ($conn_identifier, $oid, $attr_name) {}
  * The CUBRID connection. If the connection identifier is not
  * specified, the last connection opened by cubrid_connect() is assumed.
  * </p>
- * @return resource <p>
+ * @return resource|bool <p>
  * For SELECT, SHOW, DESCRIBE or EXPLAIN statements,
  * cubrid_unbuffered_query() returns a resource on success, or false on
  * error.
@@ -1361,7 +1361,7 @@ function cubrid_lob_size ($lob_identifier) {}
  * FALSE, when process is unsuccessful.
  * </p>
  */
-function cubrid_lob2_bind ($req_identifier, $bind_index, $bind_value, $bind_value_type = NULL) {}
+function cubrid_lob2_bind ($req_identifier, $bind_index, $bind_value, $bind_value_type = null) {}
 
 /**
  * (PHP 5, CUBRID &gt;= 8.4.1)<br/>
@@ -1427,11 +1427,11 @@ function cubrid_lob2_import ($lob_identifier, $file_name) {}
  * It may be "BLOB" or "CLOB", it won't be case-sensitive.
  * The default value is "BLOB".
  * </p>
- * @return resource <p>
+ * @return resource|false <p>
  * Lob identifier when it is successful. FALSE on failure.
  * </p>
  */
-function cubrid_lob2_new ($conn_identifier = NULL, $type = "BLOB") {}
+function cubrid_lob2_new ($conn_identifier = null, $type = "BLOB") {}
 
 /**
  * (PHP 5, CUBRID &gt;= 8.4.1)<br/>
@@ -1649,7 +1649,7 @@ function cubrid_next_result ($result) {}
  * @param int $option [optional] <p>
  * OID return option CUBRID_INCLUDE_OID.
  * </p>
- * @return resource <p>
+ * @return resource|false <p>
  * Request identifier, if process is successful;
  * FALSE, if process is unsuccessful.
  * </p>
