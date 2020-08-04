@@ -3,7 +3,7 @@
 /**
  * Get the last occurred error
  * @link https://php.net/manual/en/function.error-get-last.php
- * @return array an associative array describing the last error with keys "type",
+ * @return array|null an associative array describing the last error with keys "type",
  * "message", "file" and "line". Returns &null; if there hasn't been an error
  * yet.
  */
@@ -148,10 +148,11 @@ function serialize ($value) {}
  * should be instantiated, it'll be called. To disable this feature just
  * empty this setting.
  * </p>
- * @param mixed $options [optional]
+ * @param array $options [optional]
  * <p>Any options to be provided to unserialize(), as an associative array.</p>
  * <p>
- * Either an array of class names which should be accepted, FALSE to
+ * The 'allowed_classes' option key may be set to a value that is
+ * either an array of class names which should be accepted, FALSE to
  * accept no classes, or TRUE to accept all classes. If this option is defined
  * and unserialize() encounters an object of a class that isn't to be accepted,
  * then the object will be instantiated as __PHP_Incomplete_Class instead.
@@ -199,12 +200,13 @@ function var_export ($expression, $return = null) {}
 /**
  * Dumps a string representation of an internal zend value to output
  * @link https://php.net/manual/en/function.debug-zval-dump.php
- * @param mixed ...$vars <p>
- * The variable being evaluated.
+ * @param mixed $value The variable being evaluated.
+ * @param mixed ...$values <p>
+ * The other variable being evaluated.
  * </p>
  * @return void
  */
-function debug_zval_dump (...$vars) {}
+function debug_zval_dump ($value, ...$values) {}
 
 /**
  * Prints human-readable information about a variable
@@ -235,7 +237,7 @@ function print_r ($expression, $return = null) {}
  * </p>
  * @return int the memory amount in bytes.
  */
-function memory_get_usage ($real_usage = null) {}
+function memory_get_usage ($real_usage = false) {}
 
 /**
  * Returns the peak of memory allocated by PHP
@@ -247,7 +249,7 @@ function memory_get_usage ($real_usage = null) {}
  * </p>
  * @return int the memory peak in bytes.
  */
-function memory_get_peak_usage ($real_usage = null) {}
+function memory_get_peak_usage ($real_usage = false) {}
 
 /**
  * Register a function for execution on shutdown
@@ -473,6 +475,7 @@ function set_include_path ($new_include_path) {}
  * @link https://php.net/manual/en/function.restore-include-path.php
  * @return void
  * @deprecated 7.4
+ * @removed 8.0
  */
 function restore_include_path () {}
 

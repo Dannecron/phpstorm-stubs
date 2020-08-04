@@ -378,14 +378,14 @@ class Redis
     /**
      * Check the current connection status
      *
-     * @param string $message
+     * @param string $message [optional]
      *
      * @return bool|string TRUE if the command is successful or returns message
      * Throws a RedisException object on connectivity error, as described above.
      * @throws RedisException
      * @link    https://redis.io/commands/ping
      */
-    public function ping($message)
+    public function ping($message=null)
     {
     }
 
@@ -443,7 +443,6 @@ class Redis
      * @param int|array    $timeout [optional] Calling setex() is preferred if you want a timeout.<br>
      * Since 2.6.12 it also supports different flags inside an array. Example ['NX', 'EX' => 60]<br>
      *  - EX seconds -- Set the specified expire time, in seconds.<br>
-     *  - PX milliseconds -- Set the specified expire time, in milliseconds.<br>
      *  - PX milliseconds -- Set the specified expire time, in milliseconds.<br>
      *  - NX -- Only set the key if it does not already exist.<br>
      *  - XX -- Only set the key if it already exist.<br>
@@ -5108,6 +5107,15 @@ class RedisArray
      * @return  string  the host to be used for a certain key
      */
     public function _target($key)
+    {
+    }
+
+    /**
+     * @param string $host The host you want to retrieve the instance for
+     *
+     * @return Redis a redis instance connected to a specific node
+     */
+    public function _instance($host)
     {
     }
 

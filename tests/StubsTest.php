@@ -173,7 +173,9 @@ class StubsTest extends TestCase
         }
         foreach ($class->properties as $property) {
             $propertyName = $property->name;
-            if ($property->access === "private") continue;
+            if ($property->access === "private") {
+                continue;
+            }
             if (!$property->hasMutedProblem(StubProblemType::STUB_IS_MISSED)) {
                 static::assertArrayHasKey(
                     $propertyName,
@@ -291,6 +293,23 @@ class StubsTest extends TestCase
     {
         static::assertNull($constant->parseError, $constant->parseError ?: '');
         $this->checkPHPDocCorrectness($constant, "constant $className::$constant->name");
+    }
+
+    /**
+     * @dataProvider \StubTests\TestData\Providers\StubsTestDataProviders::coreStubMethodProvider
+     */
+    public function testCoreMethodsTypeHints(string $methodName, PHPMethod $stubFunction): void
+    {
+        $firstSinceVersion = 5;
+        if (!empty($stubFunction->sinceTags)) {
+            $sinceVersions = array_map(fn(Since $tag) => (int)$tag->getVersion(), $stubFunction->sinceTags);
+            sort($sinceVersions, SORT_DESC);
+            $firstSinceVersion = array_pop($sinceVersions);
+        } elseif ($stubFunction->hasInheritDocTag) {
+            self::markTestSkipped("Function '$methodName' contains inheritdoc.");
+        }
+        self::checkFunctionDoesNotHaveScalarTypeHints($firstSinceVersion, $stubFunction);
+        self::checkFunctionDoesNotHaveReturnTypeHints($firstSinceVersion, $stubFunction);
     }
 
     /**
@@ -418,10 +437,9 @@ class StubsTest extends TestCase
             if ($sinceTag instanceof Since) {
                 $version = $sinceTag->getVersion();
                 if ($version !== null) {
-                    self::assertTrue(Utils::versionIsMajor($sinceTag), "$elementName has 'since' version $version.
-                    'Since' version for PHP Core functionallity should have X.X format due to functionallity usually 
-                    isn't added in patch updates. If you believe this is not correct, please submit an issue about your case at
-                    https://youtrack.jetbrains.com/issues/WI");
+                    self::assertTrue(Utils::tagDoesNotHaveZeroPatchVersion($sinceTag), "$elementName has 
+                    'since' version $version.'Since' version for PHP Core functionallity for style consistensy 
+                    should have X.X format for the case when patch version is '0'.");
                 }
             }
         }
@@ -429,10 +447,9 @@ class StubsTest extends TestCase
             if ($deprecatedTag instanceof Deprecated) {
                 $version = $deprecatedTag->getVersion();
                 if ($version !== null) {
-                    self::assertTrue(Utils::versionIsMajor($deprecatedTag), "$elementName has 'deprecated' version $version .
-                    'Deprecated' version for PHP Core functionallity should have X.X format due to functionallity usually 
-                    isn't deprecated in patch updates. If you believe this is not correct, please submit an issue about your case at
-                    https://youtrack.jetbrains.com/issues/WI");
+                    self::assertTrue(Utils::tagDoesNotHaveZeroPatchVersion($deprecatedTag), "$elementName has 
+                    'deprecated' version $version.'Deprecated' version for PHP Core functionallity for style consistensy 
+                    should have X.X format for the case when patch version is '0'.");
                 }
             }
         }
@@ -440,12 +457,48 @@ class StubsTest extends TestCase
             if ($removedTag instanceof RemovedTag) {
                 $version = $removedTag->getVersion();
                 if ($version !== null) {
-                    self::assertTrue(Utils::versionIsMajor($removedTag), "$elementName has 'removed' version $version .
-                    'removed' version for PHP Core functionallity should have X.X format due to functionallity usually 
-                    isn't removed in patch updates. If you believe this is not correct, please submit an issue about your case at
-                    https://youtrack.jetbrains.com/issues/WI");
+                    self::assertTrue(Utils::tagDoesNotHaveZeroPatchVersion($removedTag), "$elementName has 
+                    'removed' version $version.'Removed' version for PHP Core functionallity for style consistensy 
+                    should have X.X format for the case when patch version is '0'.");
                 }
             }
+        }
+    }
+
+    private static function checkFunctionDoesNotHaveScalarTypeHints(int $sinceVersion, PHPFunction $function)
+    {
+        if ($sinceVersion < 7) {
+            if (empty($function->parameters)) {
+                self::assertTrue(true, 'Parameters list empty');
+            } else {
+                foreach ($function->parameters as $parameter) {
+                    if (!$parameter->hasMutedProblem(StubProblemType::PARAMETER_HAS_SCALAR_TYPEHINT)) {
+                        self::assertFalse($parameter->type === 'int' || $parameter->type === 'float' ||
+                            $parameter->type === 'string' || $parameter->type === 'bool',
+                            "Function '{$function->name}' with @since '$sinceVersion'  
+                has parameter '{$parameter->name}' with typehint '{$parameter->type}' but typehints available only since php 7");
+                    } else {
+                        self::markTestSkipped("Skipped");
+                    }
+                }
+            }
+        } else {
+            self::assertTrue(true, "Function '{$function->name}' has since version > 7");
+        }
+    }
+
+    private static function checkFunctionDoesNotHaveReturnTypeHints(int $sinceVersion, PHPFunction $function)
+    {
+        $returnTypeHint = $function->returnType === null ? $function->returnType : $function->returnType->getType();
+        if ($sinceVersion < 7) {
+            if (!$function->hasMutedProblem(StubProblemType::FUNCTION_HAS_RETURN_TYPEHINT)) {
+                self::assertNull($returnTypeHint, "Function '$function->name' has since version '$sinceVersion'
+            but has return typehint '$returnTypeHint' that supported only since PHP 7. Please declare return type via PhpDoc");
+            } else {
+                self::markTestSkipped("Skipped");
+            }
+        } else {
+            self::assertTrue(true, "Function '{$function->name}' has since version > 7");
         }
     }
 }
