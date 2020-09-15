@@ -6,7 +6,7 @@
  * Objects of this class can be traversed, yielding the entries stored in the respective RAR archive.
  * Those entries can also be obtained through {@see \RarArchive::getEntry} and {@see \RarArchive::getEntries}.
  *
- * @link https://php.net/manual/ru/class.rararchive.php
+ * @link https://php.net/manual/en/class.rararchive.php
  */
 final class RarArchive implements Traversable
 {
@@ -107,7 +107,7 @@ final class RarArchive implements Traversable
      * archive entries will fail. Broken archives are archives for which no error is detected when the file is
      * opened but an error occurs when reading the entries.
      *
-     * @link https://php.net/manual/ru/rararchive.setallowbroken.php
+     * @link https://php.net/manual/en/rararchive.setallowbroken.php
      *
      * @param bool $allow_broken Whether to allow reading broken files (TRUE) or not (FALSE)
      *
@@ -383,7 +383,7 @@ final class RarEntry
      * @param bool $extended_data If TRUE, extended information such as NTFS ACLs and Unix owner information will be
      *      set in the extract files, as long as it's present in the archive.
      *
-     * @return TRUE on success or FALSE on failure
+     * @return bool TRUE on success or FALSE on failure
      */
     public function  extract($dir, $filepath = "", $password = null, $extended_data = false)
     {

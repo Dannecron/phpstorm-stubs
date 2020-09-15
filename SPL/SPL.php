@@ -996,7 +996,7 @@ class AppendIterator extends IteratorIterator {
     /**
      * Gets the current value
      * @link https://php.net/manual/en/appenditerator.current.php
-     * @return mixed The current value if it is valid or &null; otherwise.
+     * @return mixed The current value if it is valid or null otherwise.
      */
     public function current() { }
 
@@ -1457,7 +1457,7 @@ class ArrayObject implements IteratorAggregate, ArrayAccess, Serializable, Count
      * @param mixed $index <p>
      * The index with the value.
      * </p>
-     * @return mixed The value at the specified index or false.
+     * @return mixed|false The value at the specified index or false.
      */
     public function offsetGet($index) { }
 

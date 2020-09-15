@@ -934,11 +934,11 @@ function imagecreatefromgd2part ($filename, $srcX, $srcY, $width, $height) {}
  * @link https://php.net/manual/en/function.imagepng.php
  * @param resource $image
  * @param string $filename [optional] <p>
- * The path to save the file to. If not set or &null;, the raw image stream
+ * The path to save the file to. If not set or null, the raw image stream
  * will be outputted directly.
  * </p>
  * <p>
- * &null; is invalid if the quality and
+ * null is invalid if the quality and
  * filters arguments are not used.
  * </p>
  * @param int $quality [optional] <p>
@@ -960,7 +960,7 @@ function imagepng ($image, $filename = null, $quality = null, $filters = null) {
  * @link https://php.net/manual/en/function.imagewebp.php
  * @param resource $image
  * @param string $to [optional] <p>
- * The path to save the file to. If not set or &null;, the raw image stream
+ * The path to save the file to. If not set or null, the raw image stream
  * will be outputted directly.
  * </p>
  * @param int $quality [optional] <p>
@@ -976,7 +976,7 @@ function imagewebp ($image, $to = null, $quality = 80) {}
  * @link https://php.net/manual/en/function.imagegif.php
  * @param resource $image
  * @param string $filename [optional] <p>
- * The path to save the file to. If not set or &null;, the raw image stream
+ * The path to save the file to. If not set or null, the raw image stream
  * will be outputted directly.
  * </p>
  * @return bool true on success or false on failure.
@@ -988,12 +988,12 @@ function imagegif ($image, $filename = null) {}
  * @link https://php.net/manual/en/function.imagejpeg.php
  * @param resource $image
  * @param string $filename [optional] <p>
- * The path to save the file to. If not set or &null;, the raw image stream
+ * The path to save the file to. If not set or null, the raw image stream
  * will be outputted directly.
  * </p>
  * <p>
  * To skip this argument in order to provide the
- * quality parameter, use &null;.
+ * quality parameter, use null.
  * </p>
  * @param int $quality [optional] <p>
  * quality is optional, and ranges from 0 (worst
@@ -1009,7 +1009,7 @@ function imagejpeg ($image, $filename = null, $quality = null) {}
  * @link https://php.net/manual/en/function.imagewbmp.php
  * @param resource $image
  * @param string $filename [optional] <p>
- * The path to save the file to. If not set or &null;, the raw image stream
+ * The path to save the file to. If not set or null, the raw image stream
  * will be outputted directly.
  * </p>
  * @param int $foreground [optional] <p>
@@ -1027,7 +1027,7 @@ function imagewbmp ($image, $filename = null, $foreground = null) {}
  * @link https://php.net/manual/en/function.imagegd.php
  * @param resource $image
  * @param string $filename [optional] <p>
- * The path to save the file to. If not set or &null;, the raw image stream
+ * The path to save the file to. If not set or null, the raw image stream
  * will be outputted directly.
  * </p>
  * @return bool true on success or false on failure.
@@ -1039,7 +1039,7 @@ function imagegd ($image, $filename = null) {}
  * @link https://php.net/manual/en/function.imagegd2.php
  * @param resource $image
  * @param string $filename [optional] <p>
- * The path to save the file to. If not set or &null;, the raw image stream
+ * The path to save the file to. If not set or null, the raw image stream
  * will be outputted directly.
  * </p>
  * @param int $chunk_size [optional] <p>
@@ -2047,10 +2047,10 @@ function imagelayereffect ($image, $effect) {}
 /**
  * Makes the colors of the palette version of an image more closely match the true color version
  * @link https://php.net/manual/en/function.imagecolormatch.php
- * @param $image1 resource <p>
+ * @param resource $image1 <p>
  * A truecolor image link resource.
  * </p>
- * @param $image2 resource <p>
+ * @param resource $image2 <p>
  * A palette image link resource pointing to an image that has the same
  * size as image1.
  * </p>
@@ -2063,7 +2063,7 @@ function imagecolormatch ($image1, $image2) {}
  * @link https://php.net/manual/en/function.imagexbm.php
  * @param resource $image
  * @param string $filename <p>
- * The path to save the file to. If not set or &null;, the raw image stream
+ * The path to save the file to. If not set or null, the raw image stream
  * will be outputted directly.
  * </p>
  * @param int $foreground [optional] <p>
@@ -2810,7 +2810,7 @@ define('IMG_TGA', 128);
  * such as {@link https://secure.php.net/manual/en/function.imagecreatetruecolor.php imagecreatetruecolor()}.</p>
  * @param array $affine <p>Array with keys 0 to 5.</p>
  * @param array $clip [optional] <p>Array with keys "x", "y", "width" and "height".</p>
- * @return resource|bool Return affined image resource on success or FALSE on failure.
+ * @return resource|false Return affined image resource on success or FALSE on failure.
  */
 function imageaffine($image, $affine, $clip = null) {}
 
@@ -2842,7 +2842,7 @@ function imageaffinematrixget ($type, $options = null) {}
  * An image resource, returned by one of the image creation functions, such as {@link https://secure.php.net/manual/en/function.imagecreatetruecolor.php imagecreatetruecolor()}.
  * </p>
  * @param array $rect <p>Array with keys "x", "y", "width" and "height".</p>
- * @return resource|bool Return cropped image resource on success or FALSE on failure.
+ * @return resource|false Return cropped image resource on success or FALSE on failure.
  * @since 5.5
  */
 function imagecrop ($image, $rect) {}

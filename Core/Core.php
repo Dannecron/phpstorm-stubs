@@ -24,7 +24,7 @@ function func_num_args () {}
  * The argument offset. Function arguments are counted starting from
  * zero.
  * </p>
- * @return mixed the specified argument, or false on error.
+ * @return mixed|false the specified argument, or false on error.
  */
 function func_get_arg ($arg_num) {}
 
@@ -152,7 +152,7 @@ function str_contains(string $haystack, string $needle) : bool {}
 /**
  * Return the current key and value pair from an array and advance the array cursor
  * @link https://php.net/manual/en/function.each.php
- * @param array|ArrayObject $array <p>
+ * @param array|ArrayObject &$array <p>
  * The input array.
  * </p>
  * @return array the current key and value pair from the array
@@ -420,7 +420,7 @@ function trait_exists($traitname, $autoload ) {}
  * The class name. The name is matched in a case-insensitive manner.
  * </p>
  * @param bool $autoload [optional] <p>
- * Whether or not to call &link.autoload; by default.
+ * Whether or not to call autoload by default.
  * </p>
  * @return bool true if <i>class_name</i> is a defined class,
  * false otherwise.
@@ -434,7 +434,7 @@ function class_exists ($class_name, $autoload = true) {}
  * The interface name
  * </p>
  * @param bool $autoload [optional] <p>
- * Whether to call &link.autoload; or not by default.
+ * Whether to call autoload or not by default.
  * </p>
  * @return bool true if the interface given by
  * <i>interface_name</i> has been defined, false otherwise.
@@ -585,6 +585,8 @@ function trigger_error ($error_msg, $error_type = E_USER_NOTICE) {}
  * @link https://php.net/manual/en/function.user-error.php
  * @param string $message
  * @param int    $error_type [optional]
+ * @return bool This function returns false if wrong <i>error_type</i> is
+ * specified, true otherwise.
  */
 function user_error ($message, $error_type = E_USER_NOTICE) {}
 
@@ -714,7 +716,7 @@ function get_defined_vars () {}
  * @param string $code <p>
  * The function code.
  * </p>
- * @return string a unique function name as a string, or false on error.
+ * @return string|false a unique function name as a string, or false on error.
  * @deprecated 7.2 Use anonymous functions instead.
  * @removed 8.0
  */
@@ -791,7 +793,7 @@ function extension_loaded ($name) {}
  * <p>
  * This parameter must be in lowercase.
  * </p>
- * @return array an array with all the functions, or false if
+ * @return string[]|false an array with all the functions, or false if
  * <i>module_name</i> is not a valid extension.
  */
 function get_extension_funcs ($module_name) {}
