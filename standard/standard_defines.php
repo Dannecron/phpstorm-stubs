@@ -289,6 +289,7 @@ define ('PATHINFO_EXTENSION', 4);
  * @link https://php.net/manual/en/filesystem.constants.php
  */
 define ('PATHINFO_FILENAME', 8);
+define ('PATHINFO_ALL', 15);
 define ('CHAR_MAX', 127);
 define ('LC_CTYPE', 0);
 define ('LC_NUMERIC', 1);
@@ -1116,7 +1117,7 @@ define('PHP_QUERY_RFC3986', 2);
 
 /**
  * Specifies where the manpages were installed into.
- * @since PHP 5.3.7
+ * @since 5.3.7
  * @link https://php.net/manual/en/reserved.constants.php
  */
 define('PHP_MANDIR', '/usr/local/php/php/man');
