@@ -475,6 +475,8 @@ namespace {
 
 namespace Cassandra {
 
+    use JetBrains\PhpStorm\Deprecated;
+
     /**
      * A PHP representation of a column
      * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/interface.Column/
@@ -5933,14 +5935,13 @@ namespace Cassandra {
     /**
      * Request execution options.
      *
-     * @deprecated Use an array of options instead of creating an instance of this class.
-     *
      * @see \Cassandra\Session::execute()
      * @see \Cassandra\Session::executeAsync()
      * @see \Cassandra\Session::prepare()
      * @see \Cassandra\Session::prepareAsync()
      * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/class.ExecutionOptions/
      */
+    #[Deprecated('Use an array of options instead of creating an instance of this class.')]
     final class ExecutionOptions
     {
 
@@ -7210,6 +7211,8 @@ namespace Cassandra\SSLOptions {
 
 namespace Cassandra\Exception {
 
+    use JetBrains\PhpStorm\Pure;
+
     /**
      * ConfigurationException is raised when query is syntactically correct but
      * invalid because of some configuration issue.
@@ -7226,6 +7229,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.ConfigurationException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7262,6 +7266,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.DomainException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7299,6 +7304,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.InvalidQueryException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7337,6 +7343,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.UnpreparedException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7373,6 +7380,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.InvalidArgumentException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7411,6 +7419,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.ServerException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7447,6 +7456,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.RangeException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7484,6 +7494,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.UnauthorizedException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7520,6 +7531,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.LogicException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7560,6 +7572,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.UnavailableException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7597,6 +7610,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.AuthenticationException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7633,6 +7647,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.OverloadedException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7671,6 +7686,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.ReadTimeoutException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7707,6 +7723,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.IsBootstrappingException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7745,6 +7762,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.ProtocolException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7785,6 +7803,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.ExecutionException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7821,6 +7840,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.InvalidSyntaxException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7857,6 +7877,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.RuntimeException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7894,6 +7915,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.TimeoutException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7937,6 +7959,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.ValidationException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -7974,6 +7997,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.TruncateException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -8010,6 +8034,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.AlreadyExistsException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -8046,6 +8071,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.DivideByZeroException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }
@@ -8084,6 +8110,7 @@ namespace Cassandra\Exception {
          *
          * @link https://docs.datastax.com/en/developer/php-driver/latest/api/Cassandra/Exception/class.WriteTimeoutException/#method-__construct
          */
+        #[Pure]
         public function __construct($message, $code, $previous)
         {
         }

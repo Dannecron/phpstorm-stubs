@@ -1,15 +1,22 @@
 <?php
 
+use JetBrains\PhpStorm\Deprecated;
+use JetBrains\PhpStorm\Immutable;
+
 /**
  * The <b>ReflectionFunction</b> class reports
  * information about a function.
- *
- * @property-read string $name Function name, same as calling the {@see ReflectionFunction::getName()} method
  *
  * @link https://php.net/manual/en/class.reflectionfunction.php
  */
 class ReflectionFunction extends ReflectionFunctionAbstract
 {
+    /**
+     * @var string Function name, same as calling the {@see ReflectionFunction::getName()} method
+     */
+    #[Immutable]
+    public $name;
+
     /**
      * Indicates deprecated functions.
      *
@@ -47,9 +54,9 @@ class ReflectionFunction extends ReflectionFunctionAbstract
      * will do the opposite.
      * @return string|null If the $return parameter is set to {@see true}, then
      * the export is returned as a string, otherwise {@see null} is returned.
-     * @deprecated 7.4
      * @removed 8.0
      */
+    #[Deprecated(since: '7.4')]
     public static function export($name, $return = false)
     {
     }
@@ -59,8 +66,8 @@ class ReflectionFunction extends ReflectionFunctionAbstract
      *
      * @link https://php.net/manual/en/reflectionfunction.isdisabled.php
      * @return bool {@see true} if it's disable, otherwise {@see false}
-     * @deprecated 8.0
      */
+    #[Deprecated(since: '8.0')]
     public function isDisabled()
     {
     }

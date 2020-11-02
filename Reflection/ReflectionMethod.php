@@ -1,16 +1,28 @@
 <?php
 
+use JetBrains\PhpStorm\Deprecated;
+use JetBrains\PhpStorm\Immutable;
+
 /**
  * The <b>ReflectionMethod</b> class reports
  * information about a method.
- *
- * @property-read string $name Name of the method, same as calling the {@see ReflectionMethod::getName()} method
- * @property-read string $class Fully qualified class name where this method was defined
  *
  * @link https://php.net/manual/en/class.reflectionmethod.php
  */
 class ReflectionMethod extends ReflectionFunctionAbstract
 {
+    /**
+     * @var string Name of the method, same as calling the {@see ReflectionMethod::getName()} method
+     */
+    #[Immutable]
+    public $name;
+
+    /**
+     * @var string Fully qualified class name where this method was defined
+     */
+    #[Immutable]
+    public $class;
+
     /**
      * Indicates that the method is static.
      */
@@ -73,9 +85,9 @@ class ReflectionMethod extends ReflectionFunctionAbstract
      * opposite.
      * @return string|null If the $return parameter is set to {@see true}, then
      * the export is returned as a string, otherwise {@see null} is returned.
-     * @deprecated 7.4
      * @removed 8.0
      */
+    #[Deprecated(since: '7.4')]
     public static function export($class, $name, $return = false)
     {
     }

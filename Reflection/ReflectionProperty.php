@@ -1,16 +1,29 @@
 <?php
 
+use JetBrains\PhpStorm\Deprecated;
+use JetBrains\PhpStorm\Immutable;
+
 /**
  * The <b>ReflectionProperty</b> class reports information about a classes
  * properties.
- *
- * @property-read string $name Name of the property, same as calling the {@see ReflectionProperty::getName()} method
- * @property-read string $class Fully qualified class name where this property was defined
  *
  * @link https://php.net/manual/en/class.reflectionproperty.php
  */
 class ReflectionProperty implements Reflector
 {
+
+    /**
+     * @var string Name of the property, same as calling the {@see ReflectionProperty::getName()} method
+     */
+    #[Immutable]
+    public $name;
+
+    /**
+     * @var string Fully qualified class name where this property was defined
+     */
+    #[Immutable]
+    public $class;
+
     /**
      * Indicates that the property is static.
      *
@@ -61,9 +74,9 @@ class ReflectionProperty implements Reflector
      * opposed to emitting it. Setting to {@see false} (the default) will do the
      * opposite.
      * @return string|null
-     * @deprecated 7.4
      * @removed 8.0
      */
+    #[Deprecated(since: '7.4')]
     public static function export($class, $name, $return = false)
     {
     }

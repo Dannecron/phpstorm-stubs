@@ -1,6 +1,7 @@
 <?php
 
 // Start of session v.
+use JetBrains\PhpStorm\Deprecated;
 
 /**
  * Get and/or set the current session name.<br/>
@@ -113,9 +114,9 @@ function session_decode ($data) {}
  * </p>
  * @param mixed ...$_ [optional]
  * @return bool true on success or false on failure.
- * @deprecated 5.3 This function has been DEPRECATED as of PHP 5.3.0
  * @removed 5.4
  */
+#[Deprecated(since: '5.3')]
 function session_register ($name, ...$_) {}
 
 /**
@@ -125,9 +126,9 @@ function session_register ($name, ...$_) {}
  * The variable name.
  * </p>
  * @return bool true on success or false on failure.
- * @deprecated 5.3 This function has been DEPRECATED as of PHP 5.3.0
  * @removed 5.4
  */
+#[Deprecated(since: '5.3')]
 function session_unregister ($name) {}
 
 /**
@@ -139,9 +140,9 @@ function session_unregister ($name) {}
  * @return bool <b>session_is_registered</b> returns true if there is a
  * global variable with the name <i>name</i> registered in
  * the current session, false otherwise.
- * @deprecated 5.3 This function has been DEPRECATED as of PHP 5.3.0
  * @removed 5.4
  */
+#[Deprecated(since: '5.3')]
 function session_is_registered ($name) {}
 
 /**
@@ -259,7 +260,7 @@ function session_set_save_handler (SessionHandlerInterface $session_handler, $re
 /**
  * Get and/or set the current cache limiter
  * @link https://php.net/manual/en/function.session-cache-limiter.php
- * @param string $cache_limiter [optional] <p>
+ * @param string $value [optional] <p>
  * If <i>cache_limiter</i> is specified, the name of the
  * current cache limiter is changed to the new value.
  * </p>
@@ -311,12 +312,12 @@ function session_set_save_handler (SessionHandlerInterface $session_handler, $re
  * </table>
  * @return string the name of the current cache limiter.
  */
-function session_cache_limiter ($cache_limiter = null) {}
+function session_cache_limiter ($value = null) {}
 
 /**
  * Return current cache expire
  * @link https://php.net/manual/en/function.session-cache-expire.php
- * @param string $new_cache_expire [optional] <p>
+ * @param string $value [optional] <p>
  * If <i>new_cache_expire</i> is given, the current cache
  * expire is replaced with <i>new_cache_expire</i>.
  * </p>
@@ -328,7 +329,7 @@ function session_cache_limiter ($cache_limiter = null) {}
  * @return int the current setting of session.cache_expire.
  * The value returned should be read in minutes, defaults to 180.
  */
-function session_cache_expire ($new_cache_expire = null) {}
+function session_cache_expire ($value = null) {}
 
 /**
  * Set the session cookie parameters

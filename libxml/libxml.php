@@ -1,6 +1,8 @@
 <?php
 
 // Start of libxml v.
+use JetBrains\PhpStorm\Deprecated;
+use JetBrains\PhpStorm\Pure;
 
 /**
  * Contains various information about errors thrown by libxml. The error codes
@@ -88,6 +90,7 @@ function libxml_use_internal_errors ($use_errors = false) {}
  * @return LibXMLError a LibXMLError object if there is any error in the
  * buffer, <b>FALSE</b> otherwise.
  */
+#[Pure]
 function libxml_get_last_error () {}
 
 /**
@@ -103,6 +106,7 @@ function libxml_clear_errors () {}
  * @return LibXMLError[] an array with LibXMLError objects if there are any
  * errors in the buffer, or an empty array otherwise.
  */
+#[Pure]
 function libxml_get_errors () {}
 
 /**
@@ -115,8 +119,8 @@ function libxml_get_errors () {}
  * </p>
  * @return bool the previous value.
  * @since 5.2.11
- * @deprecated 8.0
  */
+#[Deprecated(since: "8.0")]
 function libxml_disable_entity_loader ($disable = true) {}
 
 /**

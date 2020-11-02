@@ -1,5 +1,8 @@
 <?php
 
+use JetBrains\PhpStorm\Deprecated;
+use JetBrains\PhpStorm\Pure;
+
 /**
  * @param string $extension_filename <p>
  * This parameter is only the filename of the
@@ -30,10 +33,10 @@
  * and execution is stopped. If <b>dl</b> fails because the
  * specified library couldn't be loaded, in addition to <b>FALSE</b> an
  * <b>E_WARNING</b> message is emitted.
- *@deprecated 5.3
  * Loads a PHP extension at runtime
  * @link https://php.net/manual/en/function.dl.php
  */
+#[Deprecated(since: '5.3')]
 function dl ($extension_filename) {}
 
 /**
@@ -53,6 +56,7 @@ function cli_set_process_title ($title) {}
  * @return string Return a string with the current process title or <b>NULL</b> on error.
  * @since 5.5
  */
+#[Pure]
 function cli_get_process_title () {}
 
 /**
@@ -62,6 +66,7 @@ function cli_get_process_title () {}
  * @since 7.1
  * @link https://php.net/manual/en/function.is-iterable.php
  */
+#[Pure]
 function is_iterable($value) {}
 
 /**
@@ -72,6 +77,7 @@ function is_iterable($value) {}
  * </p>
  * @return string the UTF-8 translation of <i>data</i>.
  */
+#[Pure]
 function utf8_encode ($string) {}
 
 /**
@@ -83,6 +89,7 @@ function utf8_encode ($string) {}
  * </p>
  * @return string the ISO-8859-1 translation of <i>data</i>.
  */
+#[Pure]
 function utf8_decode ($string) {}
 
 /**
