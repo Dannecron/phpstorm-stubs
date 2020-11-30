@@ -2,6 +2,7 @@
 
 // Start of ldap v.
 use JetBrains\PhpStorm\Deprecated;
+use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
 
 /**
  * PASSWD extended operation helper
@@ -14,7 +15,8 @@ use JetBrains\PhpStorm\Deprecated;
  * @return string|bool Returns the generated password if newpw is empty or omitted. Otherwise returns TRUE on success and FALSE on failure.
  * @since 7.2
  */
-function ldap_exop_passwd ($ldap , $user = "" , $old_password = "" , $new_password = "" , array &$controls = []) {}
+function ldap_exop_passwd ($ldap , string $user = "" , string $old_password = "" , string $new_password = "" , &$controls = []): string|bool
+{}
 
 /**
  * Refresh extended operation helper
@@ -25,7 +27,8 @@ function ldap_exop_passwd ($ldap , $user = "" , $old_password = "" , $new_passwo
  * @return int|false From RFC: The responseTtl field is the time in seconds which the server chooses to have as the time-to-live field for that entry. It must not be any smaller than that which the client requested, and it may be larger. However, to allow servers to maintain a relatively accurate directory, and to prevent clients from abusing the dynamic extensions, servers are permitted to shorten a client-requested time-to-live value, down to a minimum of 86400 seconds (one day). FALSE will be returned on error.
  * @since 7.3
  */
-function ldap_exop_refresh ($ldap, $dn ,$ttl) {}
+function ldap_exop_refresh ($ldap, string $dn, int $ttl): int|false
+{}
 
 /**
  * WHOAMI extended operation helper
@@ -34,21 +37,23 @@ function ldap_exop_refresh ($ldap, $dn ,$ttl) {}
  * @return string|false The data returned by the server, or FALSE on error.
  * @since 7.2
  */
-function ldap_exop_whoami ($ldap) {}
+function ldap_exop_whoami ($ldap): string|bool
+{}
 
 /**
  * Performs an extended operation on the specified link with reqoid the OID of the operation and reqdata the data.
  * @link https://www.php.net/manual/en/function.ldap-exop.php
  * @param resource $ldap An LDAP link identifier, returned by ldap_connect().
  * @param string $request_oid The extended operation request OID. You may use one of LDAP_EXOP_START_TLS, LDAP_EXOP_MODIFY_PASSWD, LDAP_EXOP_REFRESH, LDAP_EXOP_WHO_AM_I, LDAP_EXOP_TURN, or a string with the OID of the operation you want to send.
- * @param string $request_data [optional] The extended operation request data. May be NULL for some operations like LDAP_EXOP_WHO_AM_I, may also need to be BER encoded.
- * @param array $controls [optional] If provided, a password policy request control is send with the request and this is filled with an array of LDAP Controls returned with the request.
+ * @param string|null $request_data [optional] The extended operation request data. May be NULL for some operations like LDAP_EXOP_WHO_AM_I, may also need to be BER encoded.
+ * @param array|null $controls [optional] If provided, a password policy request control is send with the request and this is filled with an array of LDAP Controls returned with the request.
  * @param string &$response_data [optional] Will be filled with the extended operation response data if provided. If not provided you may use ldap_parse_exop on the result object later to get this data.
  * @param string &$response_oid [optional] Will be filled with the response OID if provided, usually equal to the request OID.
  * @return resource|bool When used with retdata, returns TRUE on success or FALSE on error. When used without retdata, returns a result identifier or FALSE on error.
  * @since 7.2
  */
-function ldap_exop ($ldap , $request_oid , $request_data = null , $controls = [], &$response_data, &$response_oid) {}
+function ldap_exop ($ldap , string $request_oid , ?string $request_data , ?array $controls = [], &$response_data, &$response_oid)
+{}
 
 /**
  * Parse LDAP extended operation data from result object result
@@ -60,7 +65,8 @@ function ldap_exop ($ldap , $request_oid , $request_data = null , $controls = []
  * @return bool Returns TRUE on success or FALSE on failure.
  * @since 7.2
  */
-function ldap_parse_exop ($ldap , $result, &$response_data, &$response_oid) {}
+function ldap_parse_exop ($ldap , $result, &$response_data, &$response_oid): bool
+{}
 
 /**
  * Translate 8859 characters to t61 characters
@@ -68,7 +74,8 @@ function ldap_parse_exop ($ldap , $result, &$response_data, &$response_oid) {}
  * @param string $value
  * @return string
  */
-function ldap_8859_to_t61($value) {}
+function ldap_8859_to_t61(string $value): string
+{}
 
 /**
  * Translate t61 characters to 8859 characters
@@ -76,12 +83,13 @@ function ldap_8859_to_t61($value) {}
  * @param string $value
  * @return string
  */
-function ldap_t61_to_8859($value) {}
+function ldap_t61_to_8859(string $value): string
+{}
 
 /**
  * Connect to an LDAP server
  * @link https://php.net/manual/en/function.ldap-connect.php
- * @param string $uri [optional] <p>
+ * @param string|null $uri [optional] <p>
  * If you are using OpenLDAP 2.x.x you can specify a URL instead of the
  * hostname. To use LDAP with SSL, compile OpenLDAP 2.x.x with SSL
  * support, configure PHP with SSL, and set this parameter as
@@ -101,14 +109,15 @@ function ldap_t61_to_8859($value) {}
  * If no arguments are specified then the link identifier of the already
  * opened link will be returned.
  */
-function ldap_connect ($uri = null, $port = 389) {}
+function ldap_connect (?string $uri, int $port = 389)
+{}
 
 /**
  * Alias of <b>ldap_unbind</b>
  * @link https://php.net/manual/en/function.ldap-close.php
  * @param $ldap
  */
-function ldap_close ($ldap) {}
+function ldap_close ($ldap): bool {}
 
 /**
  * Bind to LDAP directory
@@ -116,11 +125,12 @@ function ldap_close ($ldap) {}
  * @param resource $ldap <p>
  * An LDAP link identifier, returned by <b>ldap_connect</b>.
  * </p>
- * @param string $dn [optional]
- * @param string $password [optional]
+ * @param string|null $dn [optional]
+ * @param string|null $password [optional]
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_bind ($ldap, $dn = null, $password = null) {}
+function ldap_bind ($ldap, ?string $dn, ?string $password): bool
+{}
 
 /**
  * Bind to LDAP directory
@@ -129,13 +139,14 @@ function ldap_bind ($ldap, $dn = null, $password = null) {}
  * @param resource $ldap <p>
  * An LDAP link identifier, returned by <b>ldap_connect</b>.
  * </p>
- * @param string $dn [optional]
- * @param string $password [optional]
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param string|null $dn [optional]
+ * @param string|null $password [optional]
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return resource|false
  * @since 7.3
  */
-function ldap_bind_ext ($ldap, $dn = null, $password = null, $controls = []) {}
+function ldap_bind_ext ($ldap, ?string $dn, ?string $password, ?array $controls = [])
+{}
 
 
 /**
@@ -151,7 +162,8 @@ function ldap_bind_ext ($ldap, $dn = null, $password = null, $controls = []) {}
  * @param string $props [optional]
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_sasl_bind ($ldap, $binddn = null, $password = null, $sasl_mech = null, $sasl_realm = null, $sasl_authc_id = null, $sasl_authz_id = null, $props = null) {}
+function ldap_sasl_bind ($ldap, $binddn = null, $password = null, $sasl_mech = null, $sasl_realm = null, $sasl_authc_id = null, $sasl_authz_id = null, $props = null): bool
+{}
 
 /**
  * Unbind from LDAP directory
@@ -161,7 +173,8 @@ function ldap_sasl_bind ($ldap, $binddn = null, $password = null, $sasl_mech = n
  * </p>
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_unbind ($ldap) {}
+function ldap_unbind ($ldap): bool
+{}
 
 /**
  * Read an entry
@@ -169,10 +182,10 @@ function ldap_unbind ($ldap) {}
  * @param resource $ldap <p>
  * An LDAP link identifier, returned by <b>ldap_connect</b>.
  * </p>
- * @param string $base <p>
+ * @param array|array|string $base <p>
  * The base DN for the directory.
  * </p>
- * @param string $filter <p>
+ * @param array|string $filter <p>
  * An empty filter is not allowed. If you want to retrieve absolutely all
  * information for this entry, use a filter of
  * objectClass=*. If you know which entry types are
@@ -222,10 +235,11 @@ function ldap_unbind ($ldap) {}
  * one of the following:
  * <b>LDAP_DEREF_NEVER</b> - (default) aliases are never
  * dereferenced.
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return resource|false a search result identifier or <b>FALSE</b> on error.
  */
-function ldap_read ($ldap, $base, $filter, array $attributes = null, $attributes_only = null, $sizelimit = null, $timelimit = null, $deref = null, $controls = []) {}
+function ldap_read ($ldap, array|string $base, array|string $filter, array $attributes, int $attributes_only, int $sizelimit, int $timelimit, int $deref, ?array $controls = [])
+{}
 
 /**
  * Single-level search
@@ -233,10 +247,10 @@ function ldap_read ($ldap, $base, $filter, array $attributes = null, $attributes
  * @param resource $ldap <p>
  * An LDAP link identifier, returned by <b>ldap_connect</b>.
  * </p>
- * @param string $base <p>
+ * @param array|array|string $base <p>
  * The base DN for the directory.
  * </p>
- * @param string $filter
+ * @param array|string $filter
  * @param array $attributes [optional] <p>
  * An array of the required attributes, e.g. array("mail", "sn", "cn").
  * Note that the "dn" is always returned irrespective of which attributes
@@ -280,10 +294,11 @@ function ldap_read ($ldap, $base, $filter, array $attributes = null, $attributes
  * one of the following:
  * <b>LDAP_DEREF_NEVER</b> - (default) aliases are never
  * dereferenced.
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return resource|false a search result identifier or <b>FALSE</b> on error.
  */
-function ldap_list ($ldap, $base, $filter, array $attributes = null, $attributes_only = null, $sizelimit = null, $timelimit = null, $deref = null, $controls = []) {}
+function ldap_list ($ldap, array|string $base, array|string $filter, array $attributes, int $attributes_only, int $sizelimit, int $timelimit, int $deref, ?array $controls = [])
+{}
 
 /**
  * Search LDAP tree
@@ -291,10 +306,10 @@ function ldap_list ($ldap, $base, $filter, array $attributes = null, $attributes
  * @param resource $ldap <p>
  * An LDAP link identifier, returned by <b>ldap_connect</b>.
  * </p>
- * @param string $base <p>
+ * @param array|string $base <p>
  * The base DN for the directory.
  * </p>
- * @param string $filter <p>
+ * @param array|string $filter <p>
  * The search filter can be simple or advanced, using boolean operators in
  * the format described in the LDAP documentation (see the Netscape Directory SDK for full
  * information on filters).
@@ -342,10 +357,11 @@ function ldap_list ($ldap, $base, $filter, array $attributes = null, $attributes
  * one of the following:
  * <b>LDAP_DEREF_NEVER</b> - (default) aliases are never
  * dereferenced.
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return resource|false a search result identifier or <b>FALSE</b> on error.
  */
-function ldap_search ($ldap, $base, $filter, array $attributes = null, $attributes_only = null, $sizelimit = null, $timelimit = null, $deref = null, $controls = []) {}
+function ldap_search ($ldap, array|string $base, array|string $filter, array $attributes, int $attributes_only, int $sizelimit, int $timelimit, int $deref, ?array $controls = [])
+{}
 
 /**
  * Free result memory
@@ -353,7 +369,8 @@ function ldap_search ($ldap, $base, $filter, array $attributes = null, $attribut
  * @param resource $ldap
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_free_result ($ldap) {}
+function ldap_free_result ($ldap): bool
+{}
 
 /**
  * Count the number of entries in a search
@@ -366,7 +383,9 @@ function ldap_free_result ($ldap) {}
  * </p>
  * @return int|false number of entries in the result or <b>FALSE</b> on error.
  */
-function ldap_count_entries ($ldap, $result) {}
+#[LanguageLevelTypeAware(["8.0" => "int"], default: "int|false")]
+function ldap_count_entries ($ldap, $result)
+{}
 
 /**
  * Return first result id
@@ -378,7 +397,8 @@ function ldap_count_entries ($ldap, $result) {}
  * @return resource|false the result entry identifier for the first entry on success and
  * <b>FALSE</b> on error.
  */
-function ldap_first_entry ($ldap, $result) {}
+function ldap_first_entry ($ldap, $result)
+{}
 
 /**
  * Get next result entry
@@ -391,7 +411,8 @@ function ldap_first_entry ($ldap, $result) {}
  * are being read starting with <b>ldap_first_entry</b>. If
  * there are no more entries in the result then it returns <b>FALSE</b>.
  */
-function ldap_next_entry ($ldap, $result) {}
+function ldap_next_entry ($ldap, $result)
+{}
 
 /**
  * Get all result entries
@@ -400,7 +421,7 @@ function ldap_next_entry ($ldap, $result) {}
  * An LDAP link identifier, returned by <b>ldap_connect</b>.
  * </p>
  * @param resource $result
- * @return array a complete result information in a multi-dimensional array on
+ * @return array|false a complete result information in a multi-dimensional array on
  * success and <b>FALSE</b> on error.
  * </p>
  * <p>
@@ -419,7 +440,8 @@ function ldap_next_entry ($ldap, $result) {}
  * return_value[i]["attribute"][j] = jth value of attribute in ith entry
  * </pre>
  */
-function ldap_get_entries ($ldap, $result) {}
+function ldap_get_entries ($ldap, $result): array|false
+{}
 
 /**
  * Return first attribute
@@ -431,7 +453,8 @@ function ldap_get_entries ($ldap, $result) {}
  * @return string|false the first attribute in the entry on success and <b>FALSE</b> on
  * error.
  */
-function ldap_first_attribute ($ldap, $entry) {}
+function ldap_first_attribute ($ldap, $entry): string|false
+{}
 
 /**
  * Get the next attribute in result
@@ -443,7 +466,8 @@ function ldap_first_attribute ($ldap, $entry) {}
  * @return string|false the next attribute in an entry on success and <b>FALSE</b> on
  * error.
  */
-function ldap_next_attribute ($ldap, $entry) {}
+function ldap_next_attribute ($ldap, $entry): string|false
+{}
 
 /**
  * Get attributes from a search result entry
@@ -455,7 +479,8 @@ function ldap_next_attribute ($ldap, $entry) {}
  * @return array a complete entry information in a multi-dimensional array
  * on success and <b>FALSE</b> on error.
  */
-function ldap_get_attributes ($ldap, $entry) {}
+function ldap_get_attributes ($ldap, $entry): array
+{}
 
 /**
  * Get all values from a result entry
@@ -478,7 +503,8 @@ function ldap_get_attributes ($ldap, $entry) {}
  * return_value[0] = first value of attribute
  * return_value[i] = ith value of attribute
  */
-function ldap_get_values ($ldap, $entry, $attribute) {}
+function ldap_get_values ($ldap, $entry, string $attribute): array|false
+{}
 
 /**
  * Get all binary values from a result entry
@@ -493,7 +519,8 @@ function ldap_get_values ($ldap, $entry, $attribute) {}
  * first index is 0. The number of values can be found by indexing "count"
  * in the resultant array.
  */
-function ldap_get_values_len ($ldap, $entry, $attribute) {}
+function ldap_get_values_len ($ldap, $entry, string $attribute): array|false
+{}
 
 /**
  * Get the DN of a result entry
@@ -504,7 +531,8 @@ function ldap_get_values_len ($ldap, $entry, $attribute) {}
  * @param resource $entry
  * @return string|false the DN of the result entry and <b>FALSE</b> on error.
  */
-function ldap_get_dn ($ldap, $entry) {}
+function ldap_get_dn ($ldap, $entry): string|false
+{}
 
 /**
  * Splits DN into its component parts
@@ -518,12 +546,13 @@ function ldap_get_dn ($ldap, $entry) {}
  * attribute=value format) set <i>with_attrib</i> to 0
  * and to get only values set it to 1.
  * </p>
- * @return array an array of all DN components.
+ * @return array|false an array of all DN components.
  * The first element in this array has count key and
  * represents the number of returned values, next elements are numerically
  * indexed DN components.
  */
-function ldap_explode_dn ($dn, $with_attrib) {}
+function ldap_explode_dn (string $dn, int $with_attrib): array|false
+{}
 
 /**
  * Convert DN to User Friendly Naming format
@@ -531,9 +560,10 @@ function ldap_explode_dn ($dn, $with_attrib) {}
  * @param string $dn <p>
  * The distinguished name of an LDAP entity.
  * </p>
- * @return string the user friendly name.
+ * @return string|false the user friendly name.
  */
-function ldap_dn2ufn ($dn) {}
+function ldap_dn2ufn (string $dn): string|false
+{}
 
 /**
  * Add entries to LDAP directory
@@ -555,10 +585,11 @@ function ldap_dn2ufn ($dn) {}
  * $entree["attribut2"][1] = "value2";
  * </code>
  * </p>
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_add ($ldap, $dn, array $entry, $controls = []) {}
+function ldap_add ($ldap, string $dn, array $entry, ?array $controls = []): bool
+{}
 
 /**
  * Add entries to LDAP directory
@@ -581,11 +612,12 @@ function ldap_add ($ldap, $dn, array $entry, $controls = []) {}
  * $entree["attribut2"][1] = "value2";
  * </code>
  * </p>
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return resource|false
- * @since 7.4
+ * @since 7.3
  */
-function ldap_add_ext ($ldap, $dn, array $entry, $controls = []) {}
+function ldap_add_ext ($ldap, string $dn, array $entry, ?array $controls = [])
+{}
 
 /**
  * Delete an entry from a directory
@@ -596,10 +628,11 @@ function ldap_add_ext ($ldap, $dn, array $entry, $controls = []) {}
  * @param string $dn <p>
  * The distinguished name of an LDAP entity.
  * </p>
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_delete ($ldap, $dn, $controls = []) {}
+function ldap_delete ($ldap, string $dn, ?array $controls = []): bool
+{}
 
 /**
  * Delete an entry from a directory
@@ -611,11 +644,12 @@ function ldap_delete ($ldap, $dn, $controls = []) {}
  * @param string $dn <p>
  * The distinguished name of an LDAP entity.
  * </p>
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return resource|false
  * @since 7.3
  */
-function ldap_delete_ext ($ldap, $dn, $controls = []) {}
+function ldap_delete_ext ($ldap, string $dn, ?array $controls = [])
+{}
 
 /**
  * This function is an alias of: ldap_mod_replace().
@@ -628,11 +662,12 @@ function ldap_delete_ext ($ldap, $dn, $controls = []) {}
  * The distinguished name of an LDAP entity.
  * </p>
  * @param array $entry
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  * @since 7.0
  */
-function ldap_modify ($ldap, $dn, array $entry, $controls = []) {}
+function ldap_modify ($ldap, string $dn, array $entry, ?array $controls = []): bool
+{}
 
 /**
  * Add attribute values to current attributes
@@ -644,10 +679,11 @@ function ldap_modify ($ldap, $dn, array $entry, $controls = []) {}
  * The distinguished name of an LDAP entity.
  * </p>
  * @param array $entry
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_mod_add ($ldap, $dn, array $entry, $controls = []) {}
+function ldap_mod_add ($ldap, string $dn, array $entry, ?array $controls = []): bool
+{}
 
 /**
  * Add attribute values to current attributes
@@ -660,10 +696,12 @@ function ldap_mod_add ($ldap, $dn, array $entry, $controls = []) {}
  * The distinguished name of an LDAP entity.
  * </p>
  * @param array $entry
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return resource|false
+ * @since 7.3
  */
-function ldap_mod_add_ext ($ldap, $dn, array $entry, $controls = []) {}
+function ldap_mod_add_ext ($ldap, string $dn, array $entry, ?array $controls = [])
+{}
 
 /**
  * Replace attribute values with new ones
@@ -675,10 +713,11 @@ function ldap_mod_add_ext ($ldap, $dn, array $entry, $controls = []) {}
  * The distinguished name of an LDAP entity.
  * </p>
  * @param array $entry
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_mod_replace ($ldap, $dn, array $entry, $controls = []) {}
+function ldap_mod_replace ($ldap, string $dn, array $entry, ?array $controls = []): bool
+{}
 
 /**
  * Replace attribute values with new ones
@@ -691,11 +730,12 @@ function ldap_mod_replace ($ldap, $dn, array $entry, $controls = []) {}
  * The distinguished name of an LDAP entity.
  * </p>
  * @param array $entry
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return resource|false
  * @since 7.3
  */
-function ldap_mod_replace_ext ($ldap, $dn, array $entry, $controls = []) {}
+function ldap_mod_replace_ext ($ldap, string $dn, array $entry, ?array $controls = [])
+{}
 
 /**
  * Delete attribute values from current attributes
@@ -707,10 +747,11 @@ function ldap_mod_replace_ext ($ldap, $dn, array $entry, $controls = []) {}
  * The distinguished name of an LDAP entity.
  * </p>
  * @param array $entry
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_mod_del ($ldap, $dn, array $entry, $controls = []) {}
+function ldap_mod_del ($ldap, string $dn, array $entry, ?array $controls = []): bool
+{}
 
 /**
  * Delete attribute values from current attributes
@@ -723,11 +764,12 @@ function ldap_mod_del ($ldap, $dn, array $entry, $controls = []) {}
  * The distinguished name of an LDAP entity.
  * </p>
  * @param array $entry
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return resource|false
  * @since 7.3
  */
-function ldap_mod_del_ext ($ldap, $dn, array $entry, $controls = []) {}
+function ldap_mod_del_ext ($ldap, string $dn, array $entry, ?array $controls = [])
+{}
 
 /**
  * Return the LDAP error number of the last LDAP command
@@ -738,7 +780,8 @@ function ldap_mod_del_ext ($ldap, $dn, array $entry, $controls = []) {}
  * @return int Return the LDAP error number of the last LDAP command for this
  * link.
  */
-function ldap_errno ($ldap) {}
+function ldap_errno ($ldap): int
+{}
 
 /**
  * Convert LDAP error number into string error message
@@ -748,7 +791,8 @@ function ldap_errno ($ldap) {}
  * </p>
  * @return string the error message, as a string.
  */
-function ldap_err2str ($errno) {}
+function ldap_err2str (int $errno): string
+{}
 
 /**
  * Return the LDAP error message of the last LDAP command
@@ -758,7 +802,8 @@ function ldap_err2str ($errno) {}
  * </p>
  * @return string string error message.
  */
-function ldap_error ($ldap) {}
+function ldap_error ($ldap): string
+{}
 
 /**
  * Compare value of attribute found in entry specified with DN
@@ -775,11 +820,12 @@ function ldap_error ($ldap) {}
  * @param string $value <p>
  * The compared value.
  * </p>
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
- * @return mixed <b>TRUE</b> if <i>value</i> matches otherwise returns
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
+ * @return int|bool <b>TRUE</b> if <i>value</i> matches otherwise returns
  * <b>FALSE</b>. Returns -1 on error.
  */
-function ldap_compare ($ldap, $dn, $attribute, $value, $controls = []) {}
+function ldap_compare ($ldap, string $dn, string $attribute, string $value, ?array $controls = []): int|bool
+{}
 
 /**
  * Sort LDAP result entries
@@ -798,7 +844,8 @@ function ldap_compare ($ldap, $dn, $attribute, $value, $controls = []) {}
  * @return bool
  */
 #[Deprecated(since: "7.0")]
-function ldap_sort ($ldap, $result, $sortfilter) {}
+function ldap_sort ($ldap, $result, string $sortfilter): bool
+{}
 
 /**
  * Modify the name of an entry
@@ -819,10 +866,11 @@ function ldap_sort ($ldap, $result, $sortfilter) {}
  * If <b>TRUE</b> the old RDN value(s) is removed, else the old RDN value(s)
  * is retained as non-distinguished values of the entry.
  * </p>
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_rename ($ldap, $dn, $new_rdn, $new_parent, $delete_old_rdn, $controls = []) {}
+function ldap_rename ($ldap, string $dn, string $new_rdn, string $new_parent, bool $delete_old_rdn, ?array $controls = []): bool
+{}
 
 /**
  * Modify the name of an entry
@@ -844,11 +892,12 @@ function ldap_rename ($ldap, $dn, $new_rdn, $new_parent, $delete_old_rdn, $contr
  * If <b>TRUE</b> the old RDN value(s) is removed, else the old RDN value(s)
  * is retained as non-distinguished values of the entry.
  * </p>
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return resource|false
  * @since 7.3
  */
-function ldap_rename_ext ($ldap, $dn, $new_rdn, $new_parent, $delete_old_rdn, $controls = []) {}
+function ldap_rename_ext ($ldap, string $dn, string $new_rdn, string $new_parent, bool $delete_old_rdn, ?array $controls = [])
+{}
 
 /**
  * Get the current value for given option
@@ -920,7 +969,8 @@ function ldap_rename_ext ($ldap, $dn, $new_rdn, $new_parent, $delete_old_rdn, $c
  * </p>
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_get_option ($ldap, $option, &$value) {}
+function ldap_get_option ($ldap, int $option, &$value): bool
+{}
 
 /**
  * Set the value of the given option
@@ -1021,7 +1071,8 @@ function ldap_get_option ($ldap, $option, &$value) {}
  * </p>
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_set_option ($ldap, $option, $value) {}
+function ldap_set_option ($ldap, int $option, $value): bool
+{}
 
 /**
  * Return first reference
@@ -1049,7 +1100,8 @@ function ldap_next_reference ($ldap, $entry) {}
  * @param array &$referrals
  * @return bool
  */
-function ldap_parse_reference ($ldap, $entry, array &$referrals) {}
+function ldap_parse_reference ($ldap, $entry, &$referrals): bool
+{}
 
 /**
  * Extract information from result
@@ -1063,7 +1115,8 @@ function ldap_parse_reference ($ldap, $entry, array &$referrals) {}
  * @param array &$controls [optional] An array of LDAP Controls which have been sent with the response.
  * @return bool
  */
-function ldap_parse_result ($ldap, $result, &$error_code, &$matched_dn = null, &$error_message = null, array &$referrals = null, &$controls = []) {}
+function ldap_parse_result ($ldap, $result, &$error_code, &$matched_dn, &$error_message, &$referrals, &$controls = []): bool
+{}
 
 /**
  * Start TLS
@@ -1071,16 +1124,18 @@ function ldap_parse_result ($ldap, $result, &$error_code, &$matched_dn = null, &
  * @param resource $ldap
  * @return bool
  */
-function ldap_start_tls ($ldap) {}
+function ldap_start_tls ($ldap): bool
+{}
 
 /**
  * Set a callback function to do re-binds on referral chasing
  * @link https://php.net/manual/en/function.ldap-set-rebind-proc.php
  * @param resource $ldap
- * @param callable $callback
+ * @param callable|null $callback
  * @return bool
  */
-function ldap_set_rebind_proc ($ldap, callable $callback) {}
+function ldap_set_rebind_proc ($ldap, ?callable $callback): bool
+{}
 
 /**
  * Send LDAP pagination control
@@ -1105,7 +1160,8 @@ function ldap_set_rebind_proc ($ldap, callable $callback) {}
  * @removed 8.0
  */
 #[Deprecated(since: "7.4")]
-function ldap_control_paged_result ($ldap, $pagesize, $iscritical = false, $cookie = "") {}
+function ldap_control_paged_result ($ldap, int $pagesize, $iscritical = false, $cookie = ""): bool
+{}
 
 /**
  * Retrieve the LDAP pagination cookie
@@ -1125,7 +1181,8 @@ function ldap_control_paged_result ($ldap, $pagesize, $iscritical = false, $cook
  * @removed 8.0
  */
 #[Deprecated(since: "7.4")]
-function ldap_control_paged_result_response ($ldap, $result, &$cookie = null, &$estimated = null) {}
+function ldap_control_paged_result_response ($ldap, $result, &$cookie = null, &$estimated = null): bool
+{}
 
 /**
  * Escape a string for use in an LDAP filter or DN
@@ -1136,7 +1193,8 @@ function ldap_control_paged_result_response ($ldap, $result, &$cookie = null, &$
  * @since 5.6
  */
 
-function ldap_escape ($value, $ignore = "", $flags = 0) {}
+function ldap_escape (string $value, string $ignore = "", int $flags = 0): string
+{}
 
 /**
  * (PHP 5.4 &gt;= 5.4.26, PHP 5.5 &gt;= 5.5.10, PHP 5.6 &gt;= 5.6.0)
@@ -1146,8 +1204,8 @@ function ldap_escape ($value, $ignore = "", $flags = 0) {}
  * An LDAP link identifier, returned by
  * {@see ldap_connect()}.
  * </p>
- * @param $dn <p>The distinguished name of an LDAP entity.</p>
- * @param $modifications_info <p>An array that specifies the modifications to make. Each entry in this
+ * @param  string $dn <p>The distinguished name of an LDAP entity.</p>
+ * @param array $modifications_info <p>An array that specifies the modifications to make. Each entry in this
  * array is an associative array with two or three keys:
  * <em>attrib</em> maps to the name of the attribute to modify,
  * <em>modtype</em> maps to the type of modification to perform,
@@ -1213,11 +1271,12 @@ function ldap_escape ($value, $ignore = "", $flags = 0) {}
  * any value for <em>modtype</em> must be one of the
  * <b>LDAP_MODIFY_BATCH_*</b> constants listed above.
  * </p></p>
- * @param array $controls [optional] Array of LDAP Controls to send with the request.
+ * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  * @since 5.4
  */
-function ldap_modify_batch ($ldap , $dn , $modifications_info, $controls = []) {}
+function ldap_modify_batch ($ldap , string $dn , array $modifications_info, ?array $controls = []): bool
+{}
 
 /**
  * @param resource $ldap
@@ -1225,7 +1284,8 @@ function ldap_modify_batch ($ldap , $dn , $modifications_info, $controls = []) {
  * @return int returns the number of reference messages in a search result.
  * @since 8.0
  */
-function ldap_count_references($ldap, $result){}
+function ldap_count_references($ldap, $result): int
+{}
 
 define('LDAP_ESCAPE_FILTER', 1);
 define ('LDAP_ESCAPE_DN', 2);

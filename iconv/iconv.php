@@ -28,7 +28,8 @@ use JetBrains\PhpStorm\Pure;
  * @return string|false the converted string or <b>FALSE</b> on failure.
  */
 #[Pure]
-function iconv ($from_encoding, $to_encoding, $string) {}
+function iconv (string $from_encoding, string $to_encoding, string $string): string|false
+{}
 
 /**
  * Convert character encoding as output buffer handler
@@ -39,7 +40,8 @@ function iconv ($from_encoding, $to_encoding, $string) {}
  * return values.
  */
 #[Pure]
-function ob_iconv_handler ($contents, $status) {}
+function ob_iconv_handler (string $contents, int $status): string
+{}
 
 /**
  * Retrieve internal configuration variables of iconv extension
@@ -51,16 +53,18 @@ function ob_iconv_handler ($contents, $status) {}
  * output_encoding
  * internal_encoding
  * </p>
- * @return mixed the current value of the internal configuration variable if
+ * @return string|string[]|false the current value of the internal configuration variable if
  * successful or <b>FALSE</b> on failure.
  * </p>
  * <p>
  * If <i>type</i> is omitted or set to "all",
  * <b>iconv_get_encoding</b> returns an array that
  * stores all these variables.
+ * </p>
  */
 #[Pure]
-function iconv_get_encoding ($type = "all") {}
+function iconv_get_encoding (string $type = "all"): array|string|false
+{}
 
 /**
  * Set current setting for character encoding conversion
@@ -76,7 +80,8 @@ function iconv_get_encoding ($type = "all") {}
  * </p>
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function iconv_set_encoding ($type, $encoding) {}
+function iconv_set_encoding (string $type, string $encoding): bool
+{}
 
 /**
  * Returns the character count of string
@@ -84,7 +89,7 @@ function iconv_set_encoding ($type, $encoding) {}
  * @param string $string <p>
  * The string.
  * </p>
- * @param string $encoding [optional] <p>
+ * @param string|null $encoding [optional] <p>
  * If <i>charset</i> parameter is omitted,
  * <i>str</i> is assumed to be encoded in
  * iconv.internal_encoding.
@@ -92,7 +97,8 @@ function iconv_set_encoding ($type, $encoding) {}
  * @return int|false the character count of <i>str</i>, as an integer. False on error.
  */
 #[Pure]
-function iconv_strlen ($string, $encoding = 'ini_get("iconv.internal_encoding")') {}
+function iconv_strlen (string $string, ?string $encoding = 'ini_get("iconv.internal_encoding")'): int|false
+{}
 
 /**
  * Cut out part of a string
@@ -112,7 +118,7 @@ function iconv_strlen ($string, $encoding = 'ini_get("iconv.internal_encoding")'
  * at the position, <i>offset</i> characters
  * away from the end of <i>str</i>.
  * </p>
- * @param int $length [optional] <p>
+ * @param int|null $length [optional] <p>
  * If <i>length</i> is given and is positive, the return
  * value will contain at most <i>length</i> characters
  * of the portion that begins at <i>offset</i>
@@ -127,7 +133,7 @@ function iconv_strlen ($string, $encoding = 'ini_get("iconv.internal_encoding")'
  * In case <i>offset</i> is also negative, the start position
  * is calculated beforehand according to the rule explained above.
  * </p>
- * @param string $encoding [optional] <p>
+ * @param string|null $encoding [optional] <p>
  * If <i>charset</i> parameter is omitted,
  * <i>string</i> are assumed to be encoded in
  * iconv.internal_encoding.
@@ -145,9 +151,11 @@ function iconv_strlen ($string, $encoding = 'ini_get("iconv.internal_encoding")'
  * <p>
  * If <i>str</i> is shorter than <i>offset</i>
  * characters long, <b>FALSE</b> will be returned.
+ * </p>
  */
 #[Pure]
-function iconv_substr ($string, $offset, $length = 'iconv_strlen($str, $charset)', $encoding = 'ini_get("iconv.internal_encoding")') {}
+function iconv_substr (string $string, int $offset, ?int $length, ?string $encoding = 'ini_get("iconv.internal_encoding")'): string|false
+{}
 
 /**
  * Finds position of first occurrence of a needle within a haystack
@@ -162,7 +170,7 @@ function iconv_substr ($string, $offset, $length = 'iconv_strlen($str, $charset)
  * The optional <i>offset</i> parameter specifies
  * the position from which the search should be performed.
  * </p>
- * @param string $encoding [optional] <p>
+ * @param string|null $encoding [optional] <p>
  * If <i>charset</i> parameter is omitted,
  * <i>string</i> are assumed to be encoded in
  * iconv.internal_encoding.
@@ -173,9 +181,11 @@ function iconv_substr ($string, $offset, $length = 'iconv_strlen($str, $charset)
  * <p>
  * If <i>needle</i> is not found,
  * <b>iconv_strpos</b> will return <b>FALSE</b>.
+ * </p>
  */
 #[Pure]
-function iconv_strpos ($haystack, $needle, $offset = 0, $encoding = 'ini_get("iconv.internal_encoding")') {}
+function iconv_strpos (string $haystack, string $needle, int $offset = 0, ?string $encoding = 'ini_get("iconv.internal_encoding")'): int|false
+{}
 
 /**
  * Finds the last occurrence of a needle within a haystack
@@ -186,7 +196,7 @@ function iconv_strpos ($haystack, $needle, $offset = 0, $encoding = 'ini_get("ic
  * @param string $needle <p>
  * The searched substring.
  * </p>
- * @param string $encoding [optional] <p>
+ * @param string|null $encoding [optional] <p>
  * If <i>charset</i> parameter is omitted,
  * <i>string</i> are assumed to be encoded in
  * iconv.internal_encoding.
@@ -197,9 +207,11 @@ function iconv_strpos ($haystack, $needle, $offset = 0, $encoding = 'ini_get("ic
  * <p>
  * If <i>needle</i> is not found,
  * <b>iconv_strrpos</b> will return <b>FALSE</b>.
+ * </p>
  */
 #[Pure]
-function iconv_strrpos ($haystack, $needle, $encoding = 'ini_get("iconv.internal_encoding")') {}
+function iconv_strrpos (string $haystack, string $needle, ?string $encoding = 'ini_get("iconv.internal_encoding")'): int|false
+{}
 
 /**
  * Composes a MIME header field
@@ -300,7 +312,8 @@ function iconv_strrpos ($haystack, $needle, $encoding = 'ini_get("iconv.internal
  * or <b>FALSE</b> if an error occurs during the encoding.
  */
 #[Pure]
-function iconv_mime_encode ($field_name, $field_value, array $options = null) {}
+function iconv_mime_encode (string $field_name, string $field_value, array $options): string|false
+{}
 
 /**
  * Decodes a MIME header field
@@ -342,7 +355,7 @@ function iconv_mime_encode ($field_name, $field_value, array $options = null) {}
  * </tr>
  * </table>
  * </p>
- * @param string $encoding [optional] <p>
+ * @param string|null $encoding [optional] <p>
  * The optional <i>charset</i> parameter specifies the
  * character set to represent the result by. If omitted,
  * iconv.internal_encoding
@@ -352,7 +365,8 @@ function iconv_mime_encode ($field_name, $field_value, array $options = null) {}
  * or <b>FALSE</b> if an error occurs during the decoding.
  */
 #[Pure]
-function iconv_mime_decode ($string, $mode = 0, $encoding = 'ini_get("iconv.internal_encoding")') {}
+function iconv_mime_decode (string $string, int $mode = 0, ?string $encoding = 'ini_get("iconv.internal_encoding")'): string|false
+{}
 
 /**
  * Decodes multiple MIME header fields at once
@@ -394,7 +408,7 @@ function iconv_mime_decode ($string, $mode = 0, $encoding = 'ini_get("iconv.inte
  * </tr>
  * </table>
  * </p>
- * @param string $encoding [optional] <p>
+ * @param string|null $encoding [optional] <p>
  * The optional <i>charset</i> parameter specifies the
  * character set to represent the result by. If omitted,
  * iconv.internal_encoding
@@ -411,9 +425,11 @@ function iconv_mime_decode ($string, $mode = 0, $encoding = 'ini_get("iconv.inte
  * If more than one field of the same name are present,
  * <b>iconv_mime_decode_headers</b> automatically incorporates
  * them into a numerically indexed array in the order of occurrence.
+ * </p>
  */
 #[Pure]
-function iconv_mime_decode_headers ($headers, $mode = 0, $encoding = 'ini_get("iconv.internal_encoding")') {}
+function iconv_mime_decode_headers (string $headers, int $mode = 0, ?string $encoding = 'ini_get("iconv.internal_encoding")'): array|false
+{}
 
 
 /**

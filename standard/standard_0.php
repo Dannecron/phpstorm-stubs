@@ -2,6 +2,7 @@
 
 // Start of standard v.5.3.2-0.dotdeb.1
 
+use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
 use JetBrains\PhpStorm\Pure;
 
 class __PHP_Incomplete_Class  {
@@ -58,7 +59,6 @@ class php_user_filter  {
      * The filter experienced an unrecoverable error and cannot continue.
      * </td>
      * </tr>
-     *
      */
     public function filter($in, $out, &$consumed, $closing)
     {
@@ -133,7 +133,8 @@ class Directory  {
  * defined.
  */
 #[Pure]
-function constant ($name) {}
+function constant (string $name): mixed
+{}
 
 /**
  * Convert binary data into hexadecimal representation
@@ -144,7 +145,8 @@ function constant ($name) {}
  * @return string the hexadecimal representation of the given string.
  */
 #[Pure]
-function bin2hex ($string) {}
+function bin2hex (string $string): string
+{}
 
 /**
  * Delay execution
@@ -156,7 +158,9 @@ function bin2hex ($string) {}
  * by a signal, sleep returns the number of seconds left
  * to sleep.
  */
-function sleep ($seconds) {}
+#[LanguageLevelTypeAware(["8.0" => "int"], default: "int|false")]
+function sleep (int $seconds)
+{}
 
 /**
  * Delay execution in microseconds
@@ -167,7 +171,7 @@ function sleep ($seconds) {}
  * </p>
  * @return void
  */
-function usleep ($microseconds) {}
+function usleep (int $microseconds): void {}
 
 /**
  * Delay for a number of seconds and nanoseconds
@@ -188,7 +192,8 @@ function usleep ($microseconds) {}
  * nanoseconds - number of nanoseconds
  * remaining in the delay
  */
-function time_nanosleep ($seconds, $nanoseconds) {}
+function time_nanosleep (int $seconds, int $nanoseconds): array|bool
+{}
 
 /**
  * Make the script sleep until the specified time
@@ -198,7 +203,8 @@ function time_nanosleep ($seconds, $nanoseconds) {}
  * </p>
  * @return bool true on success or false on failure.
  */
-function time_sleep_until ($timestamp) {}
+function time_sleep_until (float $timestamp): bool
+{}
 
 /**
  * Parse a time/date generated with <function>strftime</function>
@@ -263,14 +269,15 @@ function time_sleep_until ($timestamp) {}
  * </table>
  */
 #[Pure]
-function strptime ($timestamp, $format) {}
+function strptime (string $timestamp, string $format): array|false
+{}
 
 /**
  * Flush the output buffer
  * @link https://php.net/manual/en/function.flush.php
  * @return void
  */
-function flush () {}
+function flush (): void {}
 
 /**
  * Wraps a string to a given number of characters
@@ -294,7 +301,8 @@ function flush () {}
  * @return string the given string wrapped at the specified column.
  */
 #[Pure]
-function wordwrap ($string, $width = 75, $break = "\n", $cut_long_words = false) {}
+function wordwrap (string $string, int $width = 75, string $break = "\n", bool $cut_long_words = false): string
+{}
 
 /**
  * Convert special characters to HTML entities
@@ -302,7 +310,7 @@ function wordwrap ($string, $width = 75, $break = "\n", $cut_long_words = false)
  * @param string $string <p>
  * The {@link https://secure.php.net/manual/en/language.types.string.php string} being converted.
  * </p>
- * @param int $flags [optional] <p>
+ * @param int|string $flags [optional] <p>
  * A bitmask of one or more of the following flags, which specify how to handle quotes,
  * invalid code unit sequences and the used document type. The default is
  * <em><b>ENT_COMPAT | ENT_HTML401</b></em>.
@@ -391,7 +399,7 @@ function wordwrap ($string, $width = 75, $break = "\n", $cut_long_words = false)
  * </tbody>
  *
  * </table>
- * @param string $encoding [optional] <p>
+ * @param string|null $encoding [optional] <p>
  * Defines encoding used in conversion.
  * If omitted, the default value for this argument is ISO-8859-1 in
  * versions of PHP prior to 5.4.0, and UTF-8 from PHP 5.4.0 onwards.
@@ -413,7 +421,8 @@ function wordwrap ($string, $width = 75, $break = "\n", $cut_long_words = false)
  * @return string The converted string.
  */
 #[Pure]
-function htmlspecialchars ($string, $flags = ENT_COMPAT | ENT_HTML401, $encoding = 'UTF-8', $double_encode = true) {}
+function htmlspecialchars (string $string, int $flags = ENT_COMPAT | ENT_HTML401, ?string $encoding = 'UTF-8', bool $double_encode = true): string
+{}
 
 /**
  * Convert all applicable characters to HTML entities
@@ -446,7 +455,7 @@ function htmlspecialchars ($string, $flags = ENT_COMPAT | ENT_HTML401, $encoding
  * </tr>
  * </table>
  * </p>
- * @param string $encoding [optional] <p>
+ * @param string|null $encoding [optional] <p>
  * Like htmlspecialchars, it takes an optional
  * third argument charset which defines character
  * set used in conversion.
@@ -460,10 +469,11 @@ function htmlspecialchars ($string, $flags = ENT_COMPAT | ENT_HTML401, $encoding
  * @return string the encoded string.
  */
 #[Pure]
-function htmlentities ($string, $flags = null, $encoding = null, $double_encode = true) {}
+function htmlentities (string $string, int $flags, ?string $encoding, bool $double_encode = true): string
+{}
 
 /**
- * Convert all HTML entities to their applicable characters
+ * Convert HTML entities  to their corresponding characters
  * @link https://php.net/manual/en/function.html-entity-decode.php
  * @param string $string <p>
  * The input string.
@@ -493,7 +503,7 @@ function htmlentities ($string, $flags = null, $encoding = null, $double_encode 
  * </tr>
  * </table>
  * </p>
- * @param string $encoding [optional] <p>
+ * @param string|null $encoding [optional] <p>
  * The ISO-8859-1 character set is used as default for the optional third
  * charset. This defines the character set used in
  * conversion.
@@ -502,7 +512,8 @@ function htmlentities ($string, $flags = null, $encoding = null, $double_encode 
  * @return string the decoded string.
  */
 #[Pure]
-function html_entity_decode ($string, $flags = null, $encoding = null) {}
+function html_entity_decode (string $string, int $flags, ?string $encoding): string
+{}
 
 /**
  * Convert special HTML entities back to characters
@@ -536,7 +547,8 @@ function html_entity_decode ($string, $flags = null, $encoding = null) {}
  * @return string the decoded string.
  */
 #[Pure]
-function htmlspecialchars_decode ($string, $flags = null) {}
+function htmlspecialchars_decode (string $string, int $flags): string
+{}
 
 /**
  * Returns the translation table used by <function>htmlspecialchars</function> and <function>htmlentities</function>
@@ -714,7 +726,8 @@ function htmlspecialchars_decode ($string, $flags = null) {}
  * @return array the translation table as an array.
  */
 #[Pure]
-function get_html_translation_table ($table = null, $flags = null, string $encoding = "UTF-8") {}
+function get_html_translation_table (int $table, int $flags, string $encoding = "UTF-8"): array
+{}
 
 /**
  * Calculate the sha1 hash of a string
@@ -731,7 +744,8 @@ function get_html_translation_table ($table = null, $flags = null, string $encod
  * @return string the sha1 hash as a string.
  */
 #[Pure]
-function sha1 ($string, $binary = false) {}
+function sha1 (string $string, bool $binary = false): string
+{}
 
 /**
  * Calculate the sha1 hash of a file
@@ -746,7 +760,8 @@ function sha1 ($string, $binary = false) {}
  * @return string|false a string on success, false otherwise.
  */
 #[Pure]
-function sha1_file ($filename, $binary = false) {}
+function sha1_file (string $filename, bool $binary = false): string|false
+{}
 
 /**
  * Calculate the md5 hash of a string
@@ -762,7 +777,8 @@ function sha1_file ($filename, $binary = false) {}
  * @return string the hash as a 32-character hexadecimal number.
  */
 #[Pure]
-function md5 ($string, $binary = false) {}
+function md5 (string $string, bool $binary = false): string
+{}
 
 /**
  * Calculates the md5 hash of a given file
@@ -777,7 +793,8 @@ function md5 ($string, $binary = false) {}
  * @return string|false a string on success, false otherwise.
  */
 #[Pure]
-function md5_file ($filename, $binary = false) {}
+function md5_file (string $filename, bool $binary = false): string|false
+{}
 
 /**
  * Calculates the crc32 polynomial of a string
@@ -788,7 +805,8 @@ function md5_file ($filename, $binary = false) {}
  * @return int the crc32 checksum of str as an integer..1
  */
 #[Pure]
-function crc32 ($string) {}
+function crc32 (string $string): int
+{}
 
 /**
  * Parse a binary IPTC block into single tags.
@@ -801,7 +819,8 @@ function crc32 ($string) {}
  * value. It returns false on error or if no IPTC data was found.
  */
 #[Pure]
-function iptcparse ($iptc_block) {}
+function iptcparse (string $iptc_block): array|false
+{}
 
 /**
  * Embeds binary IPTC data into a JPEG image.
@@ -820,7 +839,8 @@ function iptcparse ($iptc_block) {}
  * @return string|bool If success and spool flag is lower than 2 then the JPEG will not be
  * returned as a string, false on errors.
  */
-function iptcembed ($iptc_data, $filename, $spool = null) {}
+function iptcembed (string $iptc_data, string $filename, int $spool): string|bool
+{}
 
 /**
  * Get the size of an image
@@ -883,7 +903,8 @@ function iptcembed ($iptc_data, $filename, $spool = null) {}
  * <p>
  * On failure, false is returned.
  */
-function getimagesize ($filename, array &$image_info = null) {}
+function getimagesize (string $filename, &$image_info): array|false
+{}
 
 /**
  * Get Mime-Type for image-type returned by getimagesize, exif_read_data, exif_thumbnail, exif_imagetype
@@ -971,7 +992,8 @@ function getimagesize ($filename, array &$image_info = null) {}
  * </table>
  */
 #[Pure]
-function image_type_to_mime_type ($image_type) {}
+function image_type_to_mime_type (int $image_type): string
+{}
 
 /**
  * Get file extension for image type
@@ -983,13 +1005,14 @@ function image_type_to_mime_type ($image_type) {}
  * Removed since 8.0.
  * Whether to prepend a dot to the extension or not. Default to true.
  * </p>
- * @return string A string with the extension corresponding to the given image type.
+ * @return string|false A string with the extension corresponding to the given image type.
  */
 #[Pure]
-function image_type_to_extension ($image_type, $include_dot = true) {}
+function image_type_to_extension (int $image_type, $include_dot = true): string|false
+{}
 
 /**
- * Outputs lots of PHP information
+ * Outputs information about PHP's configuration
  * @link https://php.net/manual/en/function.phpinfo.php
  * @param int $flags [optional] <p>
  * The output may be customized by passing one or more of the
@@ -1072,21 +1095,23 @@ function image_type_to_extension ($image_type, $include_dot = true) {}
  * </p>
  * @return bool true on success or false on failure.
  */
-function phpinfo ($flags = null) {}
+function phpinfo (int $flags): bool
+{}
 
 /**
  * Gets the current PHP version
  * @link https://php.net/manual/en/function.phpversion.php
- * @param string $extension [optional] <p>
+ * @param string|null $extension [optional] <p>
  * An optional extension name.
  * </p>
- * @return string If the optional extension parameter is
+ * @return string|false If the optional extension parameter is
  * specified, phpversion returns the version of that
  * extension, or false if there is no version information associated or
  * the extension isn't enabled.
  */
 #[Pure]
-function phpversion ($extension = null) {}
+function phpversion (?string $extension): string|false
+{}
 
 /**
  * Prints out the credits for PHP
@@ -1151,16 +1176,18 @@ function phpversion ($extension = null) {}
  * </p>
  * @return bool true on success or false on failure.
  */
-function phpcredits ($flags = null) {}
+function phpcredits (int $flags): bool
+{}
 
 /**
- * @removed 5.5
  * Gets the logo guid
+ * @removed 5.5
  * @link https://php.net/manual/en/function.php-logo-guid.php
  * @return string PHPE9568F34-D428-11d2-A769-00AA001ACF42.
  */
 #[Pure]
-function php_logo_guid () {}
+function php_logo_guid (): string
+{}
 
 /**
  * @removed 5.5
@@ -1173,17 +1200,18 @@ function php_real_logo_guid () {}
 function php_egg_logo_guid () {}
 
 /**
- * @removed 5.5
  * Gets the Zend guid
+ * @removed 5.5
  * @link https://php.net/manual/en/function.zend-logo-guid.php
  * @return string PHPE9568F35-D428-11d2-A769-00AA001ACF42.
  */
-function zend_logo_guid () {}
+function zend_logo_guid (): string
+{}
 
 /**
  * Returns the type of interface between web server and PHP
  * @link https://php.net/manual/en/function.php-sapi-name.php
- * @return string the interface type, as a lowercase string.
+ * @return string|false the interface type, as a lowercase string.
  * </p>
  * <p>
  * Although not exhaustive, the possible return values include
@@ -1198,7 +1226,8 @@ function zend_logo_guid () {}
  * thttpd, tux, and webjames.
  */
 #[Pure]
-function php_sapi_name () {}
+function php_sapi_name (): string|false
+{}
 
 /**
  * Returns information about the operating system PHP is running on
@@ -1211,12 +1240,13 @@ function php_sapi_name () {}
  * @return string the description, as a string.
  */
 #[Pure]
-function php_uname ($mode = null) {}
+function php_uname (string $mode): string
+{}
 
 /**
  * Return a list of .ini files parsed from the additional ini dir
  * @link https://php.net/manual/en/function.php-ini-scanned-files.php
- * @return string a comma-separated string of .ini files on success. Each comma is
+ * @return string|false a comma-separated string of .ini files on success. Each comma is
  * followed by a newline. If the directive --with-config-file-scan-dir wasn't set,
  * false is returned. If it was set and the directory was empty, an
  * empty string is returned. If a file is unrecognizable, the file will
@@ -1225,7 +1255,8 @@ function php_uname ($mode = null) {}
  * php_ini_scanned_files.
  */
 #[Pure]
-function php_ini_scanned_files () {}
+function php_ini_scanned_files (): string|false
+{}
 
 /**
  * Retrieve a path to the loaded php.ini file
@@ -1234,7 +1265,8 @@ function php_ini_scanned_files () {}
  * @since 5.2.4
  */
 #[Pure]
-function php_ini_loaded_file () {}
+function php_ini_loaded_file (): string|false
+{}
 
 /**
  * String comparisons using a "natural order" algorithm
@@ -1251,7 +1283,8 @@ function php_ini_loaded_file () {}
  * str2, and 0 if they are equal.
  */
 #[Pure]
-function strnatcmp ($string1, $string2) {}
+function strnatcmp (string $string1, string $string2): int
+{}
 
 /**
  * Case insensitive string comparisons using a "natural order" algorithm
@@ -1268,7 +1301,8 @@ function strnatcmp ($string1, $string2) {}
  * str2, and 0 if they are equal.
  */
 #[Pure]
-function strnatcasecmp ($string1, $string2) {}
+function strnatcasecmp (string $string1, string $string2): int
+{}
 
 /**
  * Count the number of substring occurrences
@@ -1282,7 +1316,7 @@ function strnatcasecmp ($string1, $string2) {}
  * @param int $offset [optional] <p>
  * The offset where to start counting
  * </p>
- * @param int $length [optional] <p>
+ * @param int|null $length [optional] <p>
  * The maximum length after the specified offset to search for the
  * substring. It outputs a warning if the offset plus the length is
  * greater than the haystack length.
@@ -1290,10 +1324,11 @@ function strnatcasecmp ($string1, $string2) {}
  * @return int This functions returns an integer.
  */
 #[Pure]
-function substr_count ($haystack, $needle, $offset = null, $length = null) {}
+function substr_count (string $haystack, string $needle, int $offset, ?int $length): int
+{}
 
 /**
- * Finds the length of the first segment of a string consisting
+ * Finds the length of the initial segment of a string consisting
  * entirely of characters contained within a given mask.
  * @link https://php.net/manual/en/function.strspn.php
  * @param string $string <p>
@@ -1323,7 +1358,7 @@ function substr_count ($haystack, $needle, $offset = null, $length = null) {}
  * the start'th position from the end
  * of subject.
  * </p>
- * @param int $length [optional] <p>
+ * @param int|null $length [optional] <p>
  * The length of the segment from subject
  * to examine.
  * </p>
@@ -1343,7 +1378,8 @@ function substr_count ($haystack, $needle, $offset = null, $length = null) {}
  * which consists entirely of characters in str2.
  */
 #[Pure]
-function strspn ($string, $characters, $offset = null, $length = null) {}
+function strspn (string $string, string $characters, int $offset, ?int $length): int
+{}
 
 /**
  * Find length of initial segment not matching mask
@@ -1357,13 +1393,14 @@ function strspn ($string, $characters, $offset = null, $length = null) {}
  * @param int $offset [optional] <p>
  * The start position of the string to examine.
  * </p>
- * @param int $length [optional] <p>
+ * @param int|null $length [optional] <p>
  * The length of the string to examine.
  * </p>
  * @return int the length of the segment as an integer.
  */
 #[Pure]
-function strcspn ($string, $characters, $offset = null, $length = null) {}
+function strcspn (string $string, string $characters, int $offset, ?int $length): int
+{}
 
 /**
  * Tokenize string
@@ -1376,9 +1413,10 @@ function strcspn ($string, $characters, $offset = null, $length = null) {}
  * @param string $string [optional] <p>
  * The string being split up into smaller strings (tokens).
  * </p>
- * @param string $token <p>
+ * @param string|null $token <p>
  * The delimiter used when splitting up str.
  * </p>
- * @return string A string token.
+ * @return string|false A string token.
  */
-function strtok ($string = null, $token) {}
+function strtok (string $string, ?string $token): string|false
+{}

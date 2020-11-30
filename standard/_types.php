@@ -280,14 +280,14 @@ class object {
    */
   public function __get(string $name) {}
 
-  /**
-   * run when writing data to inaccessible members.
-   *
-   * @param string $name
-   * @param mixed $value
-   * @return void
-   * @link https://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members
-   */
+    /**
+     * run when writing data to inaccessible members.
+     *
+     * @param string $name
+     * @param mixed $value
+     * @return void
+     * @link https://php.net/manual/en/language.oop5.overloading.php#language.oop5.overloading.members
+     */
   public function __set(string $name, $value): void {}
 
   /**

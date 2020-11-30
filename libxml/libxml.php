@@ -71,34 +71,35 @@ class LibXMLError  {
  * </p>
  * @return void No value is returned.
  */
-function libxml_set_streams_context ($context) {}
+function libxml_set_streams_context ($context):void {}
 
 /**
  * Disable libxml errors and allow user to fetch error information as needed
  * @link https://php.net/manual/en/function.libxml-use-internal-errors.php
- * @param bool $use_errors [optional] <p>
+ * @param bool|null $use_errors [optional] <p>
  * Enable (<b>TRUE</b>) user error handling or disable (<b>FALSE</b>) user error handling. Disabling will also clear any existing libxml errors.
  * </p>
  * @return bool This function returns the previous value of
  * <i>use_errors</i>.
  */
-function libxml_use_internal_errors ($use_errors = false) {}
+function libxml_use_internal_errors (?bool $use_errors = false): bool {}
 
 /**
  * Retrieve last error from libxml
  * @link https://php.net/manual/en/function.libxml-get-last-error.php
- * @return LibXMLError a LibXMLError object if there is any error in the
+ * @return LibXMLError|false a LibXMLError object if there is any error in the
  * buffer, <b>FALSE</b> otherwise.
  */
 #[Pure]
-function libxml_get_last_error () {}
+function libxml_get_last_error (): LibXMLError|false
+{}
 
 /**
  * Clear libxml error buffer
  * @link https://php.net/manual/en/function.libxml-clear-errors.php
  * @return void No value is returned.
  */
-function libxml_clear_errors () {}
+function libxml_clear_errors (): void {}
 
 /**
  * Retrieve array of errors
@@ -107,7 +108,8 @@ function libxml_clear_errors () {}
  * errors in the buffer, or an empty array otherwise.
  */
 #[Pure]
-function libxml_get_errors () {}
+function libxml_get_errors (): array
+{}
 
 /**
  * Disable the ability to load external entities
@@ -121,21 +123,22 @@ function libxml_get_errors () {}
  * @since 5.2.11
  */
 #[Deprecated(since: "8.0")]
-function libxml_disable_entity_loader ($disable = true) {}
+function libxml_disable_entity_loader (bool $disable = true): bool
+{}
 
 /**
  * Changes the default external entity loader
  * @link https://php.net/manual/en/function.libxml-set-external-entity-loader.php
- * @param callable $resolver_function <p>
+ * @param callable|null $resolver_function <p>
  * A callable that takes three arguments. Two strings, a public id
  * and system id, and a context (an array with four keys) as the third argument.
  * This callback should return a resource, a string from which a resource can be
  * opened, or <b>NULL</b>.
  * </p>
- * @return void No value is returned.
+ * @return bool
  * @since 5.4
  */
-function libxml_set_external_entity_loader (callable $resolver_function) {}
+function libxml_set_external_entity_loader (?callable $resolver_function): bool {}
 
 
 /**

@@ -1,6 +1,7 @@
 <?php
 
 use JetBrains\PhpStorm\Deprecated;
+use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
 use JetBrains\PhpStorm\Pure;
 
 /**
@@ -11,7 +12,8 @@ use JetBrains\PhpStorm\Pure;
  * @since 5.5
  */
 #[Pure]
-function boolval($value) {}
+function boolval(mixed $value): bool
+{}
 
 /**
  * Get the integer value of a variable
@@ -40,7 +42,8 @@ function boolval($value) {}
  * apply.
  */
 #[Pure]
-function intval ($value, $base = 10) {}
+function intval (mixed $value, int $base = 10): int
+{}
 
 /**
  * Get float value of a variable
@@ -49,7 +52,8 @@ function intval ($value, $base = 10) {}
  * @return float value of the given variable. Empty arrays return 0, non-empty arrays return 1.
  */
 #[Pure]
-function floatval ($value) {}
+function floatval (mixed $value): float
+{}
 
 /**
  * (PHP 4.2.0, PHP 5)<br/>
@@ -61,7 +65,8 @@ function floatval ($value) {}
  * @return float value of the given variable. Empty arrays return 0, non-empty arrays return 1.
  */
 #[Pure]
-function doubleval ($value) {}
+function doubleval (mixed $value): float
+{}
 
 /**
  * Get string value of a variable
@@ -76,7 +81,8 @@ function doubleval ($value) {}
  * @return string The string value of var.
  */
 #[Pure]
-function strval ($value) {}
+function strval (mixed $value): string
+{}
 
 /**
  * Get the type of a variable
@@ -99,7 +105,8 @@ function strval ($value) {}
  * "resource (closed)" since 7.2.0
  */
 #[Pure]
-function gettype ($value) {}
+function gettype (mixed $value): string
+{}
 
 /**
  * Set the type of a variable
@@ -135,7 +142,8 @@ function gettype ($value) {}
  * </ul>
  * @return bool true on success or false on failure.
  */
-function settype (&$var, $type) {}
+function settype (mixed &$var, string $type): bool
+{}
 
 /**
  * Finds whether a variable is null.
@@ -147,7 +155,8 @@ function settype (&$var, $type) {}
  * otherwise.
  */
 #[Pure]
-function is_null ($value) {}
+function is_null (mixed $value): bool
+{}
 
 /**
  * Finds whether a variable is a resource
@@ -159,7 +168,8 @@ function is_null ($value) {}
  * false otherwise.
  */
 #[Pure]
-function is_resource ($value) {}
+function is_resource (mixed $value): bool
+{}
 
 /**
  * Finds out whether a variable is a boolean
@@ -171,7 +181,8 @@ function is_resource ($value) {}
  * false otherwise.
  */
 #[Pure]
-function is_bool ($value) {}
+function is_bool (mixed $value): bool
+{}
 
 /**
  * &Alias; <function>is_int</function>
@@ -183,7 +194,8 @@ function is_bool ($value) {}
  * false otherwise.
  */
 #[Pure]
-function is_long ($value) {}
+function is_long (mixed $value): bool
+{}
 
 /**
  * Finds whether the type of a variable is float
@@ -195,7 +207,8 @@ function is_long ($value) {}
  * false otherwise.
  */
 #[Pure]
-function is_float ($value) {}
+function is_float (mixed $value): bool
+{}
 
 /**
  * Find whether the type of a variable is integer
@@ -207,7 +220,8 @@ function is_float ($value) {}
  * false otherwise.
  */
 #[Pure]
-function is_int ($value) {}
+function is_int (mixed $value): bool
+{}
 
 /**
  * &Alias; <function>is_int</function>
@@ -219,7 +233,8 @@ function is_int ($value) {}
  * false otherwise.
  */
 #[Pure]
-function is_integer ($value) {}
+function is_integer (mixed $value): bool
+{}
 
 /**
  * &Alias; <function>is_float</function>
@@ -231,7 +246,8 @@ function is_integer ($value) {}
  * false otherwise.
  */
 #[Pure]
-function is_double ($value) {}
+function is_double (mixed $value): bool
+{}
 
 /**
  * &Alias; <function>is_float</function>
@@ -244,7 +260,8 @@ function is_double ($value) {}
  */
 #[Pure]
 #[Deprecated(since: '7.4')]
-function is_real ($var) {}
+function is_real (mixed $var): bool
+{}
 
 /**
  * Finds whether a variable is a number or a numeric string
@@ -256,7 +273,8 @@ function is_real ($var) {}
  * string, false otherwise.
  */
 #[Pure]
-function is_numeric ($value) {}
+function is_numeric (mixed $value): bool
+{}
 
 /**
  * Find whether the type of a variable is string
@@ -268,7 +286,8 @@ function is_numeric ($value) {}
  * false otherwise.
  */
 #[Pure]
-function is_string ($value) {}
+function is_string (mixed $value): bool
+{}
 
 /**
  * Finds whether a variable is an array
@@ -280,7 +299,8 @@ function is_string ($value) {}
  * false otherwise.
  */
 #[Pure]
-function is_array ($value) {}
+function is_array (mixed $value): bool
+{}
 
 /**
  * Finds whether a variable is an object
@@ -292,7 +312,8 @@ function is_array ($value) {}
  * Since 7.2.0 returns true for unserialized objects without a class definition (class of <b>__PHP_Incomplete_Class</b>).
  */
 #[Pure]
-function is_object ($value) {}
+function is_object (mixed $value): bool
+{}
 
 /**
  * Finds whether a variable is a scalar
@@ -304,7 +325,8 @@ function is_object ($value) {}
  * otherwise.
  */
 #[Pure]
-function is_scalar ($value) {}
+function is_scalar (mixed $value): bool
+{}
 
 /**
  * Verify that the contents of a variable can be called as a function
@@ -329,7 +351,8 @@ function is_scalar ($value) {}
  * @return bool <b>TRUE</b> if $var is callable, <b>FALSE</b>
  * otherwise.
  */
-function is_callable ($value, $syntax_only = null, &$callable_name = null) {}
+function is_callable (mixed $value, bool $syntax_only, &$callable_name): bool
+{}
 
 /**
  * Verify that the contents of a variable is a countable value
@@ -340,7 +363,8 @@ function is_callable ($value, $syntax_only = null, &$callable_name = null) {}
  * @since 7.3
  */
 #[Pure]
-function is_countable($value) {}
+function is_countable(mixed $value): bool
+{}
 
 /**
  * Closes process file pointer
@@ -354,7 +378,8 @@ function is_countable($value) {}
  * <p>
  * If PHP has been compiled with <tt>--enable-sigchild</tt>, the return value of this function is undefined.
  */
-function pclose ($handle) {}
+function pclose ($handle): int
+{}
 
 /**
  * Opens process file pointer
@@ -375,7 +400,8 @@ function pclose ($handle) {}
  * <p>
  * If an error occurs, returns false.
  */
-function popen ($command, $mode) {}
+function popen (string $command, string $mode)
+{}
 
 /**
  * Outputs a file
@@ -392,7 +418,8 @@ function popen ($command, $mode) {}
  * </p>
  * @return false|int the number of bytes read from the file, or FALSE on failure
  */
-function readfile ($filename, $use_include_path = null, $context = null) {}
+function readfile (string $filename, bool $use_include_path, $context): int|false
+{}
 
 /**
  * Rewind the position of a file pointer
@@ -403,7 +430,8 @@ function readfile ($filename, $use_include_path = null, $context = null) {}
  * </p>
  * @return bool true on success or false on failure.
  */
-function rewind ($stream) {}
+function rewind ($stream): bool
+{}
 
 /**
  * Removes directory
@@ -414,18 +442,20 @@ function rewind ($stream) {}
  * @param resource $context [optional] &note.context-support;
  * @return bool true on success or false on failure.
  */
-function rmdir ($directory, $context = null) {}
+function rmdir (string $directory, $context): bool
+{}
 
 /**
  * Changes the current umask
  * @link https://php.net/manual/en/function.umask.php
- * @param int $mask [optional] <p>
+ * @param int|null $mask [optional] <p>
  * The new umask.
  * </p>
  * @return int umask without arguments simply returns the
  * current umask otherwise the old umask is returned.
  */
-function umask ($mask = null) {}
+function umask (?int $mask): int
+{}
 
 /**
  * Closes an open file pointer
@@ -436,7 +466,8 @@ function umask ($mask = null) {}
  * </p>
  * @return bool true on success or false on failure.
  */
-function fclose ($stream) {}
+function fclose ($stream): bool
+{}
 
 /**
  * Tests for end-of-file on a file pointer
@@ -445,7 +476,8 @@ function fclose ($stream) {}
  * @return bool true if the file pointer is at EOF or an error occurs
  * (including socket timeout); otherwise returns false.
  */
-function feof ($stream) {}
+function feof ($stream): bool
+{}
 
 /**
  * Gets character from file pointer
@@ -454,13 +486,14 @@ function feof ($stream) {}
  * @return string|false a string containing a single character read from the file pointed
  * to by handle. Returns false on EOF.
  */
-function fgetc ($stream) {}
+function fgetc ($stream): string|false
+{}
 
 /**
  * Gets line from file pointer
  * @link https://php.net/manual/en/function.fgets.php
  * @param resource $stream The file pointer must be valid, and must point to a file successfully opened by fopen() or fsockopen() (and not yet closed by fclose()).
- * @param int $length [optional] <p>
+ * @param int|null $length [optional] <p>
  * Reading ends when length - 1 bytes have been
  * read, on a newline (which is included in the return value), or on EOF
  * (whichever comes first). If no length is specified, it will keep
@@ -478,7 +511,8 @@ function fgetc ($stream) {}
  * <p>
  * If an error occurs, returns false.
  */
-function fgets ($stream, $length = null) {}
+function fgets ($stream, ?int $length): string|false
+{}
 
 /**
  * Gets line from file pointer and strip HTML tags
@@ -500,7 +534,8 @@ function fgets ($stream, $length = null) {}
  * @removed 8.0
  */
 #[Deprecated(since: '7.3')]
-function fgetss ($handle, $length = null, $allowable_tags = null) {}
+function fgetss ($handle, int $length = null, $allowable_tags = null): bool|string
+{}
 
 /**
  * Binary-safe file read
@@ -511,7 +546,8 @@ function fgetss ($handle, $length = null, $allowable_tags = null) {}
  * </p>
  * @return string|false the read string or false on failure.
  */
-function fread ($stream, $length) {}
+function fread ($stream, int $length): string|false
+{}
 
 /**
  * Opens file or URL
@@ -694,7 +730,8 @@ function fread ($stream, $length) {}
  * @param resource $context [optional] &note.context-support;
  * @return resource|false a file pointer resource on success, or false on error.
  */
-function fopen ($filename, $mode, $use_include_path = false, $context = null) {}
+function fopen (string $filename, string $mode, bool $use_include_path = false, $context)
+{}
 
 /**
  * Output all remaining data on a file pointer
@@ -705,7 +742,9 @@ function fopen ($filename, $mode, $use_include_path = false, $context = null) {}
  * the number of characters read from handle
  * and passed through to the output.
  */
-function fpassthru ($stream) {}
+#[LanguageLevelTypeAware(["8.0" => "int"], default: "int|false")]
+function fpassthru ($stream)
+{}
 
 /**
  * Truncates a file to a given length
@@ -729,16 +768,18 @@ function fpassthru ($stream) {}
  * </p>
  * @return bool true on success or false on failure.
  */
-function ftruncate ($stream, $size) {}
+function ftruncate ($stream, int $size): bool
+{}
 
 /**
  * Gets information about a file using an open file pointer
  * @link https://php.net/manual/en/function.fstat.php
  * @param resource $stream &fs.file.pointer;
- * @return array an array with the statistics of the file; the format of the array
+ * @return array|false an array with the statistics of the file; the format of the array
  * is described in detail on the stat manual page.
  */
-function fstat ($stream) {}
+function fstat ($stream): array|false
+{}
 
 /**
  * Seeks on a file pointer
@@ -766,7 +807,8 @@ function fstat ($stream) {}
  * @return int Upon success, returns 0; otherwise, returns -1. Note that seeking
  * past EOF is not considered an error.
  */
-function fseek ($stream, $offset, $whence = SEEK_SET) {}
+function fseek ($stream, int $offset, int $whence = SEEK_SET): int
+{}
 
 /**
  * Returns the current position of the file read/write pointer
@@ -783,7 +825,8 @@ function fseek ($stream, $offset, $whence = SEEK_SET) {}
  * <p>
  * If an error occurs, returns false.
  */
-function ftell ($stream) {}
+function ftell ($stream): int|false
+{}
 
 /**
  * Flushes the output to a file
@@ -791,7 +834,8 @@ function ftell ($stream) {}
  * @param resource $stream The file pointer must be valid, and must point to a file successfully opened by fopen() or fsockopen() (and not yet closed by fclose()).
  * @return bool true on success or false on failure.
  */
-function fflush ($stream) {}
+function fflush ($stream): bool
+{}
 
 /**
  * Binary-safe file write
@@ -800,7 +844,7 @@ function fflush ($stream) {}
  * @param string $data <p>
  * The string that is to be written.
  * </p>
- * @param int $length [optional] <p>
+ * @param int|null $length [optional] <p>
  * If the length argument is given, writing will
  * stop after length bytes have been written or
  * the end of string is reached, whichever comes
@@ -814,7 +858,8 @@ function fflush ($stream) {}
  * </p>
  * @return int|false the number of bytes written, or <b>FALSE</b> on error.
  */
-function fwrite ($stream, $data, $length = null) {}
+function fwrite ($stream, string $data, ?int $length): int|false
+{}
 
 /**
  * &Alias; <function>fwrite</function>
@@ -822,7 +867,7 @@ function fwrite ($stream, $data, $length = null) {}
  * @param string $data <p>
  * The string that is to be written.
  * </p>
- * @param int $length [optional] <p>
+ * @param int|null $length [optional] <p>
  * If the length argument is given, writing will
  * stop after length bytes have been written or
  * the end of string is reached, whichever comes
@@ -839,7 +884,8 @@ function fwrite ($stream, $data, $length = null) {}
  * @link https://php.net/manual/en/function.fputs.php
  * Binary-safe file write
  */
-function fputs ($stream, $data, $length = null) {}
+function fputs ($stream, string $data, ?int $length): int|false
+{}
 
 /**
  * Attempts to create the directory specified by pathname.
@@ -867,7 +913,8 @@ function fputs ($stream, $data, $length = null) {}
  * @param resource $context [optional] &note.context-support;
  * @return bool true on success or false on failure.
  */
-function mkdir ($directory, $permissions = 0777, $recursive = false, $context = null) {}
+function mkdir (string $directory, int $permissions = 0777, bool $recursive = false, $context): bool
+{}
 
 /**
  * Renames a file or directory
@@ -885,7 +932,8 @@ function mkdir ($directory, $permissions = 0777, $recursive = false, $context = 
  * @param resource $context [optional] &note.context-support;
  * @return bool true on success or false on failure.
  */
-function rename ($from, $to, $context = null) {}
+function rename (string $from, string $to, $context): bool
+{}
 
 /**
  * Copies file
@@ -907,7 +955,8 @@ function rename ($from, $to, $context = null) {}
  * </p>
  * @return bool true on success or false on failure.
  */
-function copy ($from, $to, $context = null) {}
+function copy (string $from, string $to, $context): bool
+{}
 
 /**
  * Create file with unique file name
@@ -922,7 +971,8 @@ function copy ($from, $to, $context = null) {}
  * @return string|false the new temporary filename, or false on
  * failure.
  */
-function tempnam ($directory, $prefix) {}
+function tempnam (string $directory, string $prefix): string|false
+{}
 
 /**
  * Creates a temporary file
@@ -930,7 +980,8 @@ function tempnam ($directory, $prefix) {}
  * @return resource|false a file handle, similar to the one returned by
  * fopen, for the new file or false on failure.
  */
-function tmpfile () {}
+function tmpfile ()
+{}
 
 /**
  * Reads entire file into an array
@@ -961,7 +1012,8 @@ function tmpfile () {}
  * use rtrim if you do not want the line ending
  * present.
  */
-function file ($filename, $flags = null, $context = null) {}
+function file (string $filename, int $flags, $context): array|false
+{}
 
 /**
  * Reads entire file into a string
@@ -981,13 +1033,14 @@ function file ($filename, $flags = null, $context = null) {}
  * @param int $offset [optional] <p>
  * The offset where the reading starts.
  * </p>
- * @param int $length [optional] <p>
+ * @param int|null $length [optional] <p>
  * Maximum length of data read. The default is to read until end
  * of file is reached.
  * </p>
  * @return string|false The function returns the read data or false on failure.
  */
-function file_get_contents ($filename, $use_include_path = false, $context = null, $offset = 0, $length = null) {}
+function file_get_contents (string $filename, bool $use_include_path = false, $context, int $offset = 0, ?int $length): string|false
+{}
 
 /**
  * Write a string to a file
@@ -1060,4 +1113,5 @@ function file_get_contents ($filename, $use_include_path = false, $context = nul
  * @return int|false The function returns the number of bytes that were written to the file, or
  * false on failure.
  */
-function file_put_contents ($filename, $data, $flags = 0, $context = null) {}
+function file_put_contents (string $filename, mixed $data, int $flags = 0, $context): int|false
+{}

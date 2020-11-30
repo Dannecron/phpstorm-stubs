@@ -10,8 +10,8 @@ use stdClass;
 class PHPMethod extends PHPFunction
 {
     public string $access;
-    public bool $is_static;
-    public bool $is_final;
+    public bool $isStatic;
+    public bool $isFinal;
     public string $parentName;
 
     /**
@@ -21,8 +21,8 @@ class PHPMethod extends PHPFunction
     public function readObjectFromReflection($reflectionObject): static
     {
         $this->name = $reflectionObject->name;
-        $this->is_static = $reflectionObject->isStatic();
-        $this->is_final = $reflectionObject->isFinal();
+        $this->isStatic = $reflectionObject->isStatic();
+        $this->isFinal = $reflectionObject->isFinal();
         foreach ($reflectionObject->getParameters() as $parameter) {
             $this->parameters[] = (new PHPParameter())->readObjectFromReflection($parameter);
         }
@@ -47,7 +47,7 @@ class PHPMethod extends PHPFunction
         $this->parentName = $this->getFQN($node->getAttribute('parent'));
         $this->name = $node->name->name;
 
-        $this->returnType = $node->getReturnType();
+        $this->returnType = self::convertParsedTypeToString($node->getReturnType());
         $this->collectTags($node);
         $this->checkDeprecationTag($node);
         $this->checkReturnTag($node);
@@ -59,8 +59,8 @@ class PHPMethod extends PHPFunction
             $this->parameters[] = (new PHPParameter())->readObjectFromStubNode($parameter);
         }
 
-        $this->is_final = $node->isFinal();
-        $this->is_static = $node->isStatic();
+        $this->isFinal = $node->isFinal();
+        $this->isStatic = $node->isStatic();
         if ($node->isPrivate()) {
             $this->access = 'private';
         } elseif ($node->isProtected()) {
@@ -83,6 +83,8 @@ class PHPMethod extends PHPFunction
                             'deprecated method' => StubProblemType::FUNCTION_IS_DEPRECATED,
                             'absent in meta' => StubProblemType::ABSENT_IN_META,
                             'wrong access' => StubProblemType::FUNCTION_ACCESS,
+                            'has nullable typehint' => StubProblemType::HAS_NULLABLE_TYPEHINT,
+                            'has union typehint' => StubProblemType::HAS_UNION_TYPEHINT,
                             default => -1
                         };
                     }

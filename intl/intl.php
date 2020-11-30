@@ -40,7 +40,7 @@ class Collator {
      * F=ON cote &lt; côte &lt; coté &lt; côté
      * </p>
      * </p>
-     * @link https://php.net/manual/en/intl.collator-constants.php
+     * @link https://php.net/manual/en/class.collator.php#intl.collator-constants
      */
     const FRENCH_COLLATION = 0;
 
@@ -85,7 +85,7 @@ class Collator {
      * S=4, A=S di Silva &lt; diSilva &lt; Di Silva &lt; U.S.A. &lt; USA
      * </p>
      * </p>
-     * @link https://php.net/manual/en/intl.collator-constants.php
+     * @link https://php.net/manual/en/class.collator.php#intl.collator-constants
      */
     const ALTERNATE_HANDLING = 1;
 
@@ -119,7 +119,7 @@ class Collator {
      * C=U "China" &lt; "china" &lt; "Denmark" &lt; "denmark"
      * </p>
      * </p>
-     * @link https://php.net/manual/en/intl.collator-constants.php
+     * @link https://php.net/manual/en/class.collator.php#intl.collator-constants
      */
     const CASE_FIRST = 2;
 
@@ -145,7 +145,7 @@ class Collator {
      * S=1, E=O role = rôle &lt; Role
      * </p>
      * </p>
-     * @link https://php.net/manual/en/intl.collator-constants.php
+     * @link https://php.net/manual/en/class.collator.php#intl.collator-constants
      */
     const CASE_LEVEL = 3;
 
@@ -171,7 +171,7 @@ class Collator {
      * <b>Collator::ON</b>
      * <b>Collator::DEFAULT_VALUE</b>
      * </p>
-     * @link https://php.net/manual/en/intl.collator-constants.php
+     * @link https://php.net/manual/en/class.collator.php#intl.collator-constants
      */
     const NORMALIZATION_MODE = 4;
 
@@ -189,12 +189,12 @@ class Collator {
      * Possible values are:
      * <b>Collator::PRIMARY</b>
      * <b>Collator::SECONDARY</b>
-     * <b>Collator::TERTIARY</b>(<default)
+     * <b>Collator::TERTIARY</b>(default)
      * <b>Collator::QUATERNARY</b>
      * <b>Collator::IDENTICAL</b>
      * <b>Collator::DEFAULT_VALUE</b>
      * </p>
-     * @link https://php.net/manual/en/intl.collator-constants.php
+     * @link https://php.net/manual/en/class.collator.php#intl.collator-constants
      */
     const STRENGTH = 5;
 
@@ -213,7 +213,7 @@ class Collator {
      * <b>Collator::ON</b>
      * <b>Collator::DEFAULT_VALUE</b>
      * </p>
-     * @link https://php.net/manual/en/intl.collator-constants.php
+     * @link https://php.net/manual/en/class.collator.php#intl.collator-constants
      */
     const HIRAGANA_QUATERNARY_MODE = 6;
 
@@ -229,7 +229,7 @@ class Collator {
      * <b>Collator::ON</b>
      * <b>Collator::DEFAULT_VALUE</b>
      * </p>
-     * @link https://php.net/manual/en/intl.collator-constants.php
+     * @link https://php.net/manual/en/class.collator.php#intl.collator-constants
      */
     const NUMERIC_COLLATION = 7;
     const SORT_REGULAR = 0;
@@ -243,6 +243,7 @@ class Collator {
      * @link https://php.net/manual/en/collator.construct.php
      * @param string $locale
      */
+    #[Pure]
     public function __construct($locale) { }
 
     /**
@@ -289,13 +290,14 @@ class Collator {
      * <b>FALSE</b>
      * is returned.
      */
+    #[Pure]
     public function compare($str1, $str2) { }
 
     /**
      * (PHP 5 &gt;= 5.3.0, PECL intl &gt;= 1.0.0)<br/>
      * Sort array using specified collator
      * @link https://php.net/manual/en/collator.sort.php
-     * @param array &$array <p>
+     * @param string[] &$array <p>
      * Array of strings to sort.
      * </p>
      * @param int $sort_flag [optional] <p>
@@ -314,7 +316,7 @@ class Collator {
      * (PHP 5 &gt;= 5.3.0, PECL intl &gt;= 1.0.0)<br/>
      * Sort array using specified collator and sort keys
      * @link https://php.net/manual/en/collator.sortwithsortkeys.php
-     * @param array &$array <p>Array of strings to sort</p>
+     * @param string[] &$array <p>Array of strings to sort</p>
      * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
      */
     public function sortWithSortKeys(array &$array) { }
@@ -323,7 +325,7 @@ class Collator {
      * (PHP 5 &gt;= 5.3.0, PECL intl &gt;= 1.0.0)<br/>
      * Sort array maintaining index association
      * @link https://php.net/manual/en/collator.asort.php
-     * @param array &$array <p>Array of strings to sort.</p>
+     * @param string[] &$array <p>Array of strings to sort.</p>
      * @param int $sort_flag [optional] <p>
      * Optional sorting type, one of the following:
      * <p>
@@ -343,6 +345,7 @@ class Collator {
      * </p>
      * @return int|false Attribute value, or boolean <b>FALSE</b> on error.
      */
+    #[Pure]
     public function getAttribute($attr) { }
 
     /**
@@ -363,6 +366,7 @@ class Collator {
      * @link https://php.net/manual/en/collator.getstrength.php
      * @return int|false current collation strength, or boolean <b>FALSE</b> on error.
      */
+    #[Pure]
     public function getStrength() { }
 
     /**
@@ -393,6 +397,7 @@ class Collator {
      * instantiated from rules or an error occurred, returns
      * boolean <b>FALSE</b>.
      */
+    #[Pure]
     public function getLocale($type = null) { }
 
     /**
@@ -401,6 +406,7 @@ class Collator {
      * @link https://php.net/manual/en/collator.geterrorcode.php
      * @return int Error code returned by the last Collator API function call.
      */
+    #[Pure]
     public function getErrorCode() { }
 
     /**
@@ -409,6 +415,7 @@ class Collator {
      * @link https://php.net/manual/en/collator.geterrormessage.php
      * @return string Description of an error occurred in the last Collator API function call.
      */
+    #[Pure]
     public function getErrorMessage() { }
 
     /**
@@ -420,6 +427,7 @@ class Collator {
      * </p>
      * @return string the collation key for the string. Collation keys can be compared directly instead of strings.
      */
+    #[Pure]
     public function getSortKey($str) { }
 }
 
@@ -427,91 +435,91 @@ class NumberFormatter {
 
     /**
      * Decimal format defined by pattern
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PATTERN_DECIMAL = 0;
 
     /**
      * Decimal format
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const DECIMAL = 1;
 
     /**
      * Currency format
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const CURRENCY = 2;
 
     /**
      * Percent format
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PERCENT = 3;
 
     /**
      * Scientific format
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const SCIENTIFIC = 4;
 
     /**
      * Spellout rule-based format
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const SPELLOUT = 5;
 
     /**
      * Ordinal rule-based format
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const ORDINAL = 6;
 
     /**
      * Duration rule-based format
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const DURATION = 7;
 
     /**
      * Rule-based format defined by pattern
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PATTERN_RULEBASED = 9;
 
     /**
      * Alias for PATTERN_DECIMAL
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const IGNORE = 0;
 
     /**
      * Default format for the locale
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const DEFAULT_STYLE = 1;
 
     /**
      * Rounding mode to round towards positive infinity.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const ROUND_CEILING = 0;
 
     /**
      * Rounding mode to round towards negative infinity.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const ROUND_FLOOR = 1;
 
     /**
      * Rounding mode to round towards zero.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const ROUND_DOWN = 2;
 
     /**
      * Rounding mode to round away from zero.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const ROUND_UP = 3;
 
@@ -519,209 +527,209 @@ class NumberFormatter {
      * Rounding mode to round towards the "nearest neighbor" unless both
      * neighbors are equidistant, in which case, round towards the even
      * neighbor.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const ROUND_HALFEVEN = 4;
 
     /**
      * Rounding mode to round towards "nearest neighbor" unless both neighbors
      * are equidistant, in which case round down.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const ROUND_HALFDOWN = 5;
 
     /**
      * Rounding mode to round towards "nearest neighbor" unless both neighbors
      * are equidistant, in which case round up.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const ROUND_HALFUP = 6;
 
     /**
      * Pad characters inserted before the prefix.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PAD_BEFORE_PREFIX = 0;
 
     /**
      * Pad characters inserted after the prefix.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PAD_AFTER_PREFIX = 1;
 
     /**
      * Pad characters inserted before the suffix.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PAD_BEFORE_SUFFIX = 2;
 
     /**
      * Pad characters inserted after the suffix.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PAD_AFTER_SUFFIX = 3;
 
     /**
      * Parse integers only.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PARSE_INT_ONLY = 0;
 
     /**
      * Use grouping separator.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const GROUPING_USED = 1;
 
     /**
      * Always show decimal point.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const DECIMAL_ALWAYS_SHOWN = 2;
 
     /**
      * Maximum integer digits.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const MAX_INTEGER_DIGITS = 3;
 
     /**
      * Minimum integer digits.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const MIN_INTEGER_DIGITS = 4;
 
     /**
      * Integer digits.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const INTEGER_DIGITS = 5;
 
     /**
      * Maximum fraction digits.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const MAX_FRACTION_DIGITS = 6;
 
     /**
      * Minimum fraction digits.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const MIN_FRACTION_DIGITS = 7;
 
     /**
      * Fraction digits.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const FRACTION_DIGITS = 8;
 
     /**
      * Multiplier.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const MULTIPLIER = 9;
 
     /**
      * Grouping size.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const GROUPING_SIZE = 10;
 
     /**
      * Rounding Mode.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const ROUNDING_MODE = 11;
 
     /**
      * Rounding increment.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const ROUNDING_INCREMENT = 12;
 
     /**
      * The width to which the output of format() is padded.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const FORMAT_WIDTH = 13;
 
     /**
      * The position at which padding will take place. See pad position
      * constants for possible argument values.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PADDING_POSITION = 14;
 
     /**
      * Secondary grouping size.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const SECONDARY_GROUPING_SIZE = 15;
 
     /**
      * Use significant digits.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const SIGNIFICANT_DIGITS_USED = 16;
 
     /**
      * Minimum significant digits.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const MIN_SIGNIFICANT_DIGITS = 17;
 
     /**
      * Maximum significant digits.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const MAX_SIGNIFICANT_DIGITS = 18;
 
     /**
      * Lenient parse mode used by rule-based formats.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const LENIENT_PARSE = 19;
 
     /**
      * Positive prefix.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const POSITIVE_PREFIX = 0;
 
     /**
      * Positive suffix.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const POSITIVE_SUFFIX = 1;
 
     /**
      * Negative prefix.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const NEGATIVE_PREFIX = 2;
 
     /**
      * Negative suffix.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const NEGATIVE_SUFFIX = 3;
 
     /**
      * The character used to pad to the format width.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PADDING_CHARACTER = 4;
 
     /**
      * The ISO currency code.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const CURRENCY_CODE = 5;
 
     /**
      * The default rule set. This is only available with rule-based
      * formatters.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const DEFAULT_RULESET = 6;
 
@@ -730,154 +738,156 @@ class NumberFormatter {
      * formatters. This is a read-only attribute. The public rulesets are
      * returned as a single string, with each ruleset name delimited by ';'
      * (semicolon).
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PUBLIC_RULESETS = 7;
 
     /**
      * The decimal separator.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const DECIMAL_SEPARATOR_SYMBOL = 0;
 
     /**
      * The grouping separator.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const GROUPING_SEPARATOR_SYMBOL = 1;
 
     /**
      * The pattern separator.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PATTERN_SEPARATOR_SYMBOL = 2;
 
     /**
      * The percent sign.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PERCENT_SYMBOL = 3;
 
     /**
      * Zero.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const ZERO_DIGIT_SYMBOL = 4;
 
     /**
      * Character representing a digit in the pattern.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const DIGIT_SYMBOL = 5;
 
     /**
      * The minus sign.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const MINUS_SIGN_SYMBOL = 6;
 
     /**
      * The plus sign.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PLUS_SIGN_SYMBOL = 7;
 
     /**
      * The currency symbol.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const CURRENCY_SYMBOL = 8;
 
     /**
      * The international currency symbol.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const INTL_CURRENCY_SYMBOL = 9;
 
     /**
      * The monetary separator.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const MONETARY_SEPARATOR_SYMBOL = 10;
 
     /**
      * The exponential symbol.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const EXPONENTIAL_SYMBOL = 11;
 
     /**
      * Per mill symbol.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PERMILL_SYMBOL = 12;
 
     /**
      * Escape padding character.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const PAD_ESCAPE_SYMBOL = 13;
 
     /**
      * Infinity symbol.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const INFINITY_SYMBOL = 14;
 
     /**
      * Not-a-number symbol.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const NAN_SYMBOL = 15;
 
     /**
      * Significant digit symbol.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const SIGNIFICANT_DIGIT_SYMBOL = 16;
 
     /**
      * The monetary grouping separator.
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const MONETARY_GROUPING_SEPARATOR_SYMBOL = 17;
 
     /**
      * Derive the type from variable type
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const TYPE_DEFAULT = 0;
 
     /**
      * Format/parse as 32-bit integer
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const TYPE_INT32 = 1;
 
     /**
      * Format/parse as 64-bit integer
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const TYPE_INT64 = 2;
 
     /**
      * Format/parse as floating point value
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const TYPE_DOUBLE = 3;
 
     /**
      * Format/parse as currency value
-     * @link https://php.net/manual/en/intl.numberformatter-constants.php
+     * @link https://php.net/manual/en/class.locale.php#intl.locale-constants
      */
     const TYPE_CURRENCY = 4;
 
 
     /**
-     * @param $locale
-     * @param $style
-     * @param $pattern [optional]
+     * @link https://www.php.net/manual/en/class.numberformatter.php
+     * @param string $locale
+     * @param int $style
+     * @param string $pattern [optional]
      */
+    #[Pure]
     public function __construct($locale, $style, $pattern = null) { }
 
     /**
@@ -920,6 +930,7 @@ class NumberFormatter {
      * </p>
      * @return string|false the string containing formatted value, or <b>FALSE</b> on error.
      */
+    #[Pure]
     public function format($value, $type = null) { }
 
     /**
@@ -952,6 +963,7 @@ class NumberFormatter {
      * </p>
      * @return string String representing the formatted currency value.
      */
+    #[Pure]
     public function formatCurrency($value, $currency) { }
 
     /**
@@ -996,6 +1008,7 @@ class NumberFormatter {
      * </p>
      * @return int|false Return attribute value on success, or <b>FALSE</b> on error.
      */
+    #[Pure]
     public function getAttribute($attr) { }
 
     /**
@@ -1024,6 +1037,7 @@ class NumberFormatter {
      * </p>
      * @return string|false Return attribute value on success, or <b>FALSE</b> on error.
      */
+    #[Pure]
     public function getTextAttribute($attr) { }
 
     /**
@@ -1051,6 +1065,7 @@ class NumberFormatter {
      * </p>
      * @return string|false The symbol string or <b>FALSE</b> on error.
      */
+    #[Pure]
     public function getSymbol($attr) { }
 
     /**
@@ -1072,6 +1087,7 @@ class NumberFormatter {
      * @link https://php.net/manual/en/numberformatter.getpattern.php
      * @return string|false Pattern string that is used by the formatter, or <b>FALSE</b> if an error happens.
      */
+    #[Pure]
     public function getPattern() { }
 
     /**
@@ -1086,6 +1102,7 @@ class NumberFormatter {
      * </p>
      * @return string The locale name used to create the formatter.
      */
+    #[Pure]
     public function getLocale($type = null) { }
 
     /**
@@ -1094,6 +1111,7 @@ class NumberFormatter {
      * @link https://php.net/manual/en/numberformatter.geterrorcode.php
      * @return int error code from last formatter call.
      */
+    #[Pure]
     public function getErrorCode() { }
 
     /**
@@ -1102,6 +1120,7 @@ class NumberFormatter {
      * @link https://php.net/manual/en/numberformatter.geterrormessage.php
      * @return string error message from last formatter call.
      */
+    #[Pure]
     public function getErrorMessage() { }
 }
 
@@ -1139,7 +1158,7 @@ class Normalizer {
      * Canonical Composition
      * @link https://secure.php.net/manual/en/class.normalizer.php
      */
-    const FORM_C = "4";
+    const FORM_C = 16;
     const NFC = 4;
 
     /**
@@ -1147,7 +1166,7 @@ class Normalizer {
      * Canonical Composition
      * @link https://secure.php.net/manual/en/class.normalizer.php
      */
-    const FORM_KC = "5";
+    const FORM_KC = 32;
     const NFKC = 5;
 
 
@@ -1156,8 +1175,8 @@ class Normalizer {
      * Normalizes the input provided and returns the normalized string
      * @link https://php.net/manual/en/normalizer.normalize.php
      * @param string $input <p>The input string to normalize</p>
-     * @param string $form [optional] <p>One of the normalization forms.</p>
-     * @return string|null The normalized string or <b>NULL</b> if an error occurred.
+     * @param int $form [optional] <p>One of the normalization forms.</p>
+     * @return string|false The normalized string or <b>FALSE</b> if an error occurred.
      */
     public static function normalize($input, $form = Normalizer::FORM_C) { }
 
@@ -1166,7 +1185,7 @@ class Normalizer {
      * Checks if the provided string is already in the specified normalization form.
      * @link https://php.net/manual/en/normalizer.isnormalized.php
      * @param string $input <p>The input string to normalize</p>
-     * @param string $form [optional] <p>
+     * @param int $form [optional] <p>
      * One of the normalization forms.
      * </p>
      * @return bool <b>TRUE</b> if normalized, <b>FALSE</b> otherwise or if there an error
@@ -1178,13 +1197,13 @@ class Locale {
 
     /**
      * This is locale the data actually comes from.
-     * @link https://php.net/manual/en/intl.locale-constants.php
+     * @link https://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants
      */
     const ACTUAL_LOCALE = 0;
 
     /**
      * This is the most specific locale supported by ICU.
-     * @link https://php.net/manual/en/intl.locale-constants.php
+     * @link https://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants
      */
     const VALID_LOCALE = 1;
 
@@ -1192,49 +1211,49 @@ class Locale {
      * Used as locale parameter with the methods of the various locale affected classes,
      * such as NumberFormatter. This constant would make the methods to use default
      * locale.
-     * @link https://php.net/manual/en/intl.locale-constants.php
+     * @link https://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants
      */
     const DEFAULT_LOCALE = null;
 
     /**
      * Language subtag
-     * @link https://php.net/manual/en/intl.locale-constants.php
+     * @link https://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants
      */
     const LANG_TAG = "language";
 
     /**
      * Extended language subtag
-     * @link https://php.net/manual/en/intl.locale-constants.php
+     * @link https://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants
      */
     const EXTLANG_TAG = "extlang";
 
     /**
      * Script subtag
-     * @link https://php.net/manual/en/intl.locale-constants.php
+     * @link https://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants
      */
     const SCRIPT_TAG = "script";
 
     /**
      * Region subtag
-     * @link https://php.net/manual/en/intl.locale-constants.php
+     * @link https://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants
      */
     const REGION_TAG = "region";
 
     /**
      * Variant subtag
-     * @link https://php.net/manual/en/intl.locale-constants.php
+     * @link https://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants
      */
     const VARIANT_TAG = "variant";
 
     /**
      * Grandfathered Language subtag
-     * @link https://php.net/manual/en/intl.locale-constants.php
+     * @link https://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants
      */
     const GRANDFATHERED_LANG_TAG = "grandfathered";
 
     /**
      * Private subtag
-     * @link https://php.net/manual/en/intl.locale-constants.php
+     * @link https://php.net/manual/en/class.numberformatter.php#intl.numberformatter-constants
      */
     const PRIVATE_TAG = "private";
 
@@ -1505,6 +1524,7 @@ class MessageFormatter {
      * before being interpreted.
      * </p>
      */
+    #[Pure]
     public function __construct($locale, $pattern) { }
 
     /**
@@ -1533,6 +1553,7 @@ class MessageFormatter {
      * </p>
      * @return string|false The formatted string, or <b>FALSE</b> if an error occurred
      */
+    #[Pure]
     public function format(array $args) { }
 
     /**
@@ -1564,6 +1585,7 @@ class MessageFormatter {
      * </p>
      * @return array|false An array containing the items extracted, or <b>FALSE</b> on error
      */
+    #[Pure]
     public function parse($value) { }
 
     /**
@@ -1603,6 +1625,7 @@ class MessageFormatter {
      * @link https://php.net/manual/en/messageformatter.getpattern.php
      * @return string The pattern string for this message formatter
      */
+    #[Pure]
     public function getPattern() { }
 
     /**
@@ -1611,6 +1634,7 @@ class MessageFormatter {
      * @link https://php.net/manual/en/messageformatter.getlocale.php
      * @return string The locale name
      */
+    #[Pure]
     public function getLocale() { }
 
     /**
@@ -1619,6 +1643,7 @@ class MessageFormatter {
      * @link https://php.net/manual/en/messageformatter.geterrorcode.php
      * @return int The error code, one of UErrorCode values. Initial value is U_ZERO_ERROR.
      */
+    #[Pure]
     public function getErrorCode() { }
 
     /**
@@ -1627,6 +1652,7 @@ class MessageFormatter {
      * @link https://php.net/manual/en/messageformatter.geterrormessage.php
      * @return string Description of the last error.
      */
+    #[Pure]
     public function getErrorMessage() { }
 }
 
@@ -1688,6 +1714,7 @@ class IntlDateFormatter {
      * @param mixed|null $calendar [optional]
      * @param string $pattern [optional]
      */
+    #[Pure]
     public function __construct($locale, $datetype, $timetype, $timezone = null, $calendar = null, $pattern = '') { }
 
     /**
@@ -1733,6 +1760,7 @@ class IntlDateFormatter {
      * @link https://php.net/manual/en/intldateformatter.getdatetype.php
      * @return int The current date type value of the formatter.
      */
+    #[Pure]
     public function getDateType() { }
 
     /**
@@ -1741,6 +1769,7 @@ class IntlDateFormatter {
      * @link https://php.net/manual/en/intldateformatter.gettimetype.php
      * @return int The current date type value of the formatter.
      */
+    #[Pure]
     public function getTimeType() { }
 
     /**
@@ -1749,6 +1778,7 @@ class IntlDateFormatter {
      * @link https://php.net/manual/en/intldateformatter.getcalendar.php
      * @return int The calendar being used by the formatter.
      */
+    #[Pure]
     public function getCalendar() { }
 
     /**
@@ -1769,6 +1799,7 @@ class IntlDateFormatter {
      * @link https://php.net/manual/en/intldateformatter.gettimezoneid.php
      * @return string ID string for the time zone used by this formatter.
      */
+    #[Pure]
     public function getTimeZoneId() { }
 
     /**
@@ -1777,6 +1808,7 @@ class IntlDateFormatter {
      * @link https://secure.php.net/manual/en/intldateformatter.getcalendarobject.php
      * @return IntlCalendar A copy of the internal calendar object used by this formatter.
      */
+    #[Pure]
     public function getCalendarObject() { }
 
     /**
@@ -1785,6 +1817,7 @@ class IntlDateFormatter {
      * @link https://secure.php.net/manual/en/intldateformatter.gettimezone.php
      * @return IntlTimeZone|false The associated IntlTimeZone object or FALSE on failure.
      */
+    #[Pure]
     public function getTimeZone() { }
 
     /**
@@ -1861,6 +1894,7 @@ class IntlDateFormatter {
      * @link https://php.net/manual/en/intldateformatter.getpattern.php
      * @return string The pattern string being used to format/parse.
      */
+    #[Pure]
     public function getPattern() { }
 
     /**
@@ -1870,6 +1904,7 @@ class IntlDateFormatter {
      * @param int $which [optional]
      * @return string|false the locale of this formatter or 'false' if error
      */
+    #[Pure]
     public function getLocale($which = null) { }
 
     /**
@@ -1889,6 +1924,7 @@ class IntlDateFormatter {
      * @link https://php.net/manual/en/intldateformatter.islenient.php
      * @return bool <b>TRUE</b> if parser is lenient, <b>FALSE</b> if parser is strict. By default the parser is lenient.
      */
+    #[Pure]
     public function isLenient() { }
 
     /**
@@ -1972,6 +2008,7 @@ class IntlDateFormatter {
      * @link https://php.net/manual/en/intldateformatter.geterrorcode.php
      * @return int The error code, one of UErrorCode values. Initial value is U_ZERO_ERROR.
      */
+    #[Pure]
     public function getErrorCode() { }
 
     /**
@@ -1980,16 +2017,19 @@ class IntlDateFormatter {
      * @link https://php.net/manual/en/intldateformatter.geterrormessage.php
      * @return string Description of the last error.
      */
+    #[Pure]
     public function getErrorMessage() { }
 }
 
 class ResourceBundle implements IteratorAggregate {
 
     /**
-     * @param $locale
-     * @param $bundlename
-     * @param $fallback [optional]
+     * @link https://www.php.net/manual/en/resourcebundle.create.php
+     * @param string $locale <p>Locale for which the resources should be loaded (locale name, e.g. en_CA).</p>
+     * @param string $bundlename <p>The directory where the data is stored or the name of the .dat file.</p>
+     * @param bool $fallback [optional] <p>Whether locale should match exactly or fallback to parent locale is allowed.</p>
      */
+    #[Pure]
     public function __construct($locale, $bundlename, $fallback) { }
 
     /**
@@ -2020,6 +2060,7 @@ class ResourceBundle implements IteratorAggregate {
      * are returned as corresponding PHP types, integer array is returned as PHP array. Complex types are
      * returned as <b>ResourceBundle</b> object.
      */
+    #[Pure]
     public function get($index) { }
 
     /**
@@ -2028,6 +2069,7 @@ class ResourceBundle implements IteratorAggregate {
      * @link https://php.net/manual/en/resourcebundle.count.php
      * @return int number of elements in the bundle.
      */
+    #[Pure]
     public function count() { }
 
     /**
@@ -2048,6 +2090,7 @@ class ResourceBundle implements IteratorAggregate {
      * @link https://php.net/manual/en/resourcebundle.geterrorcode.php
      * @return int error code from last bundle object call.
      */
+    #[Pure]
     public function getErrorCode() { }
 
     /**
@@ -2056,11 +2099,13 @@ class ResourceBundle implements IteratorAggregate {
      * @link https://php.net/manual/en/resourcebundle.geterrormessage.php
      * @return string error message from last bundle object's call.
      */
+    #[Pure]
     public function getErrorMessage() { }
 
     /**
      * @since 8.0
      */
+    #[Pure]
     public function getIterator(){}
 }
 
@@ -2106,11 +2151,11 @@ class Transliterator {
      * @param string $rules <p>
      * The rules.
      * </p>
-     * @param string $direction [optional] <p>
+     * @param int $direction [optional] <p>
      * The direction, defaults to
-     * >Transliterator::FORWARD.
+     * {@see Transliterator::FORWARD}.
      * May also be set to
-     * Transliterator::REVERSE.
+     * {@see Transliterator::REVERSE}.
      * </p>
      * @return Transliterator|null a <b>Transliterator</b> object on success,
      * or <b>NULL</b> on failure.
@@ -2124,6 +2169,7 @@ class Transliterator {
      * @return Transliterator|null a <b>Transliterator</b> object on success,
      * or <b>NULL</b> on failure
      */
+    #[Pure]
     public function createInverse() { }
 
     /**
@@ -2154,6 +2200,7 @@ class Transliterator {
      * </p>
      * @return string|false The transfomed string on success, or <b>FALSE</b> on failure.
      */
+    #[Pure]
     public function transliterate($subject, $start = null, $end = null) { }
 
     /**
@@ -2163,6 +2210,7 @@ class Transliterator {
      * @return int|false The error code on success,
      * or <b>FALSE</b> if none exists, or on failure.
      */
+    #[Pure]
     public function getErrorCode() { }
 
     /**
@@ -2172,6 +2220,7 @@ class Transliterator {
      * @return string|false The error code on success,
      * or <b>FALSE</b> if none exists, or on failure.
      */
+    #[Pure]
     public function getErrorMessage() { }
 }
 
@@ -2193,6 +2242,7 @@ class Spoofchecker {
      * Constructor
      * @link https://php.net/manual/en/spoofchecker.construct.php
      */
+    #[Pure]
     public function __construct() { }
 
     /**
@@ -2235,7 +2285,7 @@ class Spoofchecker {
      * (PHP &gt;= 5.4.0, PECL intl &gt;= 2.0.0)<br/>
      * Set the checks to run
      * @link https://php.net/manual/en/spoofchecker.setchecks.php
-     * @param string $checks <p>
+     * @param int $checks <p>
      * </p>
      * @return void
      */
@@ -2263,12 +2313,14 @@ class IntlGregorianCalendar extends IntlCalendar {
     /**
      * @return float
      */
+    #[Pure]
     public function getGregorianChange() { }
 
     /**
      * @param int $year
      * @return bool
      */
+    #[Pure]
     public function isLeapYear($year) { }
 }
 
@@ -2345,6 +2397,7 @@ class IntlCalendar {
      * Also returns <b>FALSE</b> on failure. You can use {@link https://secure.php.net/manual/en/intl.configuration.php#ini.intl.use-exceptions exceptions} or
      * {@link https://secure.php.net/manual/en/function.intl-get-error-code.php intl_get_error_code()} to detect error conditions.
      */
+    #[Pure]
     public function after(IntlCalendar $calendar) { }
 
     /**
@@ -2359,6 +2412,7 @@ class IntlCalendar {
      * {@link https://secure.php.net/manual/en/function.intl-get-error-code.php intl_get_error_code()} to detect error conditions.
      * </p>
      */
+    #[Pure]
     public function before(IntlCalendar $calendar) { }
 
     /**
@@ -2443,6 +2497,7 @@ class IntlCalendar {
      * distinguished by calling  {@link https://secure.php.net/manual/en/function.intl-get-error-code.php intl_get_error_code()}.
      * </p>
      */
+    #[Pure]
     public function equals($calendar) { }
 
     /**
@@ -2468,6 +2523,7 @@ class IntlCalendar {
      * specified field or <b>FALSE</b> on failure.
      *
      */
+    #[Pure]
     public function fieldDifference($when, $field) { }
 
     /**
@@ -2496,6 +2552,7 @@ class IntlCalendar {
      * </p>
      * @return int An integer with the value of the time field.
      */
+    #[Pure]
     public function get($field) { }
 
     /**
@@ -2511,6 +2568,7 @@ class IntlCalendar {
      * An {@link https://secure.php.net/manual/en/language.types.integer.php int} representing the maximum value in the units associated
      * with the given <em>field</em> or <b>FALSE</b> on failure.
      */
+    #[Pure]
     public function getActualMaximum($field) { }
 
     /**
@@ -2526,6 +2584,7 @@ class IntlCalendar {
      * An {@link https://secure.php.net/manual/en/language.types.integer.php int} representing the minimum value in the field's
      * unit or <b>FALSE</b> on failure.
      */
+    #[Pure]
     public function getActualMinimum($field) { }
 
     /**
@@ -2552,6 +2611,7 @@ class IntlCalendar {
      * <b>IntlCalendar::DOW_TYPE_WEEKEND_CEASE</b> or <b>FALSE</b> on failure.
      *
      */
+    #[Pure]
     public function getDayOfWeekType($dayOfWeek) { }
 
     /**
@@ -2561,6 +2621,7 @@ class IntlCalendar {
      * @return int An ICU error code indicating either success, failure or a warning.
      *
      */
+    #[Pure]
     public function getErrorCode() { }
 
     /**
@@ -2569,6 +2630,7 @@ class IntlCalendar {
      * @link https://secure.php.net/manual/en/intlcalendar.geterrormessage.php
      * @return string The error message associated with last error that occurred in a function call on this object, or a string indicating the non-existance of an error.
      */
+    #[Pure]
     public function getErrorMessage() { }
 
     /**
@@ -2581,6 +2643,7 @@ class IntlCalendar {
      * <b>IntlCalendar::DOW_SATURDAY</b> or <b>FALSE</b> on failure.
      *
      */
+    #[Pure]
     public function getFirstDayOfWeek() { }
 
     /**
@@ -2595,6 +2658,7 @@ class IntlCalendar {
      * An {@link https://secure.php.net/manual/en/language.types.integer.php int} representing a field value, in the field's
      * unit, or <b>FALSE</b> on failure.
      */
+    #[Pure]
     public function getGreatestMinimum($field) { }
 
     /**
@@ -2629,6 +2693,7 @@ class IntlCalendar {
      * unit or <b>FALSE</b> on failure.
      * </p>
      */
+    #[Pure]
     public function getLeastMaximum($field) { }
 
     /**
@@ -2647,6 +2712,7 @@ class IntlCalendar {
      * A locale string or <b>FALSE</b> on failure.
      *
      */
+    #[Pure]
     public function getLocale($localeType) { }
 
     /**
@@ -2661,6 +2727,7 @@ class IntlCalendar {
      * @return string
      * A locale string or <b>FALSE</b> on failure.
      */
+    #[Pure]
     public function getMaximum($field) { }
 
     /**
@@ -2670,6 +2737,7 @@ class IntlCalendar {
      * @return int
      * An {@link https://secure.php.net/manual/en/language.types.integer.php  int} representing a number of days or <b>FALSE</b> on failure.
      */
+    #[Pure]
     public function getMinimalDaysInFirstWeek() { }
 
     /**
@@ -2684,6 +2752,7 @@ class IntlCalendar {
      * @return int
      * An int representing a value for the given field in the field's unit or FALSE on failure.
      */
+    #[Pure]
     public function getMinimum($field) { }
 
     /**
@@ -2702,6 +2771,7 @@ class IntlCalendar {
      * <b>IntlCalendar::WALLTIME_LAST</b>.
      *
      */
+    #[Pure]
     public function getRepeatedWallTimeOption() { }
 
     /**
@@ -2713,6 +2783,7 @@ class IntlCalendar {
      * <b>IntlCalendar::WALLTIME_LAST</b> or
      * <b>IntlCalendar::WALLTIME_NEXT_VALID</b>.
      */
+    #[Pure]
     public function getSkippedWallTimeOption() { }
 
     /**
@@ -2722,6 +2793,7 @@ class IntlCalendar {
      * A {@link https://secure.php.net/manual/en/language.types.float.php float} representing the number of milliseconds elapsed since the
      * reference time (1 Jan 1970 00:00:00 UTC).
      */
+    #[Pure]
     public function getTime() { }
 
     /**
@@ -2732,6 +2804,7 @@ class IntlCalendar {
      * An {@link https://secure.php.net/manual/en/class.intltimezone.php IntlTimeZone} object corresponding to the one used
      * internally in this object.
      */
+    #[Pure]
     public function getTimeZone() { }
 
     /**
@@ -2742,6 +2815,7 @@ class IntlCalendar {
      * A {@link https://secure.php.net/manual/en/language.types.string.php string} representing the calendar type, such as
      * <em>'gregorian'</em>, <em>'islamic'</em>, etc.
      */
+    #[Pure]
     public function getType() { }
 
     /**
@@ -2757,6 +2831,7 @@ class IntlCalendar {
      * The number of milliseconds into the day at which the the weekend begins or
      * ends or <b>FALSE</b> on failure.
      */
+    #[Pure]
     public function getWeekendTransition($dayOfWeek) { }
 
     /**
@@ -2769,6 +2844,7 @@ class IntlCalendar {
      * specifying invalid field values on non-lenient mode; use {@link https://secure.php.net/manual/en/intl.configuration.php#ini.intl.use-exceptions exceptions} or query
      * {@link https://secure.php.net/manual/en/function.intl-get-error-code.php intl_get_error_code()} to disambiguate.
      */
+    #[Pure]
     public function inDaylightTime() { }
 
     /**
@@ -2779,6 +2855,7 @@ class IntlCalendar {
      * @return bool
      * Assuming there are no argument errors, returns <b>TRUE</b> iif the calendars are equivalent except possibly for their set time.
      */
+    #[Pure]
     public function isEquivalentTo(IntlCalendar $calendar) { }
 
     /**
@@ -2788,6 +2865,7 @@ class IntlCalendar {
      * @return bool
      * A {@link https://secure.php.net/manual/en/language.types.boolean.php bool} representing whether the calendar is set to lenient mode.
      */
+    #[Pure]
     public function isLenient() { }
 
     /**
@@ -2808,6 +2886,7 @@ class IntlCalendar {
      * a date out of bounds on non-lenient mode; use {@link https://secure.php.net/manual/en/intl.configuration.php#ini.intl.use-exceptions exceptions} or query
      * {@link https://secure.php.net/manual/en/function.intl-get-error-code.php intl_get_error_code()} to disambiguate.</p>
      */
+    #[Pure]
     public function isWeekend($date = null) { }
 
     /**
@@ -2905,7 +2984,7 @@ class IntlCalendar {
      * (PHP 5 &gt;=5.5.0 PECL intl &gt;= 3.0.0a1)<br/>
      * Set whether date/time interpretation is to be lenient
      * @link https://secure.php.net/manual/en/intlcalendar.setlenient.php
-     * @param string $isLenient <p>
+     * @param bool $isLenient <p>
      * Use <b>TRUE</b> to activate the lenient mode; <b>FALSE</b> otherwise.
      * </p>
      * @return bool Returns <b>TRUE</b> on success. Failure can only happen due to invalid parameters.
@@ -3006,6 +3085,7 @@ class IntlCalendar {
      * except for the smaller precision (second precision instead of millisecond).
      * Returns <b>FALSE</b> on failure.
      */
+    #[Pure]
     public function toDateTime() { }
 }
 
@@ -3115,6 +3195,7 @@ class IntlTimeZone {
      * @param string $locale [optional]
      * @return string|false the timezone name or <b>FALSE</b> on failure
      */
+    #[Pure]
     public function getDisplayName($isDaylight, $style, $locale) { }
 
     /**
@@ -3123,6 +3204,7 @@ class IntlTimeZone {
      * @link https://secure.php.net/manual/en/intltimezone.getequivalentid.php
      * @return int
      */
+    #[Pure]
     public function  getDSTSavings() { }
 
     /**
@@ -3141,6 +3223,7 @@ class IntlTimeZone {
      * @link https://secure.php.net/manual/en/intltimezone.geterrorcode.php
      * @return int
      */
+    #[Pure]
     public function getErrorCode() { }
 
     /**
@@ -3149,6 +3232,7 @@ class IntlTimeZone {
      * @link https://secure.php.net/manual/en/intltimezone.geterrormessage.php
      * @return string
      */
+    #[Pure]
     public function getErrorMessage() { }
 
     /**
@@ -3164,6 +3248,7 @@ class IntlTimeZone {
      * Get timezone ID
      * @return string
      */
+    #[Pure]
     public function getID() { }
 
     /**
@@ -3194,6 +3279,7 @@ class IntlTimeZone {
      * @link https://secure.php.net/manual/en/intltimezone.getrawoffset.php
      * @return int
      */
+    #[Pure]
     public function  getRawOffset() { }
 
     /**
@@ -3239,6 +3325,7 @@ class IntlTimeZone {
      * @param IntlTimeZone $otherTimeZone
      * @return bool
      */
+    #[Pure]
     public function hasSameRules(IntlTimeZone $otherTimeZone) { }
 
     /**
@@ -3247,6 +3334,7 @@ class IntlTimeZone {
      * @link https://secure.php.net/manual/en/intltimezone.todatetimezone.php
      * @return DateTimeZone|false the DateTimeZone object or <b>FALSE</b> on failure
      */
+    #[Pure]
     public function toDateTimeZone() { }
 
     /**
@@ -3363,7 +3451,7 @@ function collator_set_strength(Collator $object, $strength) { }
  * Sort array using specified collator
  * @link https://php.net/manual/en/collator.sort.php
  * @param Collator $object
- * @param array &$array <p>
+ * @param string[] &$array <p>
  * Array of strings to sort.
  * </p>
  * @param int $sort_flag [optional] <p>
@@ -3383,7 +3471,7 @@ function collator_sort(Collator $object, array &$array, $sort_flag = null) { }
  * Sort array using specified collator and sort keys
  * @link https://php.net/manual/en/collator.sortwithsortkeys.php
  * @param Collator $object
- * @param array &$array <p>Array of strings to sort</p>
+ * @param string[] &$array <p>Array of strings to sort</p>
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
 function collator_sort_with_sort_keys(Collator $object, array &$array) { }
@@ -3393,7 +3481,7 @@ function collator_sort_with_sort_keys(Collator $object, array &$array) { }
  * Sort array maintaining index association
  * @link https://php.net/manual/en/collator.asort.php
  * @param Collator $object
- * @param array &$array <p>Array of strings to sort.</p>
+ * @param string[] &$array <p>Array of strings to sort.</p>
  * @param int $sort_flag [optional] <p>
  * Optional sorting type, one of the following:
  * <p>
@@ -3443,7 +3531,7 @@ function collator_get_error_code(Collator $object) { }
 function collator_get_error_message(Collator $object) { }
 
 /**
- * (No version information available, might only be in SVN)<br/>
+ * (PHP 5 &gt;= 5.3.2, PHP 7, PECL intl &gt;= 1.0.3)<br/>
  * Get sorting key for a string
  * @link https://php.net/manual/en/collator.getsortkey.php
  * @param Collator $object
@@ -3710,8 +3798,8 @@ function numfmt_get_error_message(NumberFormatter $fmt) { }
  * Normalizes the input provided and returns the normalized string
  * @link https://php.net/manual/en/normalizer.normalize.php
  * @param string $input <p>The input string to normalize</p>
- * @param string $form [optional] <p>One of the normalization forms.</p>
- * @return string|null The normalized string or <b>NULL</b> if an error occurred.
+ * @param int $form [optional] <p>One of the normalization forms.</p>
+ * @return string|false The normalized string or <b>FALSE</b> if an error occurred.
  */
 #[Pure]
 function normalizer_normalize($input, $form = Normalizer::FORM_C) { }
@@ -3722,7 +3810,7 @@ function normalizer_normalize($input, $form = Normalizer::FORM_C) { }
 form.
  * @link https://php.net/manual/en/normalizer.isnormalized.php
  * @param string $input <p>The input string to normalize</p>
- * @param string $form [optional] <p>
+ * @param int $form [optional] <p>
  * One of the normalization forms.
  * </p>
  * @return bool <b>TRUE</b> if normalized, <b>FALSE</b> otherwise or if there an error
@@ -3731,7 +3819,7 @@ form.
 function normalizer_is_normalized($input, $form = Normalizer::FORM_C) { }
 
 /**
- * Get the default Locale
+ * Gets the default locale value from the intl global 'default_locale'
  * @link https://php.net/manual/en/function.locale-get-default.php
  * @return string a string with the current Locale.
  */
@@ -3740,7 +3828,7 @@ function locale_get_default() { }
 
 /**
  * (PHP 5 &gt;= 5.3.0, PECL intl &gt;= 1.0.0)<br/>
- * Set the default Locale
+ * Set the default runtime Locale
  * @link https://php.net/manual/en/function.locale-set-default.php
  * @param string $name <p>
  * The new Locale name. A comprehensive list of the supported locales is
@@ -3879,7 +3967,7 @@ function locale_get_display_variant($locale, $in_locale = null) { }
  * (PHP 5 &gt;= 5.3.0, PECL intl &gt;= 1.0.0)<br/>
  * Returns a correctly ordered and delimited locale ID
  * @link https://php.net/manual/en/locale.composelocale.php
- * @param array $subtags <p>
+ * @param string[] $subtags <p>
  * an array containing a list of key-value pairs, where the keys identify
  * the particular locale ID subtags, and the values are the associated
  * subtag values.
@@ -3911,7 +3999,7 @@ function locale_compose(array $subtags) { }
  * 'private' subtags can take maximum 15 values whereas 'extlang' can take
  * maximum 3 values.
  * </p>
- * @return array an array containing a list of key-value pairs, where the keys
+ * @return string[]|null an array containing a list of key-value pairs, where the keys
  * identify the particular locale ID subtags, and the values are the
  * associated subtag values. The array will be ordered as the locale id
  * subtags e.g. in the locale id if variants are '-varX-varY-varZ' then the
@@ -3954,6 +4042,7 @@ function locale_get_all_variants($locale) { }
 function locale_filter_matches($langtag, $locale, $canonicalize = false) { }
 
 /**
+ * Canonicalize the locale string
  * @param string $locale
  *
  * @return null|string
@@ -3965,7 +4054,7 @@ function locale_canonicalize($locale) { }
  * (PHP 5 &gt;= 5.3.0, PECL intl &gt;= 1.0.0)<br/>
  * Searches the language tag list for the best match to the language
  * @link https://php.net/manual/en/locale.lookup.php
- * @param array $langtag <p>
+ * @param string[] $langtag <p>
  * An array containing a list of language tags to compare to
  * <i>locale</i>. Maximum 100 items allowed.
  * </p>
@@ -3997,6 +4086,7 @@ function locale_lookup(array $langtag, $locale, $canonicalize = false, $default 
 function locale_accept_from_http($header) { }
 
 /**
+ * Constructs a new message formatter
  * @param string $locale
  * @param string $pattern
  * @return MessageFormatter|null
@@ -4184,7 +4274,7 @@ function datefmt_get_timetype(IntlDateFormatter $fmt) { }
 
 /**
  * (PHP 5 &gt;= 5.3.0, PECL intl &gt;= 1.0.0)<br/>
- * Get the calendar used for the IntlDateFormatter
+ * Get the calendar type used for the IntlDateFormatter
  * @link https://php.net/manual/en/intldateformatter.getcalendar.php
  * @param IntlDateFormatter $fmt
  * @return int The calendar being used by the formatter.
@@ -5976,7 +6066,7 @@ function transliterator_create($id, $direction = null) { }
  * @param string $rules <p>
  * The rules.
  * </p>
- * @param string $direction [optional] <p>
+ * @param int $direction [optional] <p>
  * The direction, defaults to
  * >Transliterator::FORWARD.
  * May also be set to
@@ -6551,6 +6641,7 @@ class IntlBreakIterator implements IteratorAggregate
      * @link https://secure.php.net/manual/en/intlbreakiterator.current.php
      * @return int
      */
+    #[Pure]
     public function current() { }
 
     /**
@@ -6574,6 +6665,7 @@ class IntlBreakIterator implements IteratorAggregate
      * @link https://secure.php.net/manual/en/intlbreakiterator.geterrorcode.php
      * @return int
      */
+    #[Pure]
     public function getErrorCode() { }
 
     /**
@@ -6582,6 +6674,7 @@ class IntlBreakIterator implements IteratorAggregate
      * @link https://secure.php.net/manual/en/intlbreakiterator.geterrormessage.php
      * @return string
      */
+    #[Pure]
     public function getErrorMessage() { }
 
 
@@ -6591,14 +6684,32 @@ class IntlBreakIterator implements IteratorAggregate
      * @link https://secure.php.net/manual/en/intlbreakiterator.getlocale.php
      * @param string $locale_type
      */
+    #[Pure]
     public function getLocale($locale_type) { }
 
     /**
      * (PHP 5 &gt;=5.5.0)<br/>
      * Create iterator for navigating fragments between boundaries
      * @link https://secure.php.net/manual/en/intlbreakiterator.getpartsiterator.php
-     * @param string $key_type [optional]
+     * @param int $key_type [optional]
+     * <p>
+     * Optional key type. Possible values are:
+     * </p><ul>
+     * <li>
+     * {@see IntlPartsIterator::KEY_SEQUENTIAL}
+     * - The default. Sequentially increasing integers used as key.
+     * </li>
+     * <li>
+     * {@see IntlPartsIterator::KEY_LEFT}
+     * - Byte offset left of current part used as key.
+     * </li>
+     * <li>
+     * {@see IntlPartsIterator::KEY_RIGHT}
+     * - Byte offset right of current part used as key.
+     * </li>
+     * </ul>
      */
+    #[Pure]
     public function getPartsIterator($key_type = IntlPartsIterator::KEY_SEQUENTIAL) { }
 
     /**
@@ -6606,14 +6717,16 @@ class IntlBreakIterator implements IteratorAggregate
      * Get the text being scanned
      * @link https://secure.php.net/manual/en/intlbreakiterator.gettext.php
      */
+    #[Pure]
     public function getText() { }
 
     /**
      * (PHP 5 &gt;=5.5.0)<br/>
      * Tell whether an offset is a boundary's offset
      * @link https://secure.php.net/manual/en/intlbreakiterator.isboundary.php
-     * @param string $offset
+     * @param int $offset
      */
+    #[Pure]
     public function isBoundary($offset) { }
 
     /**
@@ -6627,7 +6740,7 @@ class IntlBreakIterator implements IteratorAggregate
     /**
      * (PHP 5 &gt;=5.5.0)<br/>
      * @link https://secure.php.net/manual/en/intlbreakiterator.next.php
-     * @param string $offset [optional]
+     * @param int $offset [optional]
      * @return int
      */
     public function next($offset = null) { }
@@ -6655,6 +6768,7 @@ class IntlBreakIterator implements IteratorAggregate
      */
     public function setText($text) { }
 
+    #[Pure]
     public function getIterator(){}
 }
 
@@ -6667,6 +6781,7 @@ class IntlRuleBasedBreakIterator extends IntlBreakIterator implements Traversabl
      * @param string $rules
      * @param string $areCompiled [optional]
      */
+    #[Pure]
     public function __construct($rules, $areCompiled) { }
 
     /**
@@ -6728,6 +6843,7 @@ class IntlRuleBasedBreakIterator extends IntlBreakIterator implements Traversabl
      * Get the binary form of compiled rules
      * @return string
      */
+    #[Pure]
     public function getBinaryRules() { }
 
     /**
@@ -6736,6 +6852,7 @@ class IntlRuleBasedBreakIterator extends IntlBreakIterator implements Traversabl
      * Get the rule set used to create this object
      * @return string
      */
+    #[Pure]
     public function getRules() { }
 
     /**
@@ -6744,6 +6861,7 @@ class IntlRuleBasedBreakIterator extends IntlBreakIterator implements Traversabl
      * Get the largest status value from the break rules that determined the current break position
      * @return int
      */
+    #[Pure]
     public function getRuleStatus() { }
 
     /**
@@ -6752,6 +6870,7 @@ class IntlRuleBasedBreakIterator extends IntlBreakIterator implements Traversabl
      * Get the status values from the break rules that determined the current break position
      * @return array
      */
+    #[Pure]
     public function getRuleStatusVec() { }
 }
 
@@ -6768,6 +6887,7 @@ class IntlPartsIterator extends IntlIterator implements Iterator {
     /**
      * @return IntlBreakIterator
      */
+    #[Pure]
     public function getBreakIterator() { }
 }
 
@@ -6780,6 +6900,7 @@ class IntlCodePointBreakIterator extends IntlBreakIterator implements Traversabl
      * @link https://secure.php.net/manual/en/intlcodepointbreakiterator.getlastcodepoint.php
      * @return int
      */
+    #[Pure]
     public function getLastCodePoint() { }
 }
 
@@ -6836,6 +6957,7 @@ class UConverter {
      * @param string $destination_encoding
      * @param string $source_encoding
      */
+    #[Pure]
     public function __construct($destination_encoding = null, $source_encoding = null) { }
 
     /**
@@ -6846,6 +6968,7 @@ class UConverter {
      * @param bool $reverse
      * @return string
      */
+    #[Pure]
     public function convert($str, $reverse) { }
 
     /**
@@ -6883,6 +7006,7 @@ class UConverter {
      * @link https://php.net/manual/en/uconverter.getdestinationencoding.php
      * @return string
      */
+    #[Pure]
     public function getDestinationEncoding() { }
 
     /**
@@ -6891,6 +7015,7 @@ class UConverter {
      * @link https://php.net/manual/en/uconverter.getdestinationtype.php
      * @return int
      */
+    #[Pure]
     public function getDestinationType() { }
 
     /**
@@ -6899,6 +7024,7 @@ class UConverter {
      * @link https://php.net/manual/en/uconverter.geterrorcode.php
      * @return int
      */
+    #[Pure]
     public function getErrorCode() { }
 
     /**
@@ -6907,6 +7033,7 @@ class UConverter {
      * @link https://php.net/manual/en/uconverter.geterrormessage.php
      * @return string
      */
+    #[Pure]
     public function getErrorMessage() { }
 
     /**
@@ -6915,6 +7042,7 @@ class UConverter {
      * @link https://php.net/manual/en/uconverter.getsourceencoding.php
      * @return string
      */
+    #[Pure]
     public function getSourceEncoding() { }
 
     /**
@@ -6923,6 +7051,7 @@ class UConverter {
      * @link https://php.net/manual/en/uconverter.getsourcetype.php
      * @return int
      */
+    #[Pure]
     public function getSourceType() { }
 
     /**
@@ -6931,6 +7060,7 @@ class UConverter {
      * @link https://php.net/manual/en/uconverter.getstandards.php
      * @return array
      */
+    #[Pure]
     public static function getStandards() { }
 
     /**
@@ -6939,6 +7069,7 @@ class UConverter {
      * @link https://php.net/manual/en/uconverter.getsubstchars.php
      * @return string
      */
+    #[Pure]
     public function getSubstChars() { }
 
     /**
@@ -6948,6 +7079,7 @@ class UConverter {
      * @param int $reason
      * @return string
      */
+    #[Pure]
     public static function reasonText($reason) { }
 
     /**

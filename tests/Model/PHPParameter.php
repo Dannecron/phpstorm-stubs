@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace StubTests\Model;
 
+use PhpParser\Node\Expr;
 use PhpParser\Node\Param;
-use ReflectionNamedType;
 use ReflectionParameter;
 use stdClass;
 
@@ -13,6 +13,7 @@ class PHPParameter extends BasePHPElement
     public string $type = '';
     public bool $is_vararg = false;
     public bool $is_passed_by_ref = false;
+    public ?Expr $defaultValue = null;
 
     /**
      * @param ReflectionParameter $reflectionObject
@@ -21,12 +22,9 @@ class PHPParameter extends BasePHPElement
     public function readObjectFromReflection($reflectionObject): static
     {
         $this->name = $reflectionObject->name;
-        $parameterType = $reflectionObject->getType();
-        if ($parameterType instanceof ReflectionNamedType) {
-            $this->type = $parameterType->getName();
-        }
+        $this->type = self::convertReflectionTypeToString($reflectionObject->getType());
         $this->is_vararg = $reflectionObject->isVariadic();
-        $this->is_passed_by_ref = $reflectionObject->isPassedByReference();
+        $this->is_passed_by_ref = $reflectionObject->isPassedByReference() && !$reflectionObject->canBePassedByValue();
         return $this;
     }
 
@@ -36,18 +34,19 @@ class PHPParameter extends BasePHPElement
      */
     public function readObjectFromStubNode($node): static
     {
+        // #[LanguageLevelTypeAware(["8.0" => "OpenSSLCertificate|string"], default: "resource|string")]
         $this->name = $node->var->name;
-        if ($node->type !== null) {
-            if (empty($node->type->name)) {
-                if (!empty($node->type->parts)) {
-                    $this->type = $node->type->parts[0];
-                }
-            } else {
-                $this->type = $node->type->name;
-            }
+
+        $typeFromAttribute = self::findTypeFromAttribute($node->attrGroups);
+        if ($typeFromAttribute != null) {
+            $this->type = $typeFromAttribute;
+        } else {
+            $this->type = self::convertParsedTypeToString($node->type);
         }
+
         $this->is_vararg = $node->variadic;
         $this->is_passed_by_ref = $node->byRef;
+        $this->defaultValue = $node->default;
         return $this;
     }
 
@@ -62,6 +61,8 @@ class PHPParameter extends BasePHPElement
                         'parameter vararg' => StubProblemType::PARAMETER_VARARG,
                         'has scalar typehint' => StubProblemType::PARAMETER_HAS_SCALAR_TYPEHINT,
                         'parameter name mismatch' => StubProblemType::PARAMETER_NAME_MISMATCH,
+                        'has nullable typehint' => StubProblemType::HAS_NULLABLE_TYPEHINT,
+                        'has union typehint' => StubProblemType::HAS_UNION_TYPEHINT,
                         default => -1
                     };
                 }

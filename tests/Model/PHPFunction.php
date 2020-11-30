@@ -27,7 +27,7 @@ class PHPFunction extends BasePHPElement
 
     public ?Type $returnTag = null;
 
-    public ?NodeAbstract $returnType = null;
+    public string $returnType = '';
 
     /**
      * @param ReflectionFunction $reflectionObject
@@ -40,6 +40,7 @@ class PHPFunction extends BasePHPElement
         foreach ($reflectionObject->getParameters() as $parameter) {
             $this->parameters[] = (new PHPParameter())->readObjectFromReflection($parameter);
         }
+        $this->returnType = self::convertReflectionTypeToString($reflectionObject->getReturnType());
         return $this;
     }
 
@@ -51,17 +52,23 @@ class PHPFunction extends BasePHPElement
     {
         $functionName = $this->getFQN($node);
         $this->name = $functionName;
+        $typeFromAttribute = self::findTypeFromAttribute($node->attrGroups);
+        if ($typeFromAttribute != null) {
+            $this->returnType = $typeFromAttribute;
+        } else{
+            $this->returnType = self::convertParsedTypeToString($node->getReturnType());
+        }
 
         foreach ($node->getParams() as $parameter) {
             $this->parameters[] = (new PHPParameter())->readObjectFromStubNode($parameter);
         }
 
-        $this->returnType = $node->getReturnType();
         $this->collectTags($node);
         $this->checkDeprecationTag($node);
         $this->checkReturnTag($node);
         return $this;
     }
+
 
     protected function checkDeprecationTag(FunctionLike $node): void
     {
@@ -90,16 +97,23 @@ class PHPFunction extends BasePHPElement
     public function readMutedProblems(stdClass|array $jsonData): void
     {
         foreach ($jsonData as $function) {
-            if ($function->name === $this->name && !empty($function->problems)) {
-                foreach ($function->problems as $problem) {
-                    $this->mutedProblems[] = match ($problem) {
-                        'parameter mismatch' => StubProblemType::FUNCTION_PARAMETER_MISMATCH,
-                        'missing function' => StubProblemType::STUB_IS_MISSED,
-                        'deprecated function' => StubProblemType::FUNCTION_IS_DEPRECATED,
-                        'absent in meta' => StubProblemType::ABSENT_IN_META,
-                        'has return typehint' => StubProblemType::FUNCTION_HAS_RETURN_TYPEHINT,
-                        default => -1
-                    };
+            if ($function->name === $this->name) {
+                if (!empty($function->problems)){
+                    foreach ($function->problems as $problem) {
+                        $this->mutedProblems[] = match ($problem) {
+                            'parameter mismatch' => StubProblemType::FUNCTION_PARAMETER_MISMATCH,
+                            'missing function' => StubProblemType::STUB_IS_MISSED,
+                            'deprecated function' => StubProblemType::FUNCTION_IS_DEPRECATED,
+                            'absent in meta' => StubProblemType::ABSENT_IN_META,
+                            'has return typehint' => StubProblemType::FUNCTION_HAS_RETURN_TYPEHINT,
+                            default => -1
+                        };
+                    }
+                }
+                if (!empty($function->parameters)) {
+                    foreach ($this->parameters as $parameter) {
+                        $parameter->readMutedProblems($function->parameters);
+                    }
                 }
                 return;
             }

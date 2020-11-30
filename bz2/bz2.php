@@ -17,7 +17,7 @@ use JetBrains\PhpStorm\Pure;
  * it returns a pointer to the newly opened file.
  */
 #[Pure]
-function bzopen ($file, $mode) {}
+function bzopen ($file, string $mode) {}
 
 /**
  * Binary safe bzip2 file read
@@ -33,7 +33,7 @@ function bzopen ($file, $mode) {}
  * </p>
  * @return string the uncompressed data, or <b>FALSE</b> on error.
  */
-function bzread ($bz, $length = 1024) {}
+function bzread ($bz, int $length = 1024): string|false {}
 
 /**
  * Binary safe bzip2 file write
@@ -45,14 +45,15 @@ function bzread ($bz, $length = 1024) {}
  * @param string $data <p>
  * The written data.
  * </p>
- * @param int $length [optional] <p>
+ * @param int|null $length [optional] <p>
  * If supplied, writing will stop after <i>length</i>
  * (uncompressed) bytes have been written or the end of
  * <i>data</i> is reached, whichever comes first.
  * </p>
  * @return int the number of bytes written, or <b>FALSE</b> on error.
  */
-function bzwrite ($bz, $data, $length = null) {}
+function bzwrite ($bz, string $data, ?int $length): int|false
+{}
 
 /**
  * Force a write of all buffered data
@@ -63,7 +64,7 @@ function bzwrite ($bz, $data, $length = null) {}
  * </p>
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function bzflush ($bz) {}
+function bzflush ($bz): bool {}
 
 /**
  * Close a bzip2 file
@@ -74,7 +75,8 @@ function bzflush ($bz) {}
  * </p>
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function bzclose ($bz) {}
+function bzclose ($bz): bool
+{}
 
 /**
  * Returns a bzip2 error number
@@ -86,7 +88,8 @@ function bzclose ($bz) {}
  * @return int the error number as an integer.
  */
 #[Pure]
-function bzerrno ($bz) {}
+function bzerrno ($bz): int
+{}
 
 /**
  * Returns a bzip2 error string
@@ -98,7 +101,8 @@ function bzerrno ($bz) {}
  * @return string a string containing the error message.
  */
 #[Pure]
-function bzerrstr ($bz) {}
+function bzerrstr ($bz): string
+{}
 
 /**
  * Returns the bzip2 error number and error string in an array
@@ -112,7 +116,8 @@ function bzerrstr ($bz) {}
  * errstr entry.
  */
 #[Pure]
-function bzerror ($bz) {}
+function bzerror ($bz): array
+{}
 
 /**
  * Compress a string into bzip2 encoded data
@@ -134,10 +139,10 @@ function bzerror ($bz) {}
  * Regardless of the <i>workfactor</i>, the generated
  * output is the same.
  * </p>
- * @return mixed The compressed string, or an error number if an error occurred.
+ * @return string|int The compressed string, or an error number if an error occurred.
  */
 #[Pure]
-function bzcompress ($data, $block_size = 4, $work_factor = 0) {}
+function bzcompress (string $data, int $block_size = 4, int $work_factor = 0): string|int {}
 
 /**
  * Decompresses bzip2 encoded data
@@ -145,7 +150,7 @@ function bzcompress ($data, $block_size = 4, $work_factor = 0) {}
  * @param string $data <p>
  * The string to decompress.
  * </p>
- * @param int $use_less_memory [optional] <p>
+ * @param bool $use_less_memory [optional] <p>
  * If <b>TRUE</b>, an alternative decompression algorithm will be used which
  * uses less memory (the maximum memory requirement drops to around 2300K)
  * but works at roughly half the speed.
@@ -154,7 +159,7 @@ function bzcompress ($data, $block_size = 4, $work_factor = 0) {}
  * See the bzip2 documentation for more
  * information about this feature.
  * </p>
- * @return mixed The decompressed string, or an error number if an error occurred.
+ * @return string|int|false The decompressed string, or an error number if an error occurred.
  */
 #[Pure]
-function bzdecompress ($data, $use_less_memory = 0) {}
+function bzdecompress (string $data, bool $use_less_memory): string|int|false {}

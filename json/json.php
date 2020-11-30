@@ -32,8 +32,10 @@ class JsonIncrementalParser  {
 	 * @param int $depth [optional]
 	 * @param int $options [optional]
 	 */
+	#[Pure]
 	public function __construct ($depth, $options) {}
 
+	#[Pure]
 	public function getError () {}
 
 	public function reset () {}
@@ -51,6 +53,7 @@ class JsonIncrementalParser  {
 	/**
 	 * @param int $options [optional]
 	 */
+	#[Pure]
 	public function get ($options) {}
 
 }
@@ -89,7 +92,7 @@ class JsonIncrementalParser  {
  * </p>
  * @return string|false a JSON encoded string on success or <b>FALSE</b> on failure.
  */
-function json_encode ($value, $flags = 0, $depth = 512) {}
+function json_encode (mixed $value, int $flags = 0, int $depth = 512): string|false {}
 
 /**
  * (PHP 5 &gt;= 5.2.0, PECL json &gt;= 1.2.0)<br/>
@@ -105,7 +108,7 @@ function json_encode ($value, $flags = 0, $depth = 512) {}
  * JSON - it will also encode and decode scalar types and <b>NULL</b>. The JSON standard
  * only supports these values when they are nested inside an array or an object.
  * </p>
- * @param bool $associative [optional] <p>
+ * @param bool|null $associative [optional] <p>
  * When <b>TRUE</b>, returned objects will be converted into
  * associative arrays.
  * </p>
@@ -127,25 +130,110 @@ function json_encode ($value, $flags = 0, $depth = 512) {}
  * <i>json</i> cannot be decoded or if the encoded
  * data is deeper than the recursion limit.
  */
-function json_decode ($json, $associative = false, $depth = 512, $flags = 0) {}
+function json_decode (string $json, ?bool $associative = false, int $depth = 512, int $flags = 0): mixed {}
 
 /**
  * Returns the last error occurred
  * @link https://php.net/manual/en/function.json-last-error.php
  * @return int an integer, the value can be one of the following
  * constants:
+ * <table class='doctable table'>
+ * <thead>
+ * <tr>
+ * <th>Constant</th>
+ * <th>Meaning</th>
+ * <th>Availability</th>
+ * </tr>
+ *
+ * </thead>
+ *
+ * <tbody class='tbody'>
+ * <tr>
+ * <td><strong><code>JSON_ERROR_NONE</code></strong></td>
+ * <td>No error has occurred</td>
+ * <td class='empty'>&nbsp;</td>
+ * </tr>
+ *
+ * <tr>
+ * <td><strong><code>JSON_ERROR_DEPTH</code></strong></td>
+ * <td>The maximum stack depth has been exceeded</td>
+ * <td class='empty'>&nbsp;</td>
+ * </tr>
+ *
+ * <tr>
+ * <td><strong><code>JSON_ERROR_STATE_MISMATCH</code></strong></td>
+ * <td>Invalid or malformed JSON</td>
+ * <td class='empty'>&nbsp;</td>
+ * </tr>
+ *
+ * <tr>
+ * <td><strong><code>JSON_ERROR_CTRL_CHAR</code></strong></td>
+ * <td>Control character error, possibly incorrectly encoded</td>
+ * <td class='empty'>&nbsp;</td>
+ * </tr>
+ *
+ * <tr>
+ * <td><strong><code>JSON_ERROR_SYNTAX</code></strong></td>
+ * <td>Syntax error</td>
+ * <td class='empty'>&nbsp;</td>
+ * </tr>
+ *
+ * <tr>
+ * <td><strong><code>JSON_ERROR_UTF8</code></strong></td>
+ * <td>Malformed UTF-8 characters, possibly incorrectly encoded</td>
+ * <td>PHP 5.3.3</td>
+ * </tr>
+ *
+ * <tr>
+ * <td><strong><code>JSON_ERROR_RECURSION</code></strong></td>
+ * <td>One or more recursive references in the value to be encoded</td>
+ * <td>PHP 5.5.0</td>
+ * </tr>
+ *
+ * <tr>
+ * <td><strong><code>JSON_ERROR_INF_OR_NAN</code></strong></td>
+ * <td>
+ * One or more
+ * <a href='language.types.float.php#language.types.float.nan' class='link'><strong><code>NAN</code></strong></a>
+ * or <a href='function.is-infinite.php' class='link'><strong><code>INF</code></strong></a>
+ * values in the value to be encoded
+ * </td>
+ * <td>PHP 5.5.0</td>
+ * </tr>
+ *
+ * <tr>
+ * <td><strong><code>JSON_ERROR_UNSUPPORTED_TYPE</code></strong></td>
+ * <td>A value of a type that cannot be encoded was given</td>
+ * <td>PHP 5.5.0</td>
+ * </tr>
+ *
+ * <tr>
+ * <td><strong><code>JSON_ERROR_INVALID_PROPERTY_NAME</code></strong></td>
+ * <td>A property name that cannot be encoded was given</td>
+ * <td>PHP 7.0.0</td>
+ * </tr>
+ *
+ * <tr>
+ * <td><strong><code>JSON_ERROR_UTF16</code></strong></td>
+ * <td>Malformed UTF-16 characters, possibly incorrectly encoded</td>
+ * <td>PHP 7.0.0</td>
+ * </tr>
+ *
+ * </tbody>
+ *
+ * </table>
  */
 #[Pure]
-function json_last_error () {}
+function json_last_error (): int {}
 
 /**
  * Returns the error string of the last json_encode() or json_decode() call, which did not specify <b>JSON_THROW_ON_ERROR</b>.
  * @link https://php.net/manual/en/function.json-last-error-msg.php
- * @return string|false Returns the error message on success, "No error" if no error has occurred, or FALSE on failure.
+ * @return string Returns the error message on success, "No error" if no error has occurred.
  * @since 5.5
  */
 #[Pure]
-function json_last_error_msg () {}
+function json_last_error_msg (): string {}
 
 
 /**
