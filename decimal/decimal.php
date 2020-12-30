@@ -79,12 +79,12 @@ final class Decimal implements \JsonSerializable
     /**
      * Copy
      *
-     * @param int $precision The precision of the return value, which defaults
+     * @param null|int $precision The precision of the return value, which defaults
      *                       to the precision of this decimal.
      *
      * @return Decimal a copy of this decimal.
      */
-    public function copy(int $precision = null): Decimal {}
+    public function copy(?int $precision = null): Decimal {}
 
     /**
      * Add

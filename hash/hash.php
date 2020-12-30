@@ -135,7 +135,7 @@ function hash_hmac_file (string $algo, string $data, string $key, bool $binary =
  * and <b>hash_final</b>.
  */
 #[Pure]
-#[LanguageLevelTypeAware(['8.0' => 'HashContext'], default: 'resource')]
+#[LanguageLevelTypeAware(["7.2" => "HashContext"], default: "resource")]
 function hash_init (string $algo, int $flags = 0, string $key)
 {}
 
@@ -218,8 +218,8 @@ function hash_final (#[LanguageLevelTypeAware(["8.0" => "HashContext"], default:
  * @return HashContext|resource a copy of Hashing Context resource.
  */
 #[Pure]
-#[LanguageLevelTypeAware(['8.0' => 'HashContext'], default: 'resource')]
-function hash_copy (#[LanguageLevelTypeAware(["8.0" => "HashContext"], default: "resource")] $context)
+#[LanguageLevelTypeAware(["7.2" => "HashContext"], default: "resource")]
+function hash_copy (#[LanguageLevelTypeAware(["7.2" => "HashContext"], default: "resource")] $context)
 {}
 
 /**
@@ -246,7 +246,7 @@ function hash_algos (): array
  * </blockquote>
  * @param string $key <p>Input keying material (raw binary). Cannot be empty.</p>
  * @param int $length [optional] <p>Desired output length in bytes. Cannot be greater than 255 times the chosen hash function size.
- * If <b>length</b> is 0, the output length will default to the chosen hash function size.
+ * If <b>length</b> is 0, the output length will default to the chosen hash function size.</p>
  * @param string $info [optional] <p>Application/context-specific info string.</p>
  * @param string $salt [optional] <p>Salt to use during derivation. While optional, adding random salt significantly improves the strength of HKDF.</p>
  * @return string|false <p>Returns a string containing a raw binary representation of the derived key (also known as output keying material - OKM); or <b>FALSE</b> on failure.</p>

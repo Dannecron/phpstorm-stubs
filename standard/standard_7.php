@@ -221,7 +221,6 @@ function unpack (string $format, string $string, int $offset = 0): array|false
 function get_browser (?string $user_agent, bool $return_array): object|array|false
 {}
 
-
 /**
  * One-way string encryption (hashing)
  * @link https://php.net/manual/en/function.crypt.php
@@ -390,6 +389,7 @@ function dir (string $directory, $context): Directory|false
 
 /**
  * Alias of dir()
+ * @param string $directory
  * @param resource $context
  * @since 8.0
  * @return Directory|false
@@ -442,7 +442,7 @@ function scandir (string $directory, int $sorting_order, $context): array|false
  * </p>
  * <p>
  * On some systems it is impossible to distinguish between empty match and an
- * error.
+ * error.</p>
  */
 #[Pure]
 function glob (string $pattern, int $flags): array|false
@@ -616,7 +616,8 @@ function is_writable (string $filename): bool
 {}
 
 /**
- * &Alias; <function>is_writable</function>
+ * Alias:
+ * {@see is_writable}
  * @link https://php.net/manual/en/function.is-writeable.php
  * @param string $filename <p>
  * The filename being checked.
@@ -896,7 +897,6 @@ function lchgrp (string $filename, string|int $group): bool
  * about modes on Unix systems with 'man 1 chmod'
  * and 'man 2 chmod'.
  * </p>
- * <p>
  * @return bool true on success or false on failure.
  */
 function chmod (string $filename, int $permissions): bool
@@ -1027,7 +1027,7 @@ function diskfreespace (string $directory): float|false
  * When sending mail, the mail must contain
  * a From header. This can be set with the
  * additional_headers parameter, or a default
- * can be set in &php.ini;.
+ * can be set in "php.ini".
  * </p>
  * <p>
  * Failing to do this will result in an error
@@ -1058,10 +1058,10 @@ function diskfreespace (string $directory): float|false
  * For sendmail users, this file is /etc/mail/trusted-users.
  * </p>
  * @return bool true if the mail was successfully accepted for delivery, false otherwise.
- * </p>
  * <p>
  * It is important to note that just because the mail was accepted for delivery,
  * it does NOT mean the mail will actually reach the intended destination.
+ * </p>
  */
 function mail (string $to, string $subject, string $message, array|string $additional_headers, string $additional_params): bool
 {}

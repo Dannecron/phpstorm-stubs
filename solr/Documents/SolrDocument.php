@@ -121,7 +121,7 @@ final class SolrDocument implements ArrayAccess, Iterator, Serializable {
 	 * @link https://php.net/manual/en/solrdocument.get.php
 	 * @param string $fieldName <p>
 	 * The name of the field.
-	 * <p/>
+	 * </p>
 	 * @return SolrDocumentField <p>
 	 * Returns a SolrDocumentField instance.
 	 * </p>
@@ -222,7 +222,7 @@ final class SolrDocument implements ArrayAccess, Iterator, Serializable {
 	 * (PECL solr &gt;= 0.9.2)<br/>
 	 * Merges one input document into another
 	 * @link https://php.net/manual/en/solrdocument.merge.php
-	 * @param SolrDocument $sourceDoc <p>
+	 * @param SolrInputDocument $sourceDoc <p>
 	 * The source document.
 	 * </p>
 	 * @param bool $overwrite [optional] <p>

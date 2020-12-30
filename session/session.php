@@ -2,6 +2,7 @@
 
 // Start of session v.
 use JetBrains\PhpStorm\Deprecated;
+use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
 
 /**
  * Get and/or set the current session name.<br/>
@@ -207,7 +208,8 @@ function session_destroy (): bool
  * @link https://php.net/manual/en/function.session-unset.php
  * @return void|bool since 7.2.0 returns true on success or false on failure.
  */
-function session_unset (): bool
+#[LanguageLevelTypeAware(["7.2" => "bool"], default: "void")]
+function session_unset()
 {}
 
 /**
@@ -233,13 +235,13 @@ function session_unset (): bool
  * Write function that is called when session data is to be saved. This
  * function expects two parameters: an identifier and the data associated
  * with it.
+ * </p>
  * <p>
  * The "write" handler is not executed until after the output stream is
  * closed. Thus, output from debugging statements in the "write"
  * handler will never be seen in the browser. If debugging output is
  * necessary, it is suggested that the debug output be written to a
  * file instead.
- * </p>
  * </p>
  * @param callback $destroy <p>
  * The destroy handler, this is executed when a session is destroyed with
@@ -265,7 +267,6 @@ function session_set_save_handler (callable $open, callable $close, callable $re
  * (PHP 5.4)<br/>
  * Sets user-level session storage functions
  * @link https://php.net/manual/en/function.session-set-save-handler.php
- * </p>
  * @param SessionHandlerInterface $session_handler An instance of a class implementing SessionHandlerInterface, such as SessionHandler,
  * to register as the session handler. Since PHP 5.4 only.
  * @param bool $register_shutdown [optional] Register session_write_close() as a register_shutdown_function() function.
@@ -397,7 +398,8 @@ function session_set_cookie_params (array $options): bool
  * </p>
  * @return void|bool since 7.2.0 returns true on success or false on failure.
  */
-function session_set_cookie_params (array|int $lifetime_or_options, ?string $path, ?string $domain, ?bool $secure = false, ?bool $httponly = false): bool
+#[LanguageLevelTypeAware(["7.2" => "bool"], default: "void")]
+function session_set_cookie_params (array|int $lifetime_or_options, ?string $path, ?string $domain, ?bool $secure = false, ?bool $httponly = false)
 {}
 
 /**
@@ -424,7 +426,8 @@ function session_get_cookie_params (): array
  * @link https://php.net/manual/en/function.session-write-close.php
  * @return void|bool since 7.2.0 returns true on success or false on failure.
  */
-function session_write_close (): bool
+#[LanguageLevelTypeAware(["7.2" => "bool"], default: "void")]
+function session_write_close()
 {}
 
 /**
@@ -432,7 +435,8 @@ function session_write_close (): bool
  * @link https://php.net/manual/en/function.session-commit.php
  * @return void|bool since 7.2.0 returns true on success or false on failure.
  */
-function session_commit (): bool
+#[LanguageLevelTypeAware(["7.2" => "bool"], default: "void")]
+function session_commit()
 {}
 
 /**
@@ -454,7 +458,8 @@ function session_status (): int
  * @return void|bool since 7.2.0 returns true if a session was successfully reinitialized or false on failure.
  * @since 5.6
  */
-function session_abort(): bool
+#[LanguageLevelTypeAware(["7.2" => "bool"], default: "void")]
+function session_abort()
 {}
 
 /**
@@ -464,7 +469,8 @@ function session_abort(): bool
  * @return void|bool since 7.2.0 returns true if a session was successfully reinitialized or false on failure.
  * @since 5.6
  */
-function session_reset(): bool
+#[LanguageLevelTypeAware(["7.2" => "bool"], default: "void")]
+function session_reset()
 {}
 
 // End of session v.

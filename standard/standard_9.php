@@ -4,6 +4,7 @@
  * @since 5.6
  */
 
+use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
 use JetBrains\PhpStorm\Internal\PhpStormStubsElementAvailable;
 use JetBrains\PhpStorm\Pure;
 
@@ -73,7 +74,7 @@ function array_replace_recursive(array $array, array ...$replacements): array
  * @param bool $strict [optional] <p>
  * Determines if strict comparison (===) should be used during the search.
  * </p>
- * @return array an array of all the keys in input.
+ * @return int[]|string[] an array of all the keys in input.
  */
 #[Pure]
 function array_keys(array $array, mixed $filter_value, bool $strict): array
@@ -110,7 +111,7 @@ function array_count_values(array $array): array
  * @link https://secure.php.net/manual/en/function.array-column.php
  * @param array $array <p>A multi-dimensional array (record set) from which to pull a column of values.</p>
  * @param string|int|null $column_key <p>The column of values to return. This value may be the integer key of the column you wish to retrieve, or it may be the string key name for an associative array. It may also be NULL to return complete arrays (useful together with index_key to reindex the array).</p>
- * @param mixed $index_key [optional] <p>The column to use as the index/keys for the returned array. This value may be the integer key of the column, or it may be the string key name.</p>
+ * @param string|int|null $index_key [optional] <p>The column to use as the index/keys for the returned array. This value may be the integer key of the column, or it may be the string key name.</p>
  * @return array Returns an array of values representing a single column from the input array.
  * @since 5.5
  */
@@ -150,7 +151,6 @@ function array_reverse(array $array, bool $preserve_keys): array { }
  * the array is empty.
  * </p>
  * @return mixed the resulting value.
- * </p>
  * <p>
  * If the array is empty and initial is not passed,
  * array_reduce returns null.
@@ -161,6 +161,7 @@ function array_reverse(array $array, bool $preserve_keys): array { }
  * <blockquote><pre>array_reduce(['2', '3', '4'], function($ax, $dx) { return $ax . ", {$dx}"; }, '1')  // Returns '1, 2, 3, 4'</pre></blockquote>
  * <blockquote><pre>array_reduce(['2', '3', '4'], function($ax, $dx) { return $ax + (int)$dx; }, 1)  // Returns 10</pre></blockquote>
  * <br/>
+ * </p>
  * @meta
  */
 function array_reduce(array $array, callable $callback, mixed $initial): mixed { }
@@ -192,10 +193,10 @@ function array_pad(array $array, int $length, mixed $value): array
 /**
  * Exchanges all keys with their associated values in an array
  * @link https://php.net/manual/en/function.array-flip.php
- * @param array $array <p>
+ * @param int[]|string[] $array <p>
  * An array of key/value pairs to be flipped.
  * </p>
- * @return array Returns the flipped array.
+ * @return int[]|string[] Returns the flipped array.
  */
 #[Pure]
 function array_flip(array $array): array
@@ -276,7 +277,7 @@ function array_unique(array $array, int $flags = SORT_STRING): array { }
  * @param array $array <p>
  * The array with main values to check.
  * </p>
- * @param mixed ...$arrays <p>
+ * @param array ...$arrays <p>
  * An array to compare values against.
  * </p>
  * @return array an array containing all of the values in
@@ -284,7 +285,7 @@ function array_unique(array $array, int $flags = SORT_STRING): array { }
  * @meta
  */
 #[Pure]
-function array_intersect(array $array, ...$arrays): array { }
+function array_intersect(array $array, array ...$arrays): array { }
 
 #[PhpStormStubsElementAvailable(to: '7.4')]
 /**
@@ -459,14 +460,14 @@ function array_uintersect_uassoc(array $array1, array $array2, array $_ = null, 
  * @param array $array <p>
  * The array to compare from
  * </p>
- * @param mixed ...$excludes <p>
+ * @param array ...$excludes <p>
  * An array to compare against
  * @return array an array containing all the entries from
  * array1 that are not present in any of the other arrays.
  * @meta
  */
 #[Pure]
-function array_diff(array $array, ...$excludes): array { }
+function array_diff(array $array, array ...$excludes): array { }
 
 #[PhpStormStubsElementAvailable(to: '7.4')]
 /**
@@ -772,12 +773,13 @@ function array_chunk(array $array, int $length, bool $preserve_keys): array
  * @meta
  */
 #[Pure]
-function array_combine(array $keys, array $values): array { }
+#[LanguageLevelTypeAware(["8.0" => "array"], default: "array|false")]
+function array_combine(array $keys, array $values) { }
 
 /**
  * Checks if the given key or index exists in the array
  * @link https://php.net/manual/en/function.array-key-exists.php
- * @param mixed $key <p>
+ * @param int|string $key <p>
  * Value to check.
  * </p>
  * @param array|ArrayObject $array <p>
@@ -786,7 +788,7 @@ function array_combine(array $keys, array $values): array { }
  * @return bool true on success or false on failure.
  */
 #[Pure]
-function array_key_exists($key, array $array): bool
+function array_key_exists($key, #[LanguageLevelTypeAware(["8.0" => "array"], default: "array|ArrayObject")] $array): bool
 { }
 
 /**
@@ -818,7 +820,8 @@ function array_key_last(array $array): string|int|null
 { }
 
 /**
- * &Alias; <function>current</function>
+ * Alias:
+ * {@see current}
  * @link https://php.net/manual/en/function.pos.php
  * @param array|ArrayAccess $array
  * @return mixed
@@ -828,7 +831,8 @@ function pos(object|array $array): mixed
 { }
 
 /**
- * &Alias; <function>count</function>
+ * Alias:
+ * {@see \count}
  * @link https://php.net/manual/en/function.sizeof.php
  * @param array|Countable $value
  * @param int $mode [optional]
@@ -841,7 +845,7 @@ function sizeof(Countable|array $value, int $mode = COUNT_NORMAL): int
 /**
  * Checks if the given key or index exists in the array. The name of this function is array_key_exists() in PHP > 4.0.6.
  * @link https://php.net/manual/en/function.array-key-exists.php
- * @param mixed $key <p>
+ * @param int|string $key <p>
  * Value to check.
  * </p>
  * @param array $array <p>
@@ -854,7 +858,7 @@ function key_exists($key, array $array): bool
 { }
 
 /**
- * Checks if assertion is &false;
+ * Checks if assertion is <b>FALSE</b>
  * @link https://php.net/manual/en/function.assert.php
  * @param Throwable|string|null $assertion <p>
  * The assertion.
@@ -929,7 +933,7 @@ class AssertionError extends Error {
  * @param mixed $value [optional] <p>
  * An optional new value for the option.
  * </p>
- * @return object|array|string|int|null the original setting of any option or false on errors.
+ * @return object|array|string|int|null The original setting of any option.
  */
 function assert_options(int $option, mixed $value): object|array|string|int|null
 { }
@@ -1129,10 +1133,10 @@ function stream_isatty($stream): bool
  * this would be the time to destroy or dispose of them.
  * </p>
  * @return bool true on success or false on failure.
- * </p>
  * <p>
  * stream_filter_register will return false if the
  * filtername is already defined.
+ * </p>
  */
 function stream_filter_register(string $filter_name, string $class): bool
 { }

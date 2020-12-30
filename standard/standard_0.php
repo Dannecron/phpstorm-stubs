@@ -183,7 +183,6 @@ function usleep (int $microseconds): void {}
  * Must be a positive integer less than 1 billion.
  * </p>
  * @return bool|array true on success or false on failure.
- * </p>
  * <p>
  * If the delay was interrupted by a signal, an associative array will be
  * returned with the components:
@@ -191,6 +190,7 @@ function usleep (int $microseconds): void {}
  * the delay
  * nanoseconds - number of nanoseconds
  * remaining in the delay
+ * </p>
  */
 function time_nanosleep (int $seconds, int $nanoseconds): array|bool
 {}
@@ -221,7 +221,6 @@ function time_sleep_until (float $timestamp): bool
  * strftime page.
  * </p>
  * @return array|false an array or false on failure.
- * </p>
  * <p>
  * <table>
  * The following parameters are returned in the array
@@ -267,6 +266,7 @@ function time_sleep_until (float $timestamp): bool
  * recognized using the specified format</td>
  * </tr>
  * </table>
+ * </p>
  */
 #[Pure]
 function strptime (string $timestamp, string $format): array|false
@@ -310,7 +310,7 @@ function wordwrap (string $string, int $width = 75, string $break = "\n", bool $
  * @param string $string <p>
  * The {@link https://secure.php.net/manual/en/language.types.string.php string} being converted.
  * </p>
- * @param int|string $flags [optional] <p>
+ * @param int $flags [optional] <p>
  * A bitmask of one or more of the following flags, which specify how to handle quotes,
  * invalid code unit sequences and the used document type. The default is
  * <em><b>ENT_COMPAT | ENT_HTML401</b></em>.
@@ -333,7 +333,7 @@ function wordwrap (string $string, int $width = 75, string $break = "\n", bool $
  * <tr>
  * <td><b>ENT_QUOTES</b></td>
  * <td>Will convert both double and single quotes.</td>
- *</tr>
+ * </tr>
  *
  * <tr>
  * <td><b>ENT_NOQUOTES</b></td>
@@ -461,7 +461,6 @@ function htmlspecialchars (string $string, int $flags = ENT_COMPAT | ENT_HTML401
  * set used in conversion.
  * Presently, the ISO-8859-1 character set is used as the default.
  * </p>
- * &reference.strings.charsets;
  * @param bool $double_encode [optional] <p>
  * When double_encode is turned off PHP will not
  * encode existing html entities. The default is to convert everything.
@@ -508,7 +507,6 @@ function htmlentities (string $string, int $flags, ?string $encoding, bool $doub
  * charset. This defines the character set used in
  * conversion.
  * </p>
- * &reference.strings.charsets;
  * @return string the decoded string.
  */
 #[Pure]
@@ -565,9 +563,7 @@ function htmlspecialchars_decode (string $string, int $flags): string
  * See the description
  * of these modes in htmlspecialchars.
  * </p>
- * @param string $encoding <dd>
- *
- * <p>
+ * @param string $encoding [optional] <p>
  * Encoding to use.
  * If omitted, the default value for this argument is ISO-8859-1 in
  * versions of PHP prior to 5.4.0, and UTF-8 from PHP 5.4.0 onwards.
@@ -836,7 +832,7 @@ function iptcparse (string $iptc_block): array|false
  * Spool flag. If the spool flag is over 2 then the JPEG will be
  * returned as a string.
  * </p>
- * @return string|bool If success and spool flag is lower than 2 then the JPEG will not be
+ * @return string|false If success and spool flag is lower than 2 then the JPEG will not be
  * returned as a string, false on errors.
  */
 function iptcembed (string $iptc_data, string $filename, int $spool): string|bool
@@ -861,7 +857,6 @@ function iptcembed (string $iptc_data, string $filename, int $spool): string|boo
  * binary APP13 marker into something readable.
  * </p>
  * @return array|false an array with 7 elements.
- * </p>
  * <p>
  * Index 0 and 1 contains respectively the width and the height of the image.
  * </p>
@@ -902,6 +897,7 @@ function iptcembed (string $iptc_data, string $filename, int $spool): string|boo
  * </p>
  * <p>
  * On failure, false is returned.
+ * </p>
  */
 function getimagesize (string $filename, &$image_info): array|false
 {}
@@ -1033,7 +1029,7 @@ function image_type_to_extension (int $image_type, $include_dot = true): string|
  * <td>INFO_GENERAL</td>
  * <td>1</td>
  * <td>
- * The configuration line, &php.ini; location, build date, Web
+ * The configuration line, "php.ini" location, build date, Web
  * Server, System and more.
  * </td>
  * </tr>
@@ -1212,7 +1208,6 @@ function zend_logo_guid (): string
  * Returns the type of interface between web server and PHP
  * @link https://php.net/manual/en/function.php-sapi-name.php
  * @return string|false the interface type, as a lowercase string.
- * </p>
  * <p>
  * Although not exhaustive, the possible return values include
  * aolserver, apache,
@@ -1224,6 +1219,7 @@ function zend_logo_guid (): string
  * milter, nsapi,
  * phttpd, pi3web, roxen,
  * thttpd, tux, and webjames.
+ * </p>
  */
 #[Pure]
 function php_sapi_name (): string|false
@@ -1236,7 +1232,7 @@ function php_sapi_name (): string|false
  * mode is a single character that defines what
  * information is returned:
  * 'a': This is the default. Contains all modes in
- * the sequence "s n r v m".
+ * the sequence "s n r v m".</p>
  * @return string the description, as a string.
  */
 #[Pure]
@@ -1261,7 +1257,7 @@ function php_ini_scanned_files (): string|false
 /**
  * Retrieve a path to the loaded php.ini file
  * @link https://php.net/manual/en/function.php-ini-loaded-file.php
- * @return string|false The loaded &php.ini; path, or false if one is not loaded.
+ * @return string|false The loaded "php.ini" path, or false if one is not loaded.
  * @since 5.2.4
  */
 #[Pure]
@@ -1410,10 +1406,10 @@ function strcspn (string $string, string $characters, int $offset, ?int $length)
  * Note that you may put multiple tokens in the token parameter.
  * The string will be tokenized when any one of the characters in the argument are found.
  * @link https://php.net/manual/en/function.strtok.php
- * @param string $string [optional] <p>
+ * @param string $string <p>
  * The string being split up into smaller strings (tokens).
  * </p>
- * @param string|null $token <p>
+ * @param string|null $token [optional] <p>
  * The delimiter used when splitting up str.
  * </p>
  * @return string|false A string token.

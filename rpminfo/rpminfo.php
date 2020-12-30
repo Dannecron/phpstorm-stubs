@@ -304,7 +304,7 @@ function rpmvercmp (string $evr1, string $evr2) {}
  * @param bool $full [optional] <p>
  * If TRUE all information headers for the file are retrieved, else only a minimal set.
  * </p>
- * @param string &$error [optional] <p>
+ * @param null|string &$error [optional] <p>
  * If provided, will receive the possible error message, and will avoid a runtime warning.
  * </p>
  *
@@ -313,7 +313,7 @@ function rpmvercmp (string $evr1, string $evr2) {}
  * </p>
  * @since 0.1.0
  */
-function rpminfo (string $path, bool $full = false, string &$error = null) {}
+function rpminfo (string $path, bool $full = false, ?string &$error = null) {}
 
 /**
  * Retrieve information about an installed package, from the system RPM database.

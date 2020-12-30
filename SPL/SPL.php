@@ -607,12 +607,12 @@ interface SeekableIterator extends Iterator {
     /**
      * Seeks to a position
      * @link https://php.net/manual/en/seekableiterator.seek.php
-     * @param int $position <p>
+     * @param int $offset <p>
      * The position to seek to.
      * </p>
      * @return void
      */
-    public function seek($position);
+    public function seek($offset);
 }
 
 /**
@@ -1097,8 +1097,8 @@ class RegexIterator extends FilterIterator {
      * Create a new RegexIterator
      * @link https://php.net/manual/en/regexiterator.construct.php
      * @param Iterator $iterator The iterator to apply this regex filter to.
-     * @param string $regex The regular expression to match.
-     * @param int $pattern [optional] Operation mode, see RegexIterator::setMode() for a list of modes.
+     * @param string $pattern The regular expression to match.
+     * @param int $mode [optional] Operation mode, see RegexIterator::setMode() for a list of modes.
      * @param int $flags [optional] Special flags, see RegexIterator::setFlags() for a list of available flags.
      * @param int $pregFlags [optional] The regular expression flags. These flags depend on the operation mode parameter
      */
@@ -1444,7 +1444,7 @@ class ArrayObject implements IteratorAggregate, ArrayAccess, Serializable, Count
     /**
      * Returns whether the requested index exists
      * @link https://php.net/manual/en/arrayobject.offsetexists.php
-     * @param mixed $key <p>
+     * @param int|string $key <p>
      * The index being checked.
      * </p>
      * @return bool true if the requested index exists, otherwise false
@@ -1454,7 +1454,7 @@ class ArrayObject implements IteratorAggregate, ArrayAccess, Serializable, Count
     /**
      * Returns the value at the specified index
      * @link https://php.net/manual/en/arrayobject.offsetget.php
-     * @param mixed $key <p>
+     * @param int|string $key <p>
      * The index with the value.
      * </p>
      * @return mixed|false The value at the specified index or false.
@@ -1464,7 +1464,7 @@ class ArrayObject implements IteratorAggregate, ArrayAccess, Serializable, Count
     /**
      * Sets the value at the specified index to newval
      * @link https://php.net/manual/en/arrayobject.offsetset.php
-     * @param mixed $key <p>
+     * @param int|string $key <p>
      * The index being set.
      * </p>
      * @param mixed $value <p>
@@ -1477,7 +1477,7 @@ class ArrayObject implements IteratorAggregate, ArrayAccess, Serializable, Count
     /**
      * Unsets the value at the specified index
      * @link https://php.net/manual/en/arrayobject.offsetunset.php
-     * @param mixed $key <p>
+     * @param int|string $key <p>
      * The index being unset.
      * </p>
      * @return void
@@ -1645,13 +1645,13 @@ class ArrayObject implements IteratorAggregate, ArrayAccess, Serializable, Count
      * @return array
      * @since 7.4
      */
-    public function __serialize(): array {}
+    public function __serialize() {}
 
     /**
      * @param array $data
      * @since 7.4
      */
-    public function __unserialize(array $data): void {}
+    public function __unserialize(array $data) {}
 
     /**
      * Create a new iterator from an ArrayObject instance
@@ -1919,13 +1919,13 @@ class ArrayIterator implements SeekableIterator, ArrayAccess, Serializable, Coun
      * @return array
      * @since 7.4
      */
-    public function __serialize(): array {}
+    public function __serialize() {}
 
     /**
      * @param array $data
      * @since 7.4
      */
-    public function __unserialize(array $data): void {}
+    public function __unserialize(array $data) {}
 
 }
 

@@ -133,6 +133,7 @@ class SQLiteDatabase  {
 	 * @param int $result_type [optional] <p>The optional <i>result_type</i> parameter accepts a constant and determines how the returned array will be indexed.
 	 * Using <b>SQLITE_ASSOC</b> will return only associative indices (named fields) while <b>SQLITE_NUM</b> will return only numerical indices (ordinal field numbers).
 	 * <b>SQLITE_BOTH</b> will return both associative and numerical indices. <b>SQLITE_BOTH</b> is the default for this function.
+     * </p>
 	 * @param string &$error_message [optional]
 	 * @return resource Returns a result handle or <b>FALSE</b> on failure.
 	 * {@see sqlite_unbuffered_query()} returns a sequential forward-only result set that can only be used to read each row, one after the other.
@@ -248,13 +249,15 @@ final class SQLiteResult implements Iterator, Countable {
 	 * only numerical indices (ordinal field numbers). <b>SQLITE_BOTH</b>
 	 * will return both associative and numerical indices.
 	 * <b>SQLITE_BOTH</b> is the default for this function.
+     * </p>
 	 * @param bool $decode_binary [optional] <p>When the <i>decode_binary</i>
 	 * parameter is set to <b>TRUE</b> (the default), PHP will decode the binary encoding
 	 * it applied to the data if it was encoded using the
-	 *{@link https://php.net/manual/en/sqlite.configuration.php#ini.sqlite.assoc-case sqlite.assoc_case}. You should normally leave this
+	 * {@link https://php.net/manual/en/sqlite.configuration.php#ini.sqlite.assoc-case sqlite.assoc_case}. You should normally leave this
 	 * value at its default, unless you are interoperating with databases created by
 	 * other sqlite capable applications.</p>
-	 * @return array <p>
+     * @return array
+     * <p>
 	 * Returns an array of the next row from a result set; <b>FALSE</b> if the
 	 * next position is beyond the final row.
 	 * </p>
@@ -622,7 +625,7 @@ function sqlite_close ($dbhandle) {}
  * Data inside the query should be properly escaped.
  * </p>
  * @param resource|string $dbhandle The SQLite Database resource; returned from sqlite_open() when used procedurally. This parameter is not required when using the object-oriented method.
- * @param int $result_type [optional] &sqlite.result-type;<p>The optional <i>result_type</i>
+ * @param int $result_type [optional] <p>The optional <i>result_type</i>
  * parameter accepts a constant and determines how the returned array will be
  * indexed. Using <b>SQLITE_ASSOC</b> will return only associative
  * indices (named fields) while <b>SQLITE_NUM</b> will return
@@ -698,14 +701,14 @@ function sqlite_exec ($dbhandle, $query, &$error_msg = null) {}
  * when used procedurally.  This parameter is not required
  * when using the object-oriented method.
  * </p>
- * @param int $result_type [optional] &sqlite.result-type; <p>The optional <i>result_type</i>
+ * @param int $result_type [optional] <p>The optional <i>result_type</i>
  * parameter accepts a constant and determines how the returned array will be
  * indexed. Using <b>SQLITE_ASSOC</b> will return only associative
  * indices (named fields) while <b>SQLITE_NUM</b> will return
  * only numerical indices (ordinal field numbers). <b>SQLITE_BOTH</b>
  * will return both associative and numerical indices.
  * <b>SQLITE_BOTH</b> is the default for this function.</p>
- * @param bool $decode_binary [optional] &sqlite.decode-bin; <p>When the <i>decode_binary</i>
+ * @param bool $decode_binary [optional] <p>When the <i>decode_binary</i>
  * parameter is set to <b>TRUE</b> (the default), PHP will decode the binary encoding
  * it applied to the data if it was encoded using the
  * {@link sqlite_escape_string()}.  You should normally leave this
@@ -737,8 +740,8 @@ function sqlite_single_query ($db, $query, $first_row_only = null, $decode_binar
  * Fetches the next row from a result set as an array
  * @link https://php.net/manual/en/function.sqlite-fetch-array.php
  * @param resource $result <p>The SQLite result resource. This parameter is not required when using the object-oriented method.</p>
- * @param int $result_type [optional] &sqlite.result-type;
- * @param bool $decode_binary [optional] &sqlite.decode-bin;
+ * @param int $result_type [optional]
+ * @param bool $decode_binary [optional]
  * @return array|false <p>an array of the next row from a result set; false if the
  * next position is beyond the final row.</p>
  */
@@ -749,11 +752,11 @@ function sqlite_fetch_array ($result, $result_type = SQLITE_BOTH, $decode_binary
  * @link https://php.net/manual/en/function.sqlite-fetch-object.php
  * @param resource $result
  * @param string $class_name [optional]
- * @param array $ctor_params [optional]
+ * @param null|array $ctor_params [optional]
  * @param bool $decode_binary [optional]
  * @return object
  */
-function sqlite_fetch_object ($result, $class_name = null, array $ctor_params = null, $decode_binary = null) {}
+function sqlite_fetch_object ($result, $class_name = null, ?array $ctor_params = null, $decode_binary = null) {}
 
 /**
  * (PHP 5, PECL sqlite &gt;= 1.0.1)<br/>
@@ -772,7 +775,8 @@ function sqlite_fetch_single ($result, $decode_binary = null) {}
 
 /**
  * (PHP 5, PECL sqlite &gt;= 1.0.0)<br/>
- * &Alias; {@see sqlite_fetch_single}
+ * Alias:
+ * {@see sqlite_fetch_single}
  * @link https://php.net/manual/en/function.sqlite-fetch-string.php
  * @param resource $result <p>The SQLite result resource. This parameter is not required when using the object-oriented method.</p>
  * @param bool $decode_binary [optional] <p>When the <b>decode_binary</b>
@@ -789,8 +793,8 @@ function sqlite_fetch_string ($result, $decode_binary) {}
  * (PHP 5, PECL sqlite &gt;= 1.0.0)<br/>
  * Fetches all rows from a result set as an array of arrays
  * @link https://php.net/manual/en/function.sqlite-fetch-all.php
- * @param int $result_type [optional] &sqlite.result-type;
- * @param bool $decode_binary [optional] &sqlite.decode-bin;
+ * @param int $result_type [optional]
+ * @param bool $decode_binary [optional]
  * @return array <p>an array of the remaining rows in a result set. If called right
  * after
  * {@see sqlite_query}, it returns all rows. If called
@@ -1079,18 +1083,18 @@ function sqlite_error_string ($error_code) {}
  * <p>
  * Data inside the query should be properly escaped.
  * </p>
- * @param int $result_type [optional] &sqlite.result-type;
+ * @param int $result_type [optional]
  * @param string &$error_msg [optional] <p>
  * The specified variable will be filled if an error occurs. This is
  * specially important because SQL syntax errors can't be fetched using
  * the sqlite_last_error function.
  * </p>
  * @return SQLiteUnbuffered|false a result handle or false on failure.
- * </p>
  * <p>
  * sqlite_unbuffered_query returns a sequential
  * forward-only result set that can only be used to read each row, one after
  * the other.
+ * </p>
  */
 function sqlite_unbuffered_query ($dbhandle, $query, $result_type = SQLITE_BOTH, &$error_msg = null) {}
 
@@ -1100,7 +1104,7 @@ function sqlite_unbuffered_query ($dbhandle, $query, $result_type = SQLITE_BOTH,
  * @link https://php.net/manual/en/function.sqlite-create-aggregate.php
  * @param resource $dbhandle <p>The SQLite Database resource; returned from
  * {@see sqlite_open()} when used procedurally.
- * This parameter is not required when using the object-oriented method.
+ * This parameter is not required when using the object-oriented method.</p>
  * @param string $function_name <p>
  * The name of the function used in SQL statements.
  * </p>
@@ -1124,7 +1128,7 @@ function sqlite_create_aggregate ($dbhandle, $function_name, $step_func, $finali
  * @link https://php.net/manual/en/function.sqlite-create-function.php
  * @param resource $dbhandle <p>The SQLite Database resource; returned from
  * {@see sqlite_open()} when used procedurally.
- * This parameter is not required when using the object-oriented method.
+ * This parameter is not required when using the object-oriented method.</p>
  * @param string $function_name <p>
  * The name of the function used in SQL statements.
  * </p>

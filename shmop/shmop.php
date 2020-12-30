@@ -11,11 +11,11 @@ use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
  * System's id for the shared memory block.
  * Can be passed as a decimal or hex.
  * </p>
- * @param int $mode <p>
+ * @param string $mode <p>
  * The flags that you can use:
  * "a" for access (sets SHM_RDONLY for shmat)
  * use this flag when you need to open an existing shared memory
- * segment for read only
+ * segment for read only</p>
  * @param int $permissions <p>
  * The permissions that you wish to assign to your memory segment, those
  * are the same as permission for a file. Permissions need to be passed
@@ -28,7 +28,7 @@ use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
  * use to access the shared memory segment you've created. <b>FALSE</b> is
  * returned on failure.
  */
-#[LanguageLevelTypeAware(["8.0" => "Shmop|false"], default: "Shmop|false")]
+#[LanguageLevelTypeAware(["8.0" => "Shmop|false"], default: "resource|false")]
 function shmop_open (int $key, string $mode, int $permissions, int $size) {}
 
 /**
@@ -46,7 +46,8 @@ function shmop_open (int $key, string $mode, int $permissions, int $size) {}
  * </p>
  * @return string|false the data or <b>FALSE</b> on failure.
  */
-function shmop_read (#[LanguageLevelTypeAware(["8.0" => "Shmop"], default: "resource")] $shmop, int $offset, int $size): string {}
+#[LanguageLevelTypeAware(["8.0" => "string"], default: "string|false")]
+function shmop_read (#[LanguageLevelTypeAware(["8.0" => "Shmop"], default: "resource")] $shmop, int $offset, int $size) {}
 
 /**
  * Close shared memory block
@@ -89,7 +90,8 @@ function shmop_size (#[LanguageLevelTypeAware(["8.0" => "Shmop"], default: "reso
  * @return int|false The size of the written <i>data</i>, or <b>FALSE</b> on
  * failure.
  */
-function shmop_write (#[LanguageLevelTypeAware(["8.0" => "Shmop"], default: "resource")] $shmop, string $data, int $offset): int {}
+#[LanguageLevelTypeAware(["8.0" => "int"], default: "int|false")]
+function shmop_write (#[LanguageLevelTypeAware(["8.0" => "Shmop"], default: "resource")] $shmop, string $data, int $offset) {}
 
 /**
  * Delete shared memory block

@@ -7,7 +7,6 @@ use JetBrains\PhpStorm\Pure;
  * Retrieve information about the currently installed GD library
  * @link https://php.net/manual/en/function.gd-info.php
  * @return array an associative array.
- * </p>
  * <p>
  * <table>
  * Elements of array returned by <b>gd_info</b>
@@ -80,6 +79,7 @@ use JetBrains\PhpStorm\Pure;
  * <p>
  * Previous to PHP 5.3.0, the JPEG Support attribute was named
  * JPG Support.
+ * </p>
  */
 #[Pure]
 function gd_info () {}
@@ -591,7 +591,7 @@ function imagesetthickness ($image, $thickness) {}
  * </p>
  * @param int $style <p>
  * A bitwise OR of the following possibilities:
- * IMG_ARC_PIE
+ * IMG_ARC_PIE</p>
  * @return bool true on success or false on failure.
  */
 function imagefilledarc ($image, $cx, $cy, $width, $height, $start, $end, $color, $style) {}
@@ -1120,7 +1120,7 @@ function imagefill ($image, $x, $y, $color) {}
  * An array containing the x and y
  * coordinates of the polygons vertices consecutively.
  * </p>
- * @param int $num_points [optional] <p>
+ * @param int $num_points <p>
  * Total number of vertices, which must be at least 3.
  * </p>
  * @param int $color <p>
@@ -1308,7 +1308,7 @@ function imageloadfont ($file) {}
  * <td>= y1</td>
  * </tr>
  * </p>
- * @param int $num_points [optional] <p>
+ * @param int $num_points <p>
  * Total number of points (vertices).
  * </p>
  * @param int $color <p>
@@ -2070,7 +2070,7 @@ function image2wbmp ($image, $filename = null, $threshold = null) {}
  * One of the following constants:
  * IMG_EFFECT_REPLACE
  * Use pixel replacement (equivalent of passing true to
- * imagealphablending)
+ * imagealphablending)</p>
  * @return bool true on success or false on failure.
  */
 function imagelayereffect ($image, $effect) {}
@@ -2113,17 +2113,17 @@ function imagexbm ($image, $filename, $foreground = null) {}
  * @param int $filtertype <p>
  * filtertype can be one of the following:
  * IMG_FILTER_NEGATE: Reverses all colors of
- * the image.
+ * the image.</p>
  * @param int $arg1 [optional] <p>
- * IMG_FILTER_BRIGHTNESS: Brightness level.
+ * IMG_FILTER_BRIGHTNESS: Brightness level.</p>
  * @param int $arg2 [optional] <p>
- * IMG_FILTER_COLORIZE: Value of green component.
+ * IMG_FILTER_COLORIZE: Value of green component.</p>
  * @param int $arg3 [optional] <p>
- * IMG_FILTER_COLORIZE: Value of blue component.
+ * IMG_FILTER_COLORIZE: Value of blue component.</p>
  * @param int $arg4 [optional] <p>
  * IMG_FILTER_COLORIZE: Alpha channel, A value
  * between 0 and 127. 0 indicates completely opaque while 127 indicates
- * completely transparent.
+ * completely transparent.</p>
  * @return bool true on success or false on failure.
  */
 function imagefilter ($image, $filtertype, $arg1 = null, $arg2 = null, $arg3 = null, $arg4 = null) {}
@@ -2197,7 +2197,7 @@ function imagegetclip ($im) {}
  * points[2]	= x1
  * points[3]	= y1
  * </pre>
- * @param int $num_points [optional] Total number of points (vertices).
+ * @param int $num_points Total number of points (vertices).
  * @param int $color A color identifier created with {@see imagecolorallocate()}.
  * @return bool Returns <b>TRUE</b> on success or <b>FALSE</b> on failure.
  * @link https://php.net/manual/en/function.imageopenpolygon.php
@@ -2852,7 +2852,7 @@ function imageaffine($image, $affine, $clip = null) {}
  * @link https://secure.php.net/manual/en/function.imageaffinematrixconcat.php
  * @param array $m1 <p>Array with keys 0 to 5.</p>
  * @param array $m2 <p>Array with keys 0 to 5.</p>
- * @return array|bool Array with keys 0 to 5 and float values or <b>FALSE</b> on failure.
+ * @return float[]|false Array with keys 0 to 5 and float values or <b>FALSE</b> on failure.
  * @since 5.5
  */
 function imageaffinematrixconcat(array $m1, array $m2) {}
@@ -2860,9 +2860,9 @@ function imageaffinematrixconcat(array $m1, array $m2) {}
 /**
  * Return an image containing the affine tramsformed src image, using an optional clipping area
  * @link https://secure.php.net/manual/en/function.imageaffinematrixget.php
- * @param int $type <p> One of <b>IMG_AFFINE_*</b> constants.
+ * @param int $type <p> One of <b>IMG_AFFINE_*</b> constants.</p>
  * @param mixed $options [optional]
- * @return array|bool Array with keys 0 to 5 and float values or <b>FALSE</b> on failure.
+ * @return float[]|false Array with keys 0 to 5 and float values or <b>FALSE</b> on failure.
  * @since 5.5
  */
 function imageaffinematrixget ($type, $options = null) {}
@@ -2916,6 +2916,7 @@ function imagecropauto ($image, $mode = IMG_CROP_DEFAULT, $threshold = .5, $colo
  * <th>Meaning</th>
  * </tr>
  * </thead>
+ * <tbody>
  * <tr>
  * <td><b>IMG_FLIP_HORIZONTAL</b></td>
  * <td>
@@ -2964,7 +2965,6 @@ function imagepalettetotruecolor ($image) {}
  * @param int $mode [optional] One of <b>IMG_NEAREST_NEIGHBOUR</b>, <b>IMG_BILINEAR_FIXED</b>, <b>IMG_BICUBIC</b>, <b>IMG_BICUBIC_FIXED</b> or anything else (will use two pass).
  * @return resource|GdImage|false Return scaled image resource on success or <b>FALSE</b> on failure.
  */
-
 function imagescale ($image, $new_width, $new_height = -1, $mode = IMG_BILINEAR_FIXED) {}
 
 /**

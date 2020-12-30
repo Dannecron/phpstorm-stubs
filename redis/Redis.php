@@ -1639,7 +1639,7 @@ class Redis
      * @param string $key1         keys identifying the different sets on which we will apply the intersection.
      * @param string ...$otherKeys variadic list of keys
      *
-     * @return array contain the result of the intersection between those keys
+     * @return array|false contain the result of the intersection between those keys
      * If the intersection between the different sets is empty, the return value will be empty array.
      *
      * @link    https://redis.io/commands/sinter
@@ -2962,7 +2962,6 @@ class Redis
      * @link    https://redis.io/commands/zadd
      * @example
      * <pre>
-     * <pre>
      * $redis->zAdd('z', 1, 'v1', 2, 'v2', 3, 'v3', 4, 'v4' );  // int(2)
      * $redis->zRem('z', 'v2', 'v3');                           // int(2)
      * $redis->zAdd('z', ['NX'], 5, 'v5');                      // int(1)
@@ -2986,7 +2985,6 @@ class Redis
      * //   ["v4"]=> float(4)
      * //   ["v5"]=> float(5)
      * //   ["v6"]=> float(8)
-     * </pre>
      * </pre>
      */
     public function zAdd($key, $options, $score1, $value1 = null, $score2 = null, $value2 = null, $scoreN = null, $valueN = null)
@@ -3394,7 +3392,7 @@ class Redis
      *
      * @param string $output
      * @param array  $zSetKeys
-     * @param array  $weights
+     * @param null|array $weights
      * @param string $aggregateFunction  Either "SUM", "MIN", or "MAX": defines the behaviour to use on
      * duplicate entries during the zUnionStore
      *
@@ -3423,7 +3421,7 @@ class Redis
      * $redis->zUnionStore('ko3', array('k1', 'k2'), array(5, 1)); // 4, 'ko3' => array('val0', 'val2', 'val3', 'val1')
      * </pre>
      */
-    public function zUnionStore($output, $zSetKeys, array $weights = null, $aggregateFunction = 'SUM')
+    public function zUnionStore($output, $zSetKeys, ?array $weights = null, $aggregateFunction = 'SUM')
     {
     }
 
@@ -3448,7 +3446,7 @@ class Redis
      *
      * @param string $output
      * @param array  $zSetKeys
-     * @param array  $weights
+     * @param null|array $weights
      * @param string $aggregateFunction Either "SUM", "MIN", or "MAX":
      * defines the behaviour to use on duplicate entries during the zInterStore.
      *
@@ -4004,7 +4002,7 @@ class Redis
      * @return int The number of elements added to the geospatial key
      *
      * @link https://redis.io/commands/geoadd
-     * @since >=3.2
+     * @since >= 3.2
      *
      * @example
      * <pre>
@@ -4031,7 +4029,7 @@ class Redis
      * @return array One or more Redis Geohash encoded strings
      *
      * @link https://redis.io/commands/geohash
-     * @since >=3.2
+     * @since >= 3.2
      *
      * @example
      * <pre>
@@ -4058,7 +4056,7 @@ class Redis
      * @return array One or more longitude/latitude positions
      *
      * @link https://redis.io/commands/geopos
-     * @since >=3.2
+     * @since >= 3.2
      *
      * @example
      * <pre>
@@ -4100,7 +4098,7 @@ class Redis
      * @return float The distance between the two passed members in the units requested (meters by default)
      *
      * @link https://redis.io/commands/geodist
-     * @since >=3.2
+     * @since >= 3.2
      *
      * @example
      * <pre>
@@ -4670,6 +4668,7 @@ class Redis
      * $redis->pfAdd('key2', array('elem3', 'elem2'));
      * $redis->pfCount('key1'); // int(2)
      * $redis->pfCount(array('key1', 'key2')); // int(3)
+     * </pre>
      */
     public function pfCount($key)
     {
@@ -4691,6 +4690,7 @@ class Redis
      * $redis->pfAdd('key2', array('elem3', 'elem2'));
      * $redis->pfMerge('key3', array('key1', 'key2'));
      * $redis->pfCount('key3'); // int(3)
+     * </pre>
      */
     public function pfMerge($destKey, array $sourceKeys)
     {
@@ -5049,12 +5049,12 @@ class RedisArray
     /**
      * Constructor
      *
-     * @param string|array $hosts Name of the redis array from redis.ini or array of hosts to construct the array with
-     * @param array        $opts  Array of options
+     * @param string|string[] $hosts Name of the redis array from redis.ini or array of hosts to construct the array with
+     * @param null|array      $opts  Array of options
      *
      * @link    https://github.com/nicolasff/phpredis/blob/master/arrays.markdown
      */
-    public function __construct($hosts, array $opts = null)
+    public function __construct($hosts, ?array $opts = null)
     {
     }
 

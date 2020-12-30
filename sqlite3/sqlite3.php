@@ -9,43 +9,43 @@ use JetBrains\PhpStorm\ArrayShape;
  */
 class SQLite3  {
 
-	const OK = 'OK';
-	const DENY = 'DENY';
-	const IGNORE = 'IGNORE';
-	const CREATE_INDEX = 'CREATE_INDEX';
-	const CREATE_TABLE = 'CREATE_TABLE';
-	const CREATE_TEMP_INDEX = 'CREATE_TEMP_INDEX';
-	const CREATE_TEMP_TABLE = 'CREATE_TEMP_TABLE';
-	const CREATE_TEMP_TRIGGER = 'CREATE_TEMP_TRIGGER';
-	const CREATE_TEMP_VIEW = 'CREATE_TEMP_VIEW';
-	const CREATE_TRIGGER = 'CREATE_TRIGGER';
-	const CREATE_VIEW = 'CREATE_VIEW';
-	const DELETE = 'DELETE';
-	const DROP_INDEX = 'DROP_INDEX';
-	const DROP_TABLE = 'DROP_TABLE';
-	const DROP_TEMP_INDEX = 'DROP_TEMP_INDEX';
-	const DROP_TEMP_TABLE = 'DROP_TEMP_TABLE';
-	const DROP_TEMP_TRIGGER = 'DROP_TEMP_TRIGGER';
-	const DROP_TEMP_VIEW = 'DROP_TEMP_VIEW';
-	const DROP_TRIGGER = 'DROP_TRIGGER';
-	const DROP_VIEW = 'DROP_VIEW';
-	const INSERT = 'INSERT';
-	const PRAGMA = 'PRAGMA';
-	const READ = 'READ';
-	const SELECT = 'SELECT';
-	const TRANSACTION = 'TRANSACTION';
-	const UPDATE = 'UPDATE';
-	const ATTACH = 'ATTACH';
-	const DETACH = 'DETACH';
-	const ALTER_TABLE = 'ALTER_TABLE';
-	const REINDEX = 'REINDEX';
-	const ANALYZE = 'ANALYZE';
-	const CREATE_VTABLE = 'CREATE_VTABLE';
-	const DROP_VTABLE = 'DROP_VTABLE';
-	const FUNCTION = 'FUNCTION';
-	const SAVEPOINT = 'SAVEPOINT';
-	const COPY = 'COPY';
-	const RECURSIVE = 'RECURSIVE';
+	const OK = 0;
+	const DENY = 1;
+	const IGNORE = 2;
+	const CREATE_INDEX = 1;
+	const CREATE_TABLE = 2;
+	const CREATE_TEMP_INDEX = 3;
+	const CREATE_TEMP_TABLE = 4;
+	const CREATE_TEMP_TRIGGER = 5;
+	const CREATE_TEMP_VIEW = 6;
+	const CREATE_TRIGGER = 7;
+	const CREATE_VIEW = 8;
+	const DELETE = 9;
+	const DROP_INDEX = 10;
+	const DROP_TABLE = 11;
+	const DROP_TEMP_INDEX = 12;
+	const DROP_TEMP_TABLE = 13;
+	const DROP_TEMP_TRIGGER = 14;
+	const DROP_TEMP_VIEW = 15;
+	const DROP_TRIGGER = 16;
+	const DROP_VIEW = 17;
+	const INSERT = 18;
+	const PRAGMA = 19;
+	const READ = 20;
+	const SELECT = 21;
+	const TRANSACTION = 22;
+	const UPDATE = 23;
+	const ATTACH = 24;
+	const DETACH = 25;
+	const ALTER_TABLE = 26;
+	const REINDEX = 27;
+	const ANALYZE = 28;
+	const CREATE_VTABLE = 29;
+	const DROP_VTABLE = 30;
+	const FUNCTION = 31;
+	const SAVEPOINT = 32;
+	const COPY = 0;
+	const RECURSIVE = 33;
 
 	/**
 	 * Opens an SQLite database
@@ -56,6 +56,7 @@ class SQLite3  {
 	 * @param int $flags [optional] <p>
 	 * Optional flags used to determine how to open the SQLite database. By
 	 * default, open uses SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE.
+	 * </p>
 	 * <p>
 	 * SQLITE3_OPEN_READONLY: Open the database for
 	 * reading only.
@@ -280,7 +281,7 @@ class SQLite3  {
 	 * @param int $rowid <p>The row ID.</p>
 	 * @param string $database [optional] <p>The symbolic name of the DB</p>
 	 * @param int $flags [optional]
-	 * <p>Either <b>SQLITE3_OPEN_READONLY</b> or <b>SQLITE3_OPEN_READWRITE</b> to open the stream for reading only, or for reading and writing, respectively.</p?
+	 * <p>Either <b>SQLITE3_OPEN_READONLY</b> or <b>SQLITE3_OPEN_READWRITE</b> to open the stream for reading only, or for reading and writing, respectively.</p>
 	 * @return resource|false Returns a stream resource, or FALSE on failure.
 	 */
 	public function openBlob ($table, $column, $rowid, $database, int $flags = SQLITE3_OPEN_READONLY) {}
@@ -289,6 +290,7 @@ class SQLite3  {
 	 * Enable throwing exceptions
 	 * @link https://www.php.net/manual/en/sqlite3.enableexceptions
 	 * @param bool $enable
+	 * @return bool Returns the old value; true if exceptions were enabled, false otherwise.
 	 */
 	public function enableExceptions ($enable) {}
 
@@ -301,6 +303,7 @@ class SQLite3  {
 	 * @param int $flags [optional] <p>
 	 * Optional flags used to determine how to open the SQLite database. By
 	 * default, open uses SQLITE3_OPEN_READWRITE | SQLITE3_OPEN_CREATE.
+	 * </p>
 	 * <p>
 	 * SQLITE3_OPEN_READONLY: Open the database for
 	 * reading only.
@@ -333,6 +336,7 @@ class SQLite3  {
 	public function backup($destination, $sourceDatabase, $destinationDatabase){}
 
 	/**
+	 * @param null|callable $callback
 	 * @return bool
 	 * @since 8.0
 	 */
@@ -395,6 +399,7 @@ class SQLite3Stmt  {
 	 * </p>
 	 * @param int $type [optional] <p>
 	 * The data type of the parameter to bind.
+	 * </p>
 	 * <p>
 	 * SQLITE3_INTEGER: The value is a signed integer,
 	 * stored in 1, 2, 3, 4, 6, or 8 bytes depending on the magnitude of
@@ -417,6 +422,7 @@ class SQLite3Stmt  {
 	 * </p>
 	 * @param int $type [optional] <p>
 	 * The data type of the value to bind.
+	 * </p>
 	 * <p>
 	 * SQLITE3_INTEGER: The value is a signed integer,
 	 * stored in 1, 2, 3, 4, 6, or 8 bytes depending on the magnitude of
@@ -473,7 +479,7 @@ class SQLite3Result  {
 	/**
 	 * Returns the type of the nth column
 	 * @link https://php.net/manual/en/sqlite3result.columntype.php
-	 * @param int $column_number <p>
+	 * @param int $column <p>
 	 * The numeric zero-based index of the column.
 	 * </p>
 	 * @return int the data type index of the column identified by
@@ -491,6 +497,7 @@ class SQLite3Result  {
 	 * Controls how the next row will be returned to the caller. This value
 	 * must be one of either SQLITE3_ASSOC,
 	 * SQLITE3_NUM, or SQLITE3_BOTH.
+	 * </p>
 	 * <p>
 	 * SQLITE3_ASSOC: returns an array indexed by column
 	 * name as returned in the corresponding result set

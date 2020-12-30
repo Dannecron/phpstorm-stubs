@@ -343,8 +343,7 @@ class Xslt30Processor
     /**
      * Compile a stylesheet received as an {@link XdmValue}.
      *
-     * @param string $sourceFileName
-     * @param string $stylesheetFileName
+     * @param XdmValue $node
      * @return string|null
      */
     public function compileFromValue($node) {}
@@ -461,26 +460,26 @@ class Xslt30Processor
     /**
      * Perform a one shot transformation, saving the results to the file as previously set (e.g. using {@link setOutputFile()}). The global context item may be supplied in the $context argument.
      *
-     * @param XdmNode $context
+     * @param XdmNode|null $context
      * @return void
      */
-    public function transformToFile($context) {}
+    public function transformToFile($context = null) {}
 
     /**
      * Perform a one shot transformation. The result is returned as a serialized string. The global context item may be supplied in the $context argument.
      *
-     * @param XdmNode $context
+     * @param XdmNode|null $context
      * @return string
      */
-    public function transformToString($context) {}
+    public function transformToString($context = null) {}
 
     /**
      * Perform a one shot transformation. The result is returned as an {@link XdmValue} object. If there are failures then a null is returned. The global context item may be supplied in the $context argument.
      *
-     * @param XdmNode $context
+     * @param XdmNode|null $context
      * @return XdmValue
      */
-    public function transformToValue($context) {}
+    public function transformToValue($context = null) {}
 
     /**
      * Set parameters to be passed to the initial template. These are used whether the transformation is invoked by applying templates to an initial context item, or by invoking a named template. The parameters in question are the xsl:param elements appearing as children of the xsl:template element. The $tunnel argument should be set to true if these values are to be used for setting tunnel parameters.
@@ -794,10 +793,10 @@ class XPathProcessor {
     public function evaluate($xpathStr) {}
 
     /**
-     * Compile and evaluate an XPath expression whose result is expected to be a single item, with a given context item. The expression is supplied as a character string.
+     * Compile and evaluate an XPath expression whose result is expected to be a single item, with a given context item. The expression is supplied as a character string, and the result returned as an {@link XdmItem}. Return NULL if the expression returns an empty sequence. If the expression returns a sequence of more than one item, any items after the first are ignored.
      *
      * @param string $xpathStr
-     * @return XdmItem
+     * @return XdmItem|null
      */
     public function evaluateSingle($xpathStr) {}
 

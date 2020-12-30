@@ -12,15 +12,15 @@ use JetBrains\PhpStorm\Pure;
  * constant name of the element. The following is a list of constant names
  * for item that may be used and their description.
  * Some of these constants may not be defined or hold no value for certain
- * locales.
- * <table>
+ * locales.</p>
  * nl_langinfo Constants
+ * <table>
  * <tr valign="top">
  * <td>Constant</td>
  * <td>Description</td>
  * </tr>
- * <tr valign="top">
- * LC_TIME Category Constants</td>
+ * <tr colspan="2" valign="top" bgcolor="silver">
+ * <td >LC_TIME Category Constants</td>
  * </tr>
  * <tr valign="top">
  * <td>ABDAY_(1-7)</td>
@@ -82,8 +82,8 @@ use JetBrains\PhpStorm\Pure;
  * <td>ERA_T_FMT</td>
  * <td>Time in alternate era format (string can be used in strftime).</td>
  * </tr>
- * <tr valign="top">
- * LC_MONETARY Category Constants</td>
+ * <tr colspan="2" valign="top" bgcolor="silver">
+ * <td>LC_MONETARY Category Constants</td>
  * </tr>
  * <tr valign="top">
  * <td>INT_CURR_SYMBOL</td>
@@ -143,7 +143,9 @@ use JetBrains\PhpStorm\Pure;
  * </tr>
  * <tr valign="top">
  * <td>P_SIGN_POSN</td>
- * Returns 0 if parentheses surround the quantity and CURRENCY_SYMBOL.
+ * <td>Returns 0 if parentheses surround the quantity and CURRENCY_SYMBOL.</td>
+ * </tr>
+ * </table>
  * @return string|false the element as a string, or false if item
  * is not valid.
  */
@@ -287,7 +289,8 @@ function str_pad (string $string, int $length, string $pad_string = " ", int $pa
 {}
 
 /**
- * &Alias; <function>rtrim</function>
+ * Alias:
+ * {@see rtrim}
  * @param string $string The input string.
  * @param string $characters [optional]
  * @return string the modified string.
@@ -299,7 +302,8 @@ function chop (string $string, string $characters): string
 {}
 
 /**
- * &Alias; <function>strstr</function>
+ * Alias:
+ * {@see strstr}
  * @link https://php.net/manual/en/function.strchr.php
  * Note: This function is case-sensitive. For case-insensitive searches, use stristr().
  * Note: If you only want to determine if a particular needle occurs within haystack,
@@ -332,7 +336,7 @@ function strchr (string $haystack, string $needle, bool $before_needle = false):
  * An optional sign specifier that forces a sign
  * (- or +) to be used on a number. By default, only the - sign is used
  * on a number if it's negative. This specifier forces positive numbers
- * to have the + sign attached as well, and was added in PHP 4.3.0.
+ * to have the + sign attached as well, and was added in PHP 4.3.0.</p>
  * @param string|int|float ...$values [optional] <p>
  * </p>
  * @return string a string produced according to the formatting string
@@ -660,7 +664,7 @@ function link (string $target , string $link):bool {}
  * @param string $filename <p>
  * Path to the file.
  * </p>
- * @param resource $context [optional] &note.context-support;
+ * @param resource $context [optional]
  * @return bool true on success or false on failure.
  */
 function unlink (string $filename, $context):bool {}

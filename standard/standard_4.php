@@ -38,7 +38,6 @@ function error_get_last (): ?array
  * Note that the parameters for call_user_func are
  * not passed by reference.
  * call_user_func example and references
- * &example.outputs;
  * </p>
  * @return mixed|false the function result, or false on error.
  */
@@ -159,11 +158,12 @@ function serialize (mixed $value): string
  * </p>
  * <p>
  * unserialize_callback_func directive
+ * </p>
  * <p>
  * It's possible to set a callback-function which will be called,
  * if an undefined class should be instantiated during unserializing.
  * (to prevent getting an incomplete object "__PHP_Incomplete_Class".)
- * Use your &php.ini;, ini_set or &htaccess;
+ * Use your "php.ini", ini_set or ".htaccess"
  * to define 'unserialize_callback_func'. Everytime an undefined class
  * should be instantiated, it'll be called. To disable this feature just
  * empty this setting.
@@ -179,13 +179,13 @@ function serialize (mixed $value): string
  * Omitting this option is the same as defining it as TRUE: PHP will attempt
  * to instantiate objects of any class.
  * </p>
- * @return mixed The converted value is returned, and can be a boolean,
+ * @return mixed <p>The converted value is returned, and can be a boolean,
  * integer, float, string,
  * array or object.
  * </p>
  * <p>
  * In case the passed string is not unserializeable, false is returned and
- * E_NOTICE is issued.
+ * E_NOTICE is issued.</p>
  */
 function unserialize (string $data, array $options = []): mixed
 {}
@@ -211,7 +211,6 @@ function var_dump (mixed $value, ...$values): void {}
  * If used and set to true, var_export will return
  * the variable representation instead of outputing it.
  * </p>
- * &note.uses-ob;
  * @return string|null the variable representation when the return
  * parameter is used and evaluates to true. Otherwise, this function will
  * return null.
@@ -346,7 +345,8 @@ function highlight_file (string $filename, bool $return = false): string|bool
 {}
 
 /**
- * &Alias; <function>highlight_file</function>
+ * Alias:
+ * {@see highlight_file}
  * @link https://php.net/manual/en/function.show-source.php
  * @param string $filename
  * @param bool $return [optional]
@@ -430,12 +430,11 @@ function ini_get (string $option): string|false
  * Default is true (retrieve details).
  * </p>
  * @return array|false an associative array with directive name as the array key.
- * </p>
  * <p>
  * When details is true (default) the array will
  * contain global_value (set in
- * &php.ini;), local_value (perhaps set with
- * ini_set or &htaccess;), and
+ * "php.ini"), local_value (perhaps set with
+ * ini_set or ".htaccess"), and
  * access (the access level).
  * </p>
  * <p>
@@ -449,6 +448,7 @@ function ini_get (string $option): string|false
  * <p>
  * It's possible for a directive to have multiple access levels, which is
  * why access shows the appropriate bitmask values.
+ * </p>
  */
 #[Pure]
 function ini_get_all (?string $extension, bool $details): array|false
@@ -474,7 +474,8 @@ function ini_set (string $option, string $value): string|false
 {}
 
 /**
- * &Alias; <function>ini_set</function>
+ * Alias:
+ * {@see ini_set}
  * @link https://php.net/manual/en/function.ini-alter.php
  * @link https://php.net/manual/en/ini.list.php
  * @param string $option
@@ -744,7 +745,7 @@ function headers_list (): array
 /**
  * Fetches all HTTP request headers from the current request
  * @link https://php.net/manual/en/function.apache-request-headers.php
- * @return array|false An associative array of all the HTTP headers in the current request, or <b>FALSE</b on failure.
+ * @return array|false An associative array of all the HTTP headers in the current request, or <b>FALSE</b> on failure.
  */
 #[Pure]
 function apache_request_headers (): bool|array
@@ -942,7 +943,8 @@ function gethostname (): string|false
 {}
 
 /**
- * &Alias; <function>checkdnsrr</function>
+ * Alias:
+ * {@see checkdnsrr}
  * @link https://php.net/manual/en/function.dns-check-record.php
  * @param string $hostname <p>
  * <b>host</b> may either be the IP address in
@@ -976,7 +978,8 @@ function checkdnsrr (string $hostname, string $type): bool
 {}
 
 /**
- * &Alias; <function>getmxrr</function>
+ * Alias:
+ * {@see getmxrr}
  * @link https://php.net/manual/en/function.dns-get-mx.php
  * @param string $hostname
  * @param array &$hosts

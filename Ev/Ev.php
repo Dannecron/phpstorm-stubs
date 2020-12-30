@@ -806,7 +806,7 @@ final class EvPeriodic extends EvWatcher
      *      numerical stability).
      * @param float $interval The current interval value. Can be modified any time, but changes only take effect when
      *      the periodic timer fires or EvPeriodic::again() is being called.
-     * @param callable $reschedule_cb If set, tt must return the next time to trigger, based on the passed time value
+     * @param null|callable $reschedule_cb If set, tt must return the next time to trigger, based on the passed time value
      *      (that is, the lowest time value larger than or equal to the second argument). It will usually be called just
      *      before the callback will be triggered, but might be called at other times, too.
      * @param callable $callback
@@ -814,7 +814,7 @@ final class EvPeriodic extends EvWatcher
      * @param int $priority
      */
     public function __construct(
-        $offset, $interval, callable $reschedule_cb = null, callable $callback, $data = null, $priority = 0
+        $offset, $interval, ?callable $reschedule_cb = null, callable $callback, $data = null, $priority = 0
     ) {}
 
     /**
@@ -845,7 +845,7 @@ final class EvPeriodic extends EvWatcher
      *      numerical stability).
      * @param float $interval The current interval value. Can be modified any time, but changes only take effect when
      *      the periodic timer fires or EvPeriodic::again() is being called.
-     * @param callable $reschedule_cb If set, tt must return the next time to trigger, based on the passed time value
+     * @param null|callable $reschedule_cb If set, tt must return the next time to trigger, based on the passed time value
      *      (that is, the lowest time value larger than or equal to the second argument). It will usually be called just
      *      before the callback will be triggered, but might be called at other times, too.
      * @param callable $callback
@@ -855,7 +855,7 @@ final class EvPeriodic extends EvWatcher
      * @return EvPeriodic
      */
     final public static function createStopped(
-        $offset, $interval, callable $reschedule_cb = null, callable $callback, $data = null, $priority = 0
+        $offset, $interval, ?callable $reschedule_cb = null, callable $callback, $data = null, $priority = 0
     ) {}
 
     /**
@@ -1380,6 +1380,7 @@ final class EvLoop
      * @param callable $callback
      * @param mixed $data
      * @param int $priority
+     * @return EvIo
      */
     final public function io($fd, $events, callable $callback, $data = null, $priority = 0) {}
 

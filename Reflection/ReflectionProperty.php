@@ -111,7 +111,6 @@ class ReflectionProperty implements Reflector
      * provided to fetch the property from. If you want to fetch the default
      * property without providing an object use {@see ReflectionClass::getDefaultProperties}
      * instead.
-     * </p>
      * @return mixed The current value of the property.
      */
     #[Pure]
@@ -306,9 +305,11 @@ class ReflectionProperty implements Reflector
 	public function getDefaultValue(){}
 
     /**
+     * @param null|string $name
+     * @param int $flags
      * @return ReflectionAttribute[]
      * @since 8.0
      */
     #[Pure]
-	public function getAttributes(?string $name = null, int $flags = 0): array {}
+	public function getAttributes(?string $name = null, int $flags = 0) {}
 }

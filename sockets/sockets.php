@@ -264,7 +264,7 @@ function socket_export_stream($socket) {}
  * <i>backlog</i> parameter, see
  * <b>socket_listen</b> for more information.
  * </p>
- * @return Socket|false <b>socket_create_listen</b> returns a new socket resource
+ * @return resource|Socket|false <b>socket_create_listen</b> returns a new socket resource
  * on success or <b>FALSE</b> on error. The error code can be retrieved with
  * <b>socket_last_error</b>. This code may be passed to
  * <b>socket_strerror</b> to get a textual explanation of the
@@ -435,7 +435,7 @@ function socket_write ($socket, $buffer, $length = 0) {}
  * </p>
  * <p>
  * <b>socket_read</b> returns a zero length string ("")
- * when there is no more data to read.
+ * when there is no more data to read.</p>
  */
 function socket_read ($socket, $length, $type = PHP_BINARY_READ) {}
 
@@ -567,11 +567,11 @@ function socket_strerror ($errno) {}
  * the port on which to listen for connections.
  * </p>
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
- * </p>
  * <p>
  * The error code can be retrieved with <b>socket_last_error</b>.
  * This code may be passed to <b>socket_strerror</b> to get a
  * textual explanation of the error.
+ * </p>
  */
 function socket_bind ($socket, $address, $port = 0) {}
 

@@ -13,10 +13,16 @@ use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
 class mysqli_sql_exception extends RuntimeException  {
 	/**
 	 * The sql state with the error.
+     *
+     * @var string
 	 */
 	protected $sqlstate;
 
-	/** The error code */
+    /**
+     * The error code
+     *
+     * @var int
+     */
     protected $code;
 }
 
@@ -136,7 +142,6 @@ class mysqli  {
 	/**
 	 * Open a new connection to the MySQL server
 	 * @link https://php.net/manual/en/mysqli.construct.php
-	 * </p>
 	 * @param string $hostname [optional] Can be either a host name or an IP address. Passing the NULL value or the string "localhost" to this parameter, the local host is assumed. When possible, pipes will be used instead of the TCP/IP protocol. Prepending host by p: opens a persistent connection. mysqli_change_user() is automatically called on connections opened from the connection pool. Defaults to ini_get("mysqli.default_host")
 	 * @param string $username [optional] The MySQL user name. Defaults to ini_get("mysqli.default_user")
 	 * @param string $password [optional] If not provided or NULL, the MySQL server will attempt to authenticate the user against those user records which have no password only. This allows one username to be used with different permissions (depending on if a password as provided or not). Defaults to ini_get("mysqli.default_pw")
@@ -488,13 +493,13 @@ class mysqli  {
 	/**
 	 * Opens a connection to a mysql server
 	 * @link https://php.net/manual/en/mysqli.real-connect.php
-	 * @param string $host [optional] <p>
+	 * @param string $hostname [optional] <p>
 	 * Can be either a host name or an IP address. Passing the null value
 	 * or the string "localhost" to this parameter, the local host is
 	 * assumed. When possible, pipes will be used instead of the TCP/IP
 	 * protocol.
 	 * </p>
-	 * @param string $hostname [optional] <p>
+	 * @param string $username [optional] <p>
 	 * The MySQL user name.
 	 * </p>
 	 * @param string $password [optional] <p>
@@ -1110,7 +1115,7 @@ class mysqli_result implements IteratorAggregate
 	 * The name of the class to instantiate, set the properties of and return.
 	 * If not specified, a <b>stdClass</b> object is returned.
 	 * </p>
-	 * @param array $constructor_args [optional] <p>
+	 * @param null|array $constructor_args [optional] <p>
 	 * An optional array of parameters to pass to the constructor
 	 * for <i>class_name</i> objects.
 	 * </p>
@@ -1147,6 +1152,7 @@ class mysqli_result implements IteratorAggregate
 
     /**
      * @since 8.0
+     * @return Traversable
      */
     public function getIterator(){}
 }
@@ -1650,6 +1656,7 @@ function mysqli_stmt_execute (mysqli_stmt $statement): bool {}
  * Alias for <b>mysqli_stmt_execute</b>
  * @link https://php.net/manual/en/function.mysqli-execute.php
  * @param mysqli_stmt $statement
+ * @return bool
  */
 #[Deprecated(since: '5.3')]
 function mysqli_execute (mysqli_stmt $statement): bool {}
@@ -1732,13 +1739,13 @@ function mysqli_fetch_assoc (mysqli_result $result): ?array {}
  * @param mysqli_result $result A result set identifier returned by mysqli_query(),
  * mysqli_store_result() or mysqli_use_result().
  * @param string $class The name of the class to instantiate, set the properties of and return. If not specified, a stdClass object is returned.
- * @param array|null $constructor_args [optional] An optional array of parameters to pass to the constructor for class_name objects.
+ * @param array $constructor_args [optional] An optional array of parameters to pass to the constructor for class_name objects.
  * @return object|null Returns an object with string properties that corresponds to the fetched row or NULL if there are no more rows in resultset.
  * If two or more columns of the result have the same field names, the last column will take precedence.
  * To access the other column(s) of the same name,
  * you either need to access the result with numeric indices by using mysqli_fetch_row() or add alias names.
  */
-function mysqli_fetch_object (mysqli_result $result, string $class = 'stdClass', array $constructor_args): ?object {}
+function mysqli_fetch_object (mysqli_result $result, string $class = 'stdClass', array $constructor_args = array()): ?object {}
 
 /**
  * Get a result row as an enumerated array
@@ -1849,12 +1856,10 @@ function mysqli_get_host_info (mysqli $mysql): string {}
  * Return information about open and cached links
  * @link https://php.net/manual/en/function.mysqli-get-links-stats.php
  * @return array mysqli_get_links_stats() returns an associative array with three elements, keyed as follows:
- * <p>
  * <dl>
  * <dt>
  * <code>total</code></dt>
  * <dd>
- *
  * <p>
  * An integer indicating the total number of open links in
  * any state.
@@ -1863,9 +1868,7 @@ function mysqli_get_host_info (mysqli $mysql): string {}
  *
  * <dt>
  * <code>active_plinks</code></dt>
- *
  * <dd>
- *
  * <p>
  * An integer representing the number of active persistent
  * connections.
@@ -1873,10 +1876,8 @@ function mysqli_get_host_info (mysqli $mysql): string {}
  * </dd>
  *
  * <dt>
- * <code>cached_plinks</code>
- *
+ * <code>cached_plinks</code></dt>
  * <dd>
- *
  * <p>
  * An integer representing the number of inactive persistent
  * connections.
@@ -1884,7 +1885,6 @@ function mysqli_get_host_info (mysqli $mysql): string {}
  * </dd>
  *
  * </dl>
- * </p>
  * @since 5.6
  */
 function mysqli_get_links_stats(): array {}
@@ -2826,50 +2826,36 @@ define ('MYSQLI_NUM', 2);
 define ('MYSQLI_BOTH', 3);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_STMT_ATTR_UPDATE_MAX_LENGTH', 0);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_STMT_ATTR_CURSOR_TYPE', 1);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_CURSOR_TYPE_NO_CURSOR', 0);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_CURSOR_TYPE_READ_ONLY', 1);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_CURSOR_TYPE_FOR_UPDATE', 2);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_CURSOR_TYPE_SCROLLABLE', 4);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_STMT_ATTR_PREFETCH_ROWS', 2);
@@ -3217,8 +3203,6 @@ define ('MYSQLI_TYPE_NEWDECIMAL', 246);
 define ('MYSQLI_TYPE_BIT', 16);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_SET_CHARSET_NAME', 7);
@@ -3288,71 +3272,51 @@ define ('MYSQLI_REPORT_OFF', 0);
 define ('MYSQLI_DEBUG_TRACE_ENABLED', 0);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_SERVER_QUERY_NO_GOOD_INDEX_USED', 16);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_SERVER_QUERY_NO_INDEX_USED', 32);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_REFRESH_GRANT', 1);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_REFRESH_LOG', 2);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_REFRESH_TABLES', 4);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_REFRESH_HOSTS', 8);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_REFRESH_STATUS', 16);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_REFRESH_THREADS', 32);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_REFRESH_SLAVE', 64);
 
 /**
- * <p>
- * </p>
  * @link https://php.net/manual/en/mysqli.constants.php
  */
 define ('MYSQLI_REFRESH_MASTER', 128);

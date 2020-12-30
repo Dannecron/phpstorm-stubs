@@ -52,7 +52,7 @@ function ldap_exop_whoami ($ldap): string|bool
  * @return resource|bool When used with retdata, returns TRUE on success or FALSE on error. When used without retdata, returns a result identifier or FALSE on error.
  * @since 7.2
  */
-function ldap_exop ($ldap , string $request_oid , ?string $request_data , ?array $controls = [], &$response_data, &$response_oid)
+function ldap_exop ($ldap , string $request_oid , ?string $request_data , #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = [], &$response_data, &$response_oid)
 {}
 
 /**
@@ -115,7 +115,8 @@ function ldap_connect (?string $uri, int $port = 389)
 /**
  * Alias of <b>ldap_unbind</b>
  * @link https://php.net/manual/en/function.ldap-close.php
- * @param $ldap
+ * @param resource $ldap
+ * @return bool
  */
 function ldap_close ($ldap): bool {}
 
@@ -145,7 +146,7 @@ function ldap_bind ($ldap, ?string $dn, ?string $password): bool
  * @return resource|false
  * @since 7.3
  */
-function ldap_bind_ext ($ldap, ?string $dn, ?string $password, ?array $controls = [])
+function ldap_bind_ext ($ldap, ?string $dn, ?string $password, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = [])
 {}
 
 
@@ -234,11 +235,11 @@ function ldap_unbind ($ldap): bool
  * Specifies how aliases should be handled during the search. It can be
  * one of the following:
  * <b>LDAP_DEREF_NEVER</b> - (default) aliases are never
- * dereferenced.
+ * dereferenced.</p>
  * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return resource|false a search result identifier or <b>FALSE</b> on error.
  */
-function ldap_read ($ldap, array|string $base, array|string $filter, array $attributes, int $attributes_only, int $sizelimit, int $timelimit, int $deref, ?array $controls = [])
+function ldap_read ($ldap, array|string $base, array|string $filter, array $attributes, int $attributes_only, int $sizelimit, int $timelimit, int $deref, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = [])
 {}
 
 /**
@@ -293,11 +294,11 @@ function ldap_read ($ldap, array|string $base, array|string $filter, array $attr
  * Specifies how aliases should be handled during the search. It can be
  * one of the following:
  * <b>LDAP_DEREF_NEVER</b> - (default) aliases are never
- * dereferenced.
+ * dereferenced.</p>
  * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return resource|false a search result identifier or <b>FALSE</b> on error.
  */
-function ldap_list ($ldap, array|string $base, array|string $filter, array $attributes, int $attributes_only, int $sizelimit, int $timelimit, int $deref, ?array $controls = [])
+function ldap_list ($ldap, array|string $base, array|string $filter, array $attributes, int $attributes_only, int $sizelimit, int $timelimit, int $deref, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = [])
 {}
 
 /**
@@ -356,11 +357,11 @@ function ldap_list ($ldap, array|string $base, array|string $filter, array $attr
  * Specifies how aliases should be handled during the search. It can be
  * one of the following:
  * <b>LDAP_DEREF_NEVER</b> - (default) aliases are never
- * dereferenced.
+ * dereferenced.</p>
  * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return resource|false a search result identifier or <b>FALSE</b> on error.
  */
-function ldap_search ($ldap, array|string $base, array|string $filter, array $attributes, int $attributes_only, int $sizelimit, int $timelimit, int $deref, ?array $controls = [])
+function ldap_search ($ldap, array|string $base, array|string $filter, array $attributes, int $attributes_only, int $sizelimit, int $timelimit, int $deref, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = [])
 {}
 
 /**
@@ -588,7 +589,7 @@ function ldap_dn2ufn (string $dn): string|false
  * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_add ($ldap, string $dn, array $entry, ?array $controls = []): bool
+function ldap_add ($ldap, string $dn, array $entry, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = []): bool
 {}
 
 /**
@@ -616,7 +617,7 @@ function ldap_add ($ldap, string $dn, array $entry, ?array $controls = []): bool
  * @return resource|false
  * @since 7.3
  */
-function ldap_add_ext ($ldap, string $dn, array $entry, ?array $controls = [])
+function ldap_add_ext ($ldap, string $dn, array $entry, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = [])
 {}
 
 /**
@@ -631,7 +632,7 @@ function ldap_add_ext ($ldap, string $dn, array $entry, ?array $controls = [])
  * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_delete ($ldap, string $dn, ?array $controls = []): bool
+function ldap_delete ($ldap, string $dn, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = []): bool
 {}
 
 /**
@@ -648,7 +649,7 @@ function ldap_delete ($ldap, string $dn, ?array $controls = []): bool
  * @return resource|false
  * @since 7.3
  */
-function ldap_delete_ext ($ldap, string $dn, ?array $controls = [])
+function ldap_delete_ext ($ldap, string $dn, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = [])
 {}
 
 /**
@@ -666,7 +667,7 @@ function ldap_delete_ext ($ldap, string $dn, ?array $controls = [])
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  * @since 7.0
  */
-function ldap_modify ($ldap, string $dn, array $entry, ?array $controls = []): bool
+function ldap_modify ($ldap, string $dn, array $entry, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = []): bool
 {}
 
 /**
@@ -682,7 +683,7 @@ function ldap_modify ($ldap, string $dn, array $entry, ?array $controls = []): b
  * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_mod_add ($ldap, string $dn, array $entry, ?array $controls = []): bool
+function ldap_mod_add ($ldap, string $dn, array $entry, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = []): bool
 {}
 
 /**
@@ -700,7 +701,7 @@ function ldap_mod_add ($ldap, string $dn, array $entry, ?array $controls = []): 
  * @return resource|false
  * @since 7.3
  */
-function ldap_mod_add_ext ($ldap, string $dn, array $entry, ?array $controls = [])
+function ldap_mod_add_ext ($ldap, string $dn, array $entry, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = [])
 {}
 
 /**
@@ -716,7 +717,7 @@ function ldap_mod_add_ext ($ldap, string $dn, array $entry, ?array $controls = [
  * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_mod_replace ($ldap, string $dn, array $entry, ?array $controls = []): bool
+function ldap_mod_replace ($ldap, string $dn, array $entry, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = []): bool
 {}
 
 /**
@@ -734,7 +735,7 @@ function ldap_mod_replace ($ldap, string $dn, array $entry, ?array $controls = [
  * @return resource|false
  * @since 7.3
  */
-function ldap_mod_replace_ext ($ldap, string $dn, array $entry, ?array $controls = [])
+function ldap_mod_replace_ext ($ldap, string $dn, array $entry, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = [])
 {}
 
 /**
@@ -750,7 +751,7 @@ function ldap_mod_replace_ext ($ldap, string $dn, array $entry, ?array $controls
  * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_mod_del ($ldap, string $dn, array $entry, ?array $controls = []): bool
+function ldap_mod_del ($ldap, string $dn, array $entry, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = []): bool
 {}
 
 /**
@@ -768,7 +769,7 @@ function ldap_mod_del ($ldap, string $dn, array $entry, ?array $controls = []): 
  * @return resource|false
  * @since 7.3
  */
-function ldap_mod_del_ext ($ldap, string $dn, array $entry, ?array $controls = [])
+function ldap_mod_del_ext ($ldap, string $dn, array $entry, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = [])
 {}
 
 /**
@@ -824,7 +825,7 @@ function ldap_error ($ldap): string
  * @return int|bool <b>TRUE</b> if <i>value</i> matches otherwise returns
  * <b>FALSE</b>. Returns -1 on error.
  */
-function ldap_compare ($ldap, string $dn, string $attribute, string $value, ?array $controls = []): int|bool
+function ldap_compare ($ldap, string $dn, string $attribute, string $value, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = []): int|bool
 {}
 
 /**
@@ -869,7 +870,7 @@ function ldap_sort ($ldap, $result, string $sortfilter): bool
  * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  */
-function ldap_rename ($ldap, string $dn, string $new_rdn, string $new_parent, bool $delete_old_rdn, ?array $controls = []): bool
+function ldap_rename ($ldap, string $dn, string $new_rdn, string $new_parent, bool $delete_old_rdn, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = []): bool
 {}
 
 /**
@@ -896,7 +897,7 @@ function ldap_rename ($ldap, string $dn, string $new_rdn, string $new_parent, bo
  * @return resource|false
  * @since 7.3
  */
-function ldap_rename_ext ($ldap, string $dn, string $new_rdn, string $new_parent, bool $delete_old_rdn, ?array $controls = [])
+function ldap_rename_ext ($ldap, string $dn, string $new_rdn, string $new_parent, bool $delete_old_rdn, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = [])
 {}
 
 /**
@@ -1192,7 +1193,6 @@ function ldap_control_paged_result_response ($ldap, $result, &$cookie = null, &$
  * @return string
  * @since 5.6
  */
-
 function ldap_escape (string $value, string $ignore = "", int $flags = 0): string
 {}
 
@@ -1214,14 +1214,12 @@ function ldap_escape (string $value, string $ignore = "", int $flags = 0): strin
  * </p>
  * <p>
  * Possible values for <em>modtype</em> include:
- * </p><dl>
- *
+ * </p>
+ * <dl>
  *
  * <dt>
  * <b>LDAP_MODIFY_BATCH_ADD</b></dt>
- *
  * <dd>
- *
  * <p>
  * Each value specified through <em>values</em> is added (as
  * an additional value) to the attribute named by
@@ -1231,9 +1229,7 @@ function ldap_escape (string $value, string $ignore = "", int $flags = 0): strin
  *
  * <dt>
  * <b>LDAP_MODIFY_BATCH_REMOVE</b></dt>
- *
  * <dd>
- *
  * <p>
  * Each value specified through <em>values</em> is removed
  * from the attribute named by <em>attrib</em>. Any value of
@@ -1241,11 +1237,10 @@ function ldap_escape (string $value, string $ignore = "", int $flags = 0): strin
  * will remain untouched.
  * </p>
  * </dd>
+ *
  * <dt>
  * <b>LDAP_MODIFY_BATCH_REMOVE_ALL</b></dt>
- *
  * <dd>
- *
  * <p>
  * All values are removed from the attribute named by
  * <em>attrib</em>. A <em>values</em> entry must
@@ -1255,27 +1250,26 @@ function ldap_escape (string $value, string $ignore = "", int $flags = 0): strin
  *
  * <dt>
  * <b>LDAP_MODIFY_BATCH_REPLACE</b></dt>
- *
  * <dd>
- *
  * <p>
  * All current values of the attribute named by
  * <em>attrib</em> are replaced with the values specified
  * through <em>values</em>.
  * </p>
  * </dd>
+ *
  * </dl>
  * <p>
  * Note that any value for <em>attrib</em> must be a string, any
  * value for <em>values</em> must be an array of strings, and
  * any value for <em>modtype</em> must be one of the
  * <b>LDAP_MODIFY_BATCH_*</b> constants listed above.
- * </p></p>
+ * </p>
  * @param array|null $controls [optional] Array of LDAP Controls to send with the request.
  * @return bool <b>TRUE</b> on success or <b>FALSE</b> on failure.
  * @since 5.4
  */
-function ldap_modify_batch ($ldap , string $dn , array $modifications_info, ?array $controls = []): bool
+function ldap_modify_batch ($ldap , string $dn , array $modifications_info, #[LanguageLevelTypeAware(["8.0" => "null|array"], default: "array")] $controls = []): bool
 {}
 
 /**

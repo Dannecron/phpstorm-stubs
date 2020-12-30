@@ -398,7 +398,7 @@ function str_shuffle (string $string): string
  * format chosen.
  */
 #[Pure]
-function str_word_count (string $string, int $format, ?string $characters): array|int
+function str_word_count (string $string, int $format = 0, ?string $characters): array|int
 {}
 
 /**
@@ -410,7 +410,7 @@ function str_word_count (string $string, int $format, ?string $characters): arra
  * @param int $length [optional] <p>
  * Maximum length of the chunk.
  * </p>
- * @return string[]|false If the optional split_length parameter is
+ * @return string[]|false <p>If the optional split_length parameter is
  * specified, the returned array will be broken down into chunks with each
  * being split_length in length, otherwise each chunk
  * will be one character in length.
@@ -497,8 +497,8 @@ function strcoll (string $string1, string $string2): int
  * Formats a number as a currency string
  * @link https://php.net/manual/en/function.money-format.php
  * @param string $format <p>
- * The format specification consists of the following sequence:
- * <p>a % character</p>
+ * The format specification consists of the following sequence:<br>
+ * a % character</p>
  * @param float $number <p>
  * The number to be formatted.
  * </p>
@@ -584,13 +584,13 @@ function substr (string $string, int $offset, ?int $length)
 /**
  * Replace text within a portion of a string
  * @link https://php.net/manual/en/function.substr-replace.php
- * @param array|string $string <p>
+ * @param string[]|string $string <p>
  * The input string.
  * </p>
- * @param string|array $replace <p>
+ * @param string[]|string $replace <p>
  * The replacement string.
  * </p>
- * @param array|int $offset <p>
+ * @param int[]|int $offset <p>
  * If start is positive, the replacing will
  * begin at the start'th offset into
  * string.
@@ -600,7 +600,7 @@ function substr (string $string, int $offset, ?int $length)
  * begin at the start'th character from the
  * end of string.
  * </p>
- * @param int $length [optional] <p>
+ * @param int[]|int $length [optional] <p>
  * If given and is positive, it represents the length of the portion of
  * string which is to be replaced. If it is
  * negative, it represents the number of characters from the end of
@@ -663,6 +663,8 @@ function lcfirst (string $string): string
  * The input string.
  * </p>
  * @param string $separators [optional] <p>
+ * The optional separators contains the word separator characters.
+ * </p>
  * @return string the modified string.
  */
 #[Pure]
@@ -966,10 +968,9 @@ function ltrim (string $string, string $characters = " \t\n\r\0\x0B"): string
  * @param string $string <p>
  * The input string.
  * </p>
- * @param array|string $allowed_tags [optional] <p>
+ * @param string[]|string|null $allowed_tags [optional] <p>
  * You can use the optional second parameter to specify tags which should
- * not be stripped.<br/>
- * Since 7.4.0 alternatively accepts an array of allowed tags.
+ * not be stripped.
  * </p>
  * <p>
  * HTML comments and PHP tags are also stripped. This is hardcoded and
@@ -978,7 +979,7 @@ function ltrim (string $string, string $characters = " \t\n\r\0\x0B"): string
  * @return string the stripped string.
  */
 #[Pure]
-function strip_tags (string $string, array|string|null $allowed_tags = null): string
+function strip_tags (string $string, #[LanguageLevelTypeAware(["7.4" => "string[]|string|null"], default: "string|null")] $allowed_tags = null): string
 {}
 
 /**
@@ -1048,12 +1049,14 @@ function explode (string $separator, string $string, int $limit): array|bool
  * @return string a string containing a string representation of all the array
  * elements in the same order, with the glue string between each element.
  */
+//DO NOT UPDATE THIS SIGNATURE AND DO NOT ADD OTHER IMPLODE FUNCTIONS AS FUNCTION OVERLOADING IS NOT SUPPORTED
 #[Pure]
 function implode (array|string $separator = "", ?array $array): string
 {}
 
 /**
- * &Alias; <function>implode</function>
+ * Alias:
+ * {@see implode}
  * @link https://php.net/manual/en/function.join.php
  * @param array|string  $separator [optional] <p>
  * Defaults to an empty string. This is not the preferred usage of
@@ -1074,7 +1077,6 @@ function join (array|string  $separator = "", ?array $array): string
  * Set locale information
  * @link https://php.net/manual/en/function.setlocale.php
  * @param int $category <p>
- * <p>
  * <em>category</em> is a named constant specifying the
  * category of the functions affected by the locale setting:
  * </p><ul>
@@ -1096,7 +1098,7 @@ function join (array|string  $separator = "", ?array $array): string
  * <b>LC_NUMERIC</b> for decimal separator (See also
  * {@see localeconv()})
  * </li>
- *<li>
+ * <li>
  * <b>LC_TIME</b> for date and time formatting with
  * {@see strftime()}
  *
@@ -1125,7 +1127,7 @@ function join (array|string  $separator = "", ?array $array): string
  * for a possibly not available locale.
  * </p>
  * @param string ...$rest [optional]
- * @return string|false the new current locale, or false if the locale functionality is
+ * @return string|false <p>the new current locale, or false if the locale functionality is
  * not implemented on your platform, the specified locale does not exist or
  * the category name is invalid.
  * </p>
@@ -1138,7 +1140,7 @@ function join (array|string  $separator = "", ?array $array): string
  * <p>
  * The return value of setlocale depends
  * on the system that PHP is running. It returns exactly
- * what the system setlocale function returns.
+ * what the system setlocale function returns.</p>
  */
 function setlocale (int $category, array|string|int $locales, ...$rest): string|false
 {}

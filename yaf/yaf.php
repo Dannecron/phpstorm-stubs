@@ -727,7 +727,7 @@ final class Yaf_Registry {
      * @link https://secure.php.net/manual/en/yaf-registry.set.php
      *
      * @param string $name
-     * @param mixed $value
+     * @param string $value
      *
      * @return bool
      */
@@ -871,7 +871,7 @@ final class Yaf_Session implements Iterator, Traversable, ArrayAccess, Countable
     public function offsetUnset($name){ }
 
     /**
-     * @param mixed $name
+     * @param string $name
      * @see ArrayAccess::offsetGet
      * @return mixed
      */
@@ -884,6 +884,10 @@ final class Yaf_Session implements Iterator, Traversable, ArrayAccess, Countable
 
     /**
      * @see ArrayAccess::offsetSet
+     *
+     * @param string $name
+     * @param string $value
+     * @return void
      */
     public function offsetSet($name, $value){ }
 
@@ -1413,7 +1417,7 @@ abstract class Yaf_Request_Abstract {
      *
      * @link https://secure.php.net/manual/en/yaf-request-abstract.isxmlhttprequest.php
      *
-     * @return bool false
+     * @return bool
      */
     public function isXmlHttpRequest(){ }
 
@@ -1446,7 +1450,7 @@ abstract class Yaf_Request_Abstract {
      * @link https://secure.php.net/manual/en/yaf-request-abstract.getparam.php
      *
      * @param string $name
-     * @param mixed $default
+     * @param string $default
      *
      * @return mixed
      */
@@ -1892,7 +1896,7 @@ interface Yaf_Route_Interface {
     function route(Yaf_Request_Abstract $request);
 
     /**
-     * <p><b>Yaf_Route_Interface::assemble()</b> - assemble a request<br/>
+     * <p><b>Yaf_Route_Interface::assemble()</b> - assemble a request</p><br/>
      * <p>this method returns a url according to the argument info, and append query strings to the url according to the argument query.</p>
      * <p>a route should implement this method according to its own route rules, and do a reverse progress.</p>
      *
@@ -2462,7 +2466,7 @@ class Yaf_View_Simple implements Yaf_View_Interface {
      * "<?=$var?>" in your template(regardless of "short_open_tag"),
      * so comes a option named "short_tag",  you can switch this off
      * to prevent use short_tag in template.
-     *
+     * </p>
      * @throws Yaf_Exception_TypeError
      */
     final public function __construct($template_dir, array $options = null){ }
@@ -2607,7 +2611,7 @@ class Yaf_Route_Static implements Yaf_Route_Interface {
     public function route(Yaf_Request_Abstract $request){ }
 
     /**
-     * <p><b>Yaf_Route_Static::assemble()</b> - Assemble a url
+     * <p><b>Yaf_Route_Static::assemble()</b> - Assemble a url</p>
      *
      * @link https://secure.php.net/manual/en/yaf-route-static.assemble.php
      *
@@ -2667,7 +2671,7 @@ final class Yaf_Route_Simple implements Yaf_Route_Interface {
     public function route(Yaf_Request_Abstract $request){ }
 
     /**
-     * <p><b>Yaf_Route_Simple::assemble()</b> - Assemble a url
+     * <p><b>Yaf_Route_Simple::assemble()</b> - Assemble a url</p>
      *
      * @link https://secure.php.net/manual/en/yaf-route-simple.assemble.php
      *
@@ -2709,7 +2713,7 @@ final class Yaf_Route_Supervar implements Yaf_Route_Interface {
     public function route(Yaf_Request_Abstract $request){ }
 
     /**
-     * <p><b>Yaf_Route_Supervar::assemble()</b> - Assemble a url
+     * <p><b>Yaf_Route_Supervar::assemble()</b> - Assemble a url</p>
      *
      * @link https://secure.php.net/manual/en/yaf-route-supervar.assemble.php
      *
@@ -2764,7 +2768,7 @@ final class Yaf_Route_Rewrite extends Yaf_Router implements Yaf_Route_Interface 
     public function route(Yaf_Request_Abstract $request){ }
 
     /**
-     * <p><b>Yaf_Route_Rewrite::assemble()</b> - Assemble a url
+     * <p><b>Yaf_Route_Rewrite::assemble()</b> - Assemble a url</p>
      *
      * @link https://secure.php.net/manual/en/yaf-route-rewrite.assemble.php
      *
@@ -2830,7 +2834,7 @@ final class Yaf_Route_Regex extends Yaf_Router implements Yaf_Route_Interface {
     public function route(Yaf_Request_Abstract $request){ }
 
     /**
-     * <p><b>Yaf_Route_Regex::assemble()</b> - Assemble a url
+     * <p><b>Yaf_Route_Regex::assemble()</b> - Assemble a url</p>
      *
      * @link https://secure.php.net/manual/en/yaf-route-regex.assemble.php
      *
@@ -2877,7 +2881,7 @@ final class Yaf_Route_Map implements Yaf_Route_Interface {
     public function route(Yaf_Request_Abstract $request){ }
 
     /**
-     * <p><b>Yaf_Route_Map::assemble()</b> - Assemble a url
+     * <p><b>Yaf_Route_Map::assemble()</b> - Assemble a url</p>
      *
      * @link https://secure.php.net/manual/en/yaf-route-map.assemble.php
      *

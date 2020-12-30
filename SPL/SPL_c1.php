@@ -231,10 +231,8 @@ class SplFileInfo implements Stringable {
          * is read only.
          * </p>
          * @param bool $useIncludePath [optional] <p>
-         * &parameter.use_include_path;
          * </p>
          * @param resource $context [optional] <p>
-         * &parameter.context;
          * </p>
 	 * @return SplFileObject The opened file as an <b>SplFileObject</b> object.
          * @since 5.1.2
@@ -679,8 +677,9 @@ class SplFileObject extends SplFileInfo implements RecursiveIterator, SeekableIt
          * @param int $operation <p>
 	 * <i>operation</i> is one of the following:
 	 * <b>LOCK_SH</b> to acquire a shared lock (reader).
+         * </p>
          * @param int &$wouldBlock [optional] <p>
-         * Set to true if the lock would block (EWOULDBLOCK errno condition).
+         * Set to 1 if the lock would block (EWOULDBLOCK errno condition).
          * </p>
 	 * @return bool true on success or false on failure.
          */
@@ -756,7 +755,7 @@ class SplFileObject extends SplFileInfo implements RecursiveIterator, SeekableIt
          * @param string $format <p>
 	 * The specified format as described in the <b>sprintf</b> documentation.
          * </p>
-	 * @param mixed &$_ [optional] <p>
+	 * @param mixed &...$vars [optional] <p>
 	 * The optional assigned values.
 	 * </p>
 	 * @return array|int If only one parameter is passed to this method, the values parsed will be
@@ -764,7 +763,7 @@ class SplFileObject extends SplFileInfo implements RecursiveIterator, SeekableIt
          * function will return the number of assigned values. The optional
          * parameters must be passed by reference.
          */
-        public function fscanf ($format, & ...$vars) {}
+        public function fscanf ($format, &...$vars) {}
 
         /**
          * Write to file
@@ -1138,13 +1137,13 @@ class SplDoublyLinkedList implements Iterator, Countable, ArrayAccess, Serializa
          * @return array
          * @since 7.4
          */
-        public function __serialize(): array {}
+        public function __serialize() {}
 
         /**
          * @param array $data
          * @since 7.4
          */
-        public function __unserialize(array $data): void {}
+        public function __unserialize(array $data) {}
 
 }
 
@@ -1738,6 +1737,9 @@ class SplFixedArray implements Iterator, ArrayAccess, Countable, IteratorAggrega
     {
     }
 
+    /**
+     * @return Traversable
+     */
     public function getIterator() {}
 }
 
@@ -1996,6 +1998,7 @@ class SplObjectStorage implements Countable, Iterator, Serializable, ArrayAccess
          * @link https://php.net/manual/en/splobjectstorage.gethash.php
          * @param object $object  <p>
          * object whose identifier is to be calculated.
+         * </p>
          * @return string A string with the calculated identifier.
          * @since 5.4
         */
@@ -2005,13 +2008,13 @@ class SplObjectStorage implements Countable, Iterator, Serializable, ArrayAccess
          * @return array
          * @since 7.4
          */
-        public function __serialize(): array {}
+        public function __serialize() {}
 
         /**
          * @param array $data
          * @since 7.4
          */
-        public function __unserialize(array $data): void {}
+        public function __unserialize(array $data) {}
 
         /**
          * @return array

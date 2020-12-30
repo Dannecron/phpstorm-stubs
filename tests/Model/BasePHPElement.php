@@ -5,6 +5,8 @@ namespace StubTests\Model;
 
 use Exception;
 use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
+use JetBrains\PhpStorm\Internal\PhpStormStubsElementAvailable;
+use JetBrains\PhpStorm\Pure;
 use PhpParser\Node;
 use PhpParser\Node\Expr\Array_;
 use PhpParser\Node\Identifier;
@@ -24,6 +26,7 @@ abstract class BasePHPElement
     public bool $stubBelongsToCore = false;
     public ?Exception $parseError = null;
     public array $mutedProblems = [];
+    public ?string $sinceVersionFromAttribute = null;
 
     abstract public function readObjectFromReflection(Reflector $reflectionObject): static;
 
@@ -79,13 +82,13 @@ abstract class BasePHPElement
     protected static function getTypeNameFromNode(Name|Identifier|NullableType|string $type): string
     {
         $nullable = false;
-        if($type instanceof NullableType){
+        if ($type instanceof NullableType) {
             $type = $type->type;
             $nullable = true;
         }
         if (empty($type->name)) {
             if (!empty($type->parts)) {
-                return $nullable ? '?' . $type->parts[0] : $type->parts[0];
+                return $nullable ? '?' . implode('\\', $type->parts) : implode('\\', $type->parts);
             }
         } else {
             return $nullable ? '?' . $type->name : $type->name;
@@ -110,6 +113,28 @@ abstract class BasePHPElement
         return null;
     }
 
+    protected static function findSinceVersionFromAttribute(array $attrGroups): ?string
+    {
+        foreach ($attrGroups as $attrGroup) {
+            foreach ($attrGroup->attrs as $attr) {
+                if ($attr->name->toString() === PhpStormStubsElementAvailable::class) {
+                    $arg = $attr->args[0]->value;
+                    if ($arg instanceof Array_) {
+                        $value = $arg->items[0]->value;
+                        if ($value instanceof String_) {
+                            return $value->value;
+                        }
+                    } else {
+                        return $arg->value;
+                    }
+                }
+            }
+
+        }
+        return null;
+    }
+
+    #[Pure]
     public function hasMutedProblem(int $stubProblemType): bool
     {
         return in_array($stubProblemType, $this->mutedProblems, true);

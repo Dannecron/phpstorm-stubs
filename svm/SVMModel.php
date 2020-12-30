@@ -58,7 +58,7 @@ class SVMModel {
 	/**
 	 * Load a saved SVM Model
 	 * @param string $filename The filename of the model.
-	 * @return Returns true on success.
+	 * @return bool Returns true on success.
 	 * @throws SVMException
 	 * @link https://www.php.net/manual/en/svmmodel.load.php
 	 */
@@ -86,7 +86,7 @@ class SVMModel {
 	/**
 	 * Save a model to a file, for later use
 	 * @param string $filename The file to save the model to.
-	 * @return Throws SVMException on error. Returns true on success.
+	 * @return bool Throws SVMException on error. Returns true on success.
 	 * @throws SVMException Throws SVMException on error
 	 * @link https://www.php.net/manual/en/svmmodel.save.php
 	 */

@@ -2162,6 +2162,7 @@ class RedisCluster {
      * $redisCluster->pfAdd('key2', array('elem3', 'elem2'));
      * $redisCluster->pfCount('key1'); // int(2)
      * $redisCluster->pfCount(array('key1', 'key2')); // int(3)
+     * </pre>
      */
     public function pfCount($key) { }
 
@@ -2192,6 +2193,7 @@ class RedisCluster {
      * $redisCluster->pfAdd('key2', array('elem3', 'elem2'));
      * $redisCluster->pfMerge('key3', array('key1', 'key2'));
      * $redisCluster->pfCount('key3'); // int(3)
+     * </pre>
      */
     public function pfMerge($destKey, array $sourceKeys) { }
 
@@ -2439,7 +2441,7 @@ class RedisCluster {
      *
      * @param string $Output
      * @param array  $ZSetKeys
-     * @param array  $Weights
+     * @param null|array $Weights
      * @param string $aggregateFunction Either "SUM", "MIN", or "MAX": defines the behaviour to use on
      *                                  duplicate entries during the zUnion.
      *
@@ -2467,14 +2469,14 @@ class RedisCluster {
      * $redisCluster->zUnionStore('ko3', array('k1', 'k2'), array(5, 1)); // 4, 'ko3' => array('val0', 'val2', 'val3','val1')
      * </pre>
      */
-    public function zUnionStore($Output, $ZSetKeys, array $Weights = null, $aggregateFunction = 'SUM') { }
+    public function zUnionStore($Output, $ZSetKeys, ?array $Weights = null, $aggregateFunction = 'SUM') { }
 
     /**
      * Intersect multiple sorted sets and store the resulting sorted set in a new key
      *
      * @param   string $Output
      * @param   array  $ZSetKeys
-     * @param   array  $Weights
+     * @param   null|array $Weights
      * @param   string $aggregateFunction Either "SUM", "MIN", or "MAX":
      *                                    defines the behaviour to use on duplicate entries during the zInterStore.
      *

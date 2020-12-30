@@ -114,12 +114,12 @@ class Pool {
      * Allows the pool to collect references determined to be garbage by the
      * optionally given collector
      * @link https://secure.php.net/manual/en/pool.collect.php
-     * @param callable $collector [optional] <p>A Callable collector that returns a
+     * @param null|callable $collector [optional] <p>A Callable collector that returns a
      * boolean on whether the task can be collected or not. Only in rare cases should
      * a custom collector need to be used.</p>
      * @return int <p>The number of remaining tasks in the pool to be collected</p>
      */
-    public function collect( callable $collector = null ) {}
+    public function collect( ?callable $collector = null ) {}
 
     /**
      * (PECL pthreads &gt;= 2.0.0)<br/>
@@ -449,13 +449,13 @@ class Worker extends Thread implements Traversable, Countable, ArrayAccess {
      * Allows the worker to collect references determined to be garbage by the
      * optionally given collector
      * @link https://secure.php.net/manual/en/worker.collect.php
-     * @param callable $collector [optional] <p>A Callable collector that returns
+     * @param null|callable $collector [optional] <p>A Callable collector that returns
      * a boolean on whether the task can be collected or not. Only in rare cases
      * should a custom collector need to be used</p>
      * @return int <p>The number of remaining tasks on the worker's stack to be
      * collected</p>
      */
-    public function collect( callable $collector = null ) {}
+    public function collect( ?callable $collector = null ) {}
 
     /**
      * (PECL pthreads &gt;= 2.0.0)<br/>

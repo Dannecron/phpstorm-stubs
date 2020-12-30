@@ -19,6 +19,8 @@ trait PHPDocElement
      */
     public array $links = [];
 
+    public string $phpdoc = '';
+
     /**
      * @var See[]
      */
@@ -51,7 +53,9 @@ trait PHPDocElement
     protected function collectTags(Node $node): void{
         if ($node->getDocComment() !== null) {
             try {
-                $phpDoc = DocFactoryProvider::getDocFactory()->create($node->getDocComment()->getText());
+                $text = $node->getDocComment()->getText();
+                $this->phpdoc = $text;
+                $phpDoc = DocFactoryProvider::getDocFactory()->create($text);
                 $tags = $phpDoc->getTags();
                 foreach ($tags as $tag) {
                     $this->tagNames[] = $tag->getName();
@@ -63,7 +67,7 @@ trait PHPDocElement
                 $this->removedTags = $phpDoc->getTagsByName('removed');
                 $this->hasInternalMetaTag = $phpDoc->hasTag('meta');
                 $this->hasInheritDocTag = $phpDoc->hasTag('inheritdoc') || $phpDoc->hasTag('inheritDoc') ||
-                    stripos($phpDoc->getSummary(), "inheritdoc") > 0;
+                    stripos($phpDoc->getSummary(), 'inheritdoc') > 0;
             } catch (Exception $e) {
                 $this->parseError = $e;
             }

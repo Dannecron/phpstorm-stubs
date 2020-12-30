@@ -45,9 +45,9 @@ final class Channel{
 	 * Shall make an anonymous unbuffered channel
 	 * Shall make an anonymous buffered channel with the given capacity
 	 *
-	 * @param int $capacity May be Channel::Infinite or a positive integer
+	 * @param null|int $capacity May be Channel::Infinite or a positive integer
 	 */
-	public function __construct(int $capacity = null){}
+	public function __construct(?int $capacity = null){}
 
 	/* Access */
 
@@ -56,13 +56,13 @@ final class Channel{
 	 * Shall make a buffered channel with the given name and capacity
 	 *
 	 * @param string $name     The name of the channel.
-	 * @param int    $capacity May be Channel::Infinite or a positive integer
+	 * @param null|int $capacity May be Channel::Infinite or a positive integer
 	 *
 	 * @return Channel
 	 *
 	 * @throws Channel\Error\Existence if channel already exists.
 	 */
-	public static function make(string $name, int $capacity = null) : Channel{}
+	public static function make(string $name, ?int $capacity = null) : Channel{}
 
 	/**
 	 * Shall open the channel with the given name
@@ -92,6 +92,7 @@ final class Channel{
 	 * @throws Channel\Error\Closed if channel is closed.
 	 */
 	public function recv(){}
+
 	/* Closing */
 
 	/**

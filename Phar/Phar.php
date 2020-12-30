@@ -1,6 +1,8 @@
 <?php
 // Start of Phar v.2.0.1
 
+use JetBrains\PhpStorm\ArrayShape;
+
 /**
  * The PharException class provides a phar-specific exception class
  * for try/catch blocks.
@@ -349,6 +351,10 @@ class Phar extends RecursiveDirectoryIterator implements RecursiveIterator, Seek
 	 * phar.require_hash INI variable
 	 * is set to true.
 	 */
+	#[ArrayShape([
+		"hash" => "string",
+		"hash_type" => "string",
+	])]
 	public function getSignature () {}
 
 	/**
@@ -601,8 +607,8 @@ class Phar extends RecursiveDirectoryIterator implements RecursiveIterator, Seek
 	 * (PHP &gt;= 5.3.0, PECL phar &gt;= 1.2.0)<br/>
 	 * Return array of supported compression algorithms
 	 * @link https://php.net/manual/en/phar.getsupportedcompression.php
-	 * @return array an array containing any of Phar::GZ or
-	 * Phar::BZ2, depending on the availability of
+	 * @return string[] an array containing any of "GZ" or
+	 * "BZ2", depending on the availability of
 	 * the zlib extension or the
 	 * bz2 extension.
 	 */
@@ -612,8 +618,8 @@ class Phar extends RecursiveDirectoryIterator implements RecursiveIterator, Seek
 	 * (PHP &gt;= 5.3.0, PECL phar &gt;= 1.1.0)<br/>
 	 * Return array of supported signature types
 	 * @link https://php.net/manual/en/phar.getsupportedsignatures.php
-	 * @return array an array containing any of MD5, SHA-1,
-	 * SHA-256, SHA-512, or OpenSSL.
+	 * @return string[] an array containing any of "MD5", "SHA-1",
+	 * "SHA-256", "SHA-512", or "OpenSSL".
 	 */
 	final public static function getSupportedSignatures () {}
 
@@ -729,18 +735,18 @@ class Phar extends RecursiveDirectoryIterator implements RecursiveIterator, Seek
 	 * (PHP &gt;= 5.3.0, PECL phar &gt;= 2.0.0)<br/>
 	 * mapPhar for web-based phars. front controller for web applications
 	 * @link https://php.net/manual/en/phar.webphar.php
-	 * @param string $alias [optional] <p>
+	 * @param null|string $alias [optional] <p>
 	 * The alias that can be used in phar:// URLs to
 	 * refer to this archive, rather than its full path.
 	 * </p>
 	 * @param string $index [optional] <p>
 	 * The location within the phar of the directory index.
 	 * </p>
-	 * @param string $fileNotFoundScript [optional] <p>
+	 * @param null|string $fileNotFoundScript [optional] <p>
 	 * The location of the script to run when a file is not found. This
 	 * script should output the proper HTTP 404 headers.
 	 * </p>
-	 * @param array $mimeTypes [optional] <p>
+	 * @param null|array $mimeTypes [optional] <p>
 	 * An array mapping additional file extensions to MIME type.
 	 * If the default mapping is sufficient, pass an empty array.
 	 * By default, these extensions are mapped to these MIME types:
@@ -789,7 +795,7 @@ class Phar extends RecursiveDirectoryIterator implements RecursiveIterator, Seek
 	 * );
 	 * </code>
 	 * </p>
-	 * @param callable $rewrite [optional] <p>
+	 * @param null|callable $rewrite [optional] <p>
 	 * The rewrites function is passed a string as its only parameter and must return a string or <b>FALSE</b>.
 	 * </p>
 	 * <p>
@@ -803,7 +809,7 @@ class Phar extends RecursiveDirectoryIterator implements RecursiveIterator, Seek
 	 * </p>
 	 * @return void No value is returned.
 	 */
-	final public static function webPhar ($alias = null, $index = "index.php", $fileNotFoundScript = null, array $mimeTypes = null, callable $rewrite = null) {}
+	final public static function webPhar ($alias = null, $index = "index.php", $fileNotFoundScript = null, ?array $mimeTypes = null, ?callable $rewrite = null) {}
 
 	/**
 	 * Returns whether current entry is a directory and not '.' or '..'
@@ -907,8 +913,16 @@ class PharData extends Phar {
 	 */
 	public function __construct ($filename, $flags = null, $alias = null, $format = Phar::TAR) {}
 
+	/**
+	 * @param string $localName
+	 * @return bool
+	 */
 	public function offsetExists ($localName) {}
 
+	/**
+	 * @param string $localName
+	 * @return string
+	 */
 	public function offsetGet ($localName) {}
 
 	/**

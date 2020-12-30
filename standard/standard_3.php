@@ -739,6 +739,9 @@ function fmod(float $num1, float $num2): float
  * Performs a floating-point division under
  * IEEE 754 semantics. Division by zero is considered well-defined and
  * will return one of Inf, -Inf or NaN.
+ * @param float $num1
+ * @param float $num2
+ * @return float
  * @since 8.0
  */
 #[Pure]
@@ -1015,7 +1018,8 @@ function get_cfg_var (string $option): array|string|false
 {}
 
 /**
- * &Alias; <function>set_magic_quotes_runtime</function>
+ * Alias:
+ * {@see set_magic_quotes_runtime}
  * @link https://php.net/manual/en/function.magic-quotes-runtime.php
  * @param bool $new_setting
  * @removed 7.0

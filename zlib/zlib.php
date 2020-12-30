@@ -228,6 +228,7 @@ function gzwrite ($stream, string $data, ?int $length): int|false
  * @param resource $stream
  * @param string $data
  * @param int|null $length [optional]
+ * @return int|false
  */
 function gzputs ($stream, string $data, ?int $length): int|false {}
 
@@ -276,11 +277,11 @@ function gzcompress (string $data, int $level = -1, int $encoding = ZLIB_ENCODIN
  * The maximum length of data to decode.
  * </p>
  * @return string|false The original uncompressed data or <b>FALSE</b> on error.
- * </p>
  * <p>
  * The function will return an error if the uncompressed data is more than
  * 32768 times the length of the compressed input <i>data</i>
  * or more than the optional parameter <i>length</i>.
+ * </p>
  */
 #[Pure]
 function gzuncompress (string $data, int $max_length = 0): string|false {}
@@ -314,11 +315,11 @@ function gzdeflate (string $data, int $level = -1, int $encoding = ZLIB_ENCODING
  * The maximum length of data to decode.
  * </p>
  * @return string|false The original uncompressed data or <b>FALSE</b> on error.
- * </p>
  * <p>
  * The function will return an error if the uncompressed data is more than
  * 32768 times the length of the compressed input <i>data</i>
  * or more than the optional parameter <i>length</i>.
+ * </p>
  */
 #[Pure]
 function gzinflate (string $data, int $max_length = 0): string|false {}

@@ -372,12 +372,13 @@ function ob_get_contents (): string|false
 /**
  * Turn implicit flush on/off
  * @link https://php.net/manual/en/function.ob-implicit-flush.php
- * @param bool $enable [optional] <p>
- * true to turn implicit flushing on, false otherwise.
+ * @param int|bool $enable [optional] <p>
+ * 1|<b>TRUE</b> to turn implicit flushing on, 0|<b>FALSE</b> turns it off.
+ * <br><br>default: 1|<b>TRUE</b>
  * </p>
  * @return void
  */
-function ob_implicit_flush (bool $enable = true): void {}
+function ob_implicit_flush (#[LanguageLevelTypeAware(["8.0" => "bool"], default: "int")] $enable): void {}
 
 /**
  * List all output handlers in use
@@ -485,12 +486,12 @@ function arsort (array &$array, int $flags): bool
  * </p>
  * @param int $flags [optional] <p>
  * The optional second parameter sort_flags
- * may be used to modify the sorting behavior using these values:
+ * may be used to modify the sorting behavior using these values.
  * </p>
  * <p>
- * Sorting type flags:
+ * Sorting type flags:<br>
  * SORT_REGULAR - compare items normally
- * (don't change types)
+ * (don't change types)</p>
  * @return bool true on success or false on failure.
  */
 function sort (array &$array, int $flags): bool
@@ -644,7 +645,7 @@ function array_walk_recursive (object|array &$array, callable $callback, mixed $
  * Counts all elements in an array, or something in an object.
  * <p>For objects, if you have SPL installed, you can hook into count() by implementing interface {@see Countable}.
  * The interface has exactly one method, {@see Countable::count()}, which returns the return value for the count() function.
- * Please see the {@see Array} section of the manual for a detailed explanation of how arrays are implemented and used in PHP.
+ * Please see the {@see Array} section of the manual for a detailed explanation of how arrays are implemented and used in PHP.</p>
  * @link https://php.net/manual/en/function.count.php
  * @param array|Countable $value The array or the object.
  * @param int $mode [optional] If the optional mode parameter is set to
@@ -654,7 +655,6 @@ function array_walk_recursive (object|array &$array, callable $callback, mixed $
  * @return int the number of elements in var, which is
  * typically an array, since anything else will have one
  * element.
- * </p>
  * <p>
  * If var is not an array or an object with
  * implemented Countable interface,
@@ -666,6 +666,7 @@ function array_walk_recursive (object|array &$array, callable $callback, mixed $
  * Caution: count may return 0 for a variable that isn't set,
  * but it may also return 0 for a variable that has been initialized with an
  * empty array. Use isset to test if a variable is set.
+ * </p>
  */
 #[Pure]
 function count (Countable|array $value, int $mode = COUNT_NORMAL): int
@@ -674,7 +675,7 @@ function count (Countable|array $value, int $mode = COUNT_NORMAL): int
 /**
  * Set the internal pointer of an array to its last element
  * @link https://php.net/manual/en/function.end.php
- * @param ArrayAccess|array &$array <p>
+ * @param array|ArrayAccess &$array <p>
  * The array. This array is passed by reference because it is modified by
  * the function. This means you must pass it a real variable and not
  * a function returning an array because only actual variables may be
@@ -688,7 +689,7 @@ function end (object|array &$array): mixed {}
 /**
  * Rewind the internal array pointer
  * @link https://php.net/manual/en/function.prev.php
- * @param ArrayAccess|array &$array <p>
+ * @param array|ArrayAccess &$array <p>
  * The input array.
  * </p>
  * @return mixed the array value in the previous place that's pointed to by
@@ -701,7 +702,7 @@ function prev (object|array &$array): mixed {}
 /**
  * Advance the internal array pointer of an array
  * @link https://php.net/manual/en/function.next.php
- * @param ArrayAccess|array &$array <p>
+ * @param array|ArrayAccess &$array <p>
  * The array being affected.
  * </p>
  * @return mixed the array value in the next place that's pointed to by the
@@ -713,7 +714,7 @@ function next (object|array &$array): mixed {}
 /**
  * Set the internal pointer of an array to its first element
  * @link https://php.net/manual/en/function.reset.php
- * @param ArrayAccess|array &$array <p>
+ * @param array|ArrayAccess &$array <p>
  * The input array.
  * </p>
  * @return mixed the value of the first array element, or false if the array is
@@ -725,7 +726,7 @@ function reset (object|array &$array): mixed {}
 /**
  * Return the current element in an array
  * @link https://php.net/manual/en/function.current.php
- * @param ArrayAccess|array $array <p>
+ * @param array|ArrayAccess $array <p>
  * The array.
  * </p>
  * @return mixed The current function simply returns the
@@ -741,7 +742,7 @@ function current (object|array $array): mixed {}
 /**
  * Fetch a key from an array
  * @link https://php.net/manual/en/function.key.php
- * @param ArrayAccess|array $array <p>
+ * @param array|ArrayAccess $array <p>
  * The array.
  * </p>
  * @return int|string|null The key function simply returns the
@@ -839,7 +840,7 @@ function array_search (mixed $needle, array $haystack, bool $strict): string|int
 /**
  * Import variables into the current symbol table from an array
  * @link https://php.net/manual/en/function.extract.php
- * @param array $array<p>
+ * @param array &$array<p>
  * Note that prefix is only required if
  * extract_type is EXTR_PREFIX_SAME,
  * EXTR_PREFIX_ALL, EXTR_PREFIX_INVALID
@@ -853,16 +854,16 @@ function array_search (mixed $needle, array $haystack, bool $strict): string|int
  * by the extract_type. It can be one of the
  * following values:
  * EXTR_OVERWRITE
- * If there is a collision, overwrite the existing variable.
- * @param string $prefix [optional] Only overwrite the variable if it already exists in the
+ * If there is a collision, overwrite the existing variable.</p>
+ * @param string $prefix [optional] <p>Only overwrite the variable if it already exists in the
  * current symbol table, otherwise do nothing. This is useful
  * for defining a list of valid variables and then extracting
  * only those variables you have defined out of
- * $_REQUEST, for example.
+ * $_REQUEST, for example.</p>
  * @return int the number of variables successfully imported into the symbol
  * table.
  */
-function extract (array $array, int $flags, string $prefix): int
+function extract (array &$array, int $flags, string $prefix): int
 {}
 
 /**
@@ -942,17 +943,17 @@ function range ($start, $end, int|float $step = 1): array
 /**
  * Sort multiple or multi-dimensional arrays
  * @link https://php.net/manual/en/function.array-multisort.php
- * @param array $array <p>
+ * @param array &$array <p>
  * An array being sorted.
  * </p>
- * @param  ...$rest [optional] <p>
+ * @param  &...$rest [optional] <p>
  * More arrays, optionally followed by sort order and flags.
  * Only elements corresponding to equivalent elements in previous arrays are compared.
  * In other words, the sort is lexicographical.
  * </p>
  * @return bool true on success or false on failure.
  */
-function array_multisort ($array, ...$rest): bool
+function array_multisort (&$array, &...$rest): bool
 {}
 
 

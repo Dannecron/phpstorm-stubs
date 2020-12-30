@@ -3,6 +3,7 @@
 // Start of openssl v.
 use JetBrains\PhpStorm\Deprecated;
 use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
+use JetBrains\PhpStorm\Internal\PhpStormStubsElementAvailable;
 
 /**
  * Frees a private key
@@ -28,13 +29,13 @@ function openssl_pkey_free(#[LanguageLevelTypeAware(["8.0" => "OpenSSLAsymmetric
  * error.
  */
 #[LanguageLevelTypeAware(["8.0" => "OpenSSLAsymmetricKey|false"], default: "resource|false")]
-function openssl_pkey_new(?array $options): bool
+function openssl_pkey_new(?array $options)
 { }
 
 /**
  * Gets an exportable representation of a key into a string
  * @link https://php.net/manual/en/function.openssl-pkey-export.php
- * @param mixed $key
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $key
  * @param string &$output
  * @param string|null $passphrase [optional] <p>
  * The key is optionally protected by <i>passphrase</i>.
@@ -53,7 +54,7 @@ function openssl_pkey_export($key, &$output, ?string $passphrase, ?array $option
 /**
  * Gets an exportable representation of a key into a file
  * @link https://php.net/manual/en/function.openssl-pkey-export-to-file.php
- * @param mixed $key
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $key
  * @param string $output_filename <p>
  * Path to the output file.
  * </p>
@@ -75,7 +76,7 @@ function openssl_pkey_export_to_file($key, string $output_filename, ?string $pas
 /**
  * Get a private key
  * @link https://php.net/manual/en/function.openssl-pkey-get-private.php
- * @param $private_key
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $private_key
  * <p>
  * <b><em>key</em></b> can be one of the following:
  * <ol>
@@ -92,26 +93,25 @@ function openssl_pkey_export_to_file($key, string $output_filename, ?string $pas
  * @return OpenSSLAsymmetricKey|resource|false Returns a positive key resource identifier on success, or <b>FALSE</b> on error.
  */
 #[LanguageLevelTypeAware(["8.0" => "OpenSSLAsymmetricKey|false"], default: "resource|false")]
-function openssl_pkey_get_private($private_key, ?string $passphrase = ""): bool
+function openssl_pkey_get_private($private_key, ?string $passphrase = "")
 { }
 
 /**
  * Extract public key from certificate and prepare it for use
  * @link https://php.net/manual/en/function.openssl-pkey-get-public.php
- * @param mixed $public_key <p><em><b>certificate</b></em> can be one of the following:
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $public_key <p><em><b>certificate</b></em> can be one of the following:
  * <ol>
  * <li>an X.509 certificate resource</li>
  * <li>a string having the format
  * <var>file://path/to/file.pem</var>. The named file must
  * contain a PEM encoded certificate/public key (it may contain both).
- * </span>
  * </li>
  * <li>A PEM formatted public key.</li>
  * </ol></p>
  * @return OpenSSLAsymmetricKey|resource|false a positive key resource identifier on success, or false on error.
  */
 #[LanguageLevelTypeAware(["8.0" => "OpenSSLAsymmetricKey|false"], default: "resource|false")]
-function openssl_pkey_get_public($public_key): bool
+function openssl_pkey_get_public($public_key)
 { }
 
 /**
@@ -148,7 +148,7 @@ function openssl_free_key(#[LanguageLevelTypeAware(["8.0" => "OpenSSLAsymmetricK
 /**
  * Alias of <b>openssl_pkey_get_private</b>
  * @link https://php.net/manual/en/function.openssl-get-privatekey.php
- * @param $private_key
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $private_key
  * <p>
  * <b><em>key</em></b> can be one of the following:
  * <ol>
@@ -165,27 +165,26 @@ function openssl_free_key(#[LanguageLevelTypeAware(["8.0" => "OpenSSLAsymmetricK
  * @return OpenSSLAsymmetricKey|resource|false Returns a positive key resource identifier on success, or <b>FALSE</b> on error.
  */
 #[LanguageLevelTypeAware(["8.0" => "OpenSSLAsymmetricKey|false"], default: "resource|false")]
-function openssl_get_privatekey($private_key, ?string $passphrase): bool
+function openssl_get_privatekey($private_key, ?string $passphrase)
 { }
 
 /**
  * Alias of <b>openssl_pkey_get_public</b>
  * @link https://php.net/manual/en/function.openssl-get-publickey.php
- * @param mixed $public_key <p>
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $public_key <p>
  * <em><b>certificate</b></em> can be one of the following:
  * <ol>
  * <li>an X.509 certificate resource</li>
  * <li>a string having the format
  * <var>file://path/to/file.pem</var>. The named file must
  * contain a PEM encoded certificate/public key (it may contain both).
- * </span>
  * </li>
  * <li>A PEM formatted public key.</li>
- * </ol> </p>
+ * </ol></p>
  * @return OpenSSLAsymmetricKey|false a positive key resource identifier on success, or FALSE on error.
  */
 #[LanguageLevelTypeAware(["8.0" => "OpenSSLAsymmetricKey|false"], default: "resource|false")]
-function openssl_get_publickey($public_key): bool
+function openssl_get_publickey($public_key)
 { }
 
 /**
@@ -259,7 +258,7 @@ function openssl_x509_fingerprint(#[LanguageLevelTypeAware(["8.0" => "OpenSSLCer
 /**
  * Free certificate resource
  * @link https://php.net/manual/en/function.openssl-x509-free.php
- * @param OpenSSLCertificate $certificateopenssl_x509_parse
+ * @param OpenSSLCertificate|resource|string $certificate
  * @return void
  */
 #[Deprecated(since: '8.0')]
@@ -350,7 +349,7 @@ function openssl_x509_checkpurpose(#[LanguageLevelTypeAware(["8.0" => "OpenSSLCe
  * @param OpenSSLCertificate|string|resource $certificate <p>
  * The certificate.
  * </p>
- * @param mixed $private_key <p>
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $private_key <p>
  * The private key.
  * </p>
  * @return bool true if <i>key</i> is the private key that
@@ -366,7 +365,7 @@ function openssl_x509_check_private_key(#[LanguageLevelTypeAware(["8.0" => "Open
  * @param string &$output <p>
  * On success, this will hold the PEM.
  * </p>
- * @param bool $no_text [optional] &note.openssl.param-notext;
+ * @param bool $no_text [optional]
  * @return bool true on success or false on failure.
  */
 function openssl_x509_export(#[LanguageLevelTypeAware(["8.0" => "OpenSSLCertificate|string"], default: "resource|string")] $certificate, &$output, bool $no_text = true): bool
@@ -379,7 +378,7 @@ function openssl_x509_export(#[LanguageLevelTypeAware(["8.0" => "OpenSSLCertific
  * @param string $output_filename <p>
  * Path to the output file.
  * </p>
- * @param bool $no_text [optional] &note.openssl.param-notext;
+ * @param bool $no_text [optional]
  * @return bool true on success or false on failure.
  */
 function openssl_x509_export_to_file(#[LanguageLevelTypeAware(["8.0" => "OpenSSLCertificate|string"], default: "resource|string")] $certificate, string $output_filename, bool $no_text = true): bool
@@ -389,7 +388,7 @@ function openssl_x509_export_to_file(#[LanguageLevelTypeAware(["8.0" => "OpenSSL
  * Verifies digital signature of x509 certificate against a public key
  * @link https://www.php.net/manual/en/function.openssl-x509-verify.php
  * @param OpenSSLCertificate|string|resource $certificate
- * @param mixed $public_key
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $public_key
  * @return int Returns 1 if the signature is correct, 0 if it is incorrect, and -1 on error.
  * @since 7.4
  */
@@ -402,7 +401,7 @@ function openssl_x509_verify(#[LanguageLevelTypeAware(["8.0" => "OpenSSLCertific
  * @param string &$output <p>
  * On success, this will hold the PKCS#12.
  * </p>
- * @param mixed $private_key <p>
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $private_key <p>
  * Private key component of PKCS#12 file.
  * </p>
  * @param string $passphrase <p>
@@ -422,7 +421,7 @@ function openssl_pkcs12_export(#[LanguageLevelTypeAware(["8.0" => "OpenSSLCertif
  * @param string $output_filename <p>
  * Path to the output file.
  * </p>
- * @param mixed $private_key <p>
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $private_key <p>
  * Private key component of PKCS#12 file.
  * </p>
  * @param string $passphrase <p>
@@ -457,7 +456,7 @@ function openssl_pkcs12_read(string $pkcs12, &$certificates, string $passphrase)
  * @param array $distinguished_names <p>
  * The Distinguished Name to be used in the certificate.
  * </p>
- * @param resource &$private_key <p>
+ * @param OpenSSLAsymmetricKey &$private_key <p>
  * <i>privkey</i> should be set to a private key that was
  * previously generated by <b>openssl_pkey_new</b> (or
  * otherwise obtained from the other openssl_pkey family of functions).
@@ -542,7 +541,7 @@ function openssl_pkcs12_read(string $pkcs12, &$certificates, string $passphrase)
  * <i>extraattribs</i> are associative arrays whose keys are
  * converted to OIDs and applied to the relevant part of the request.
  * </p>
- * @return OpenSSLCertificateSigningRequest|false|resource the CSR.
+ * @return OpenSSLCertificateSigningRequest|resource|false the CSR.
  */
 #[LanguageLevelTypeAware(["8.0" => "OpenSSLCertificateSigningRequest|false"], default: "resource|false")]
 function openssl_csr_new(array $distinguished_names, &$private_key, ?array $options, ?array $extra_attributes)
@@ -553,7 +552,7 @@ function openssl_csr_new(array $distinguished_names, &$private_key, ?array $opti
  * @link https://php.net/manual/en/function.openssl-csr-export.php
  * @param OpenSSLCertificateSigningRequest|string|resource $csr
  * @param string &$output
- * @param bool $no_text [optional] &note.openssl.param-notext;
+ * @param bool $no_text [optional]
  * @return bool true on success or false on failure.
  */
 function openssl_csr_export(#[LanguageLevelTypeAware(["8.0" => "OpenSSLCertificateSigningRequest|string"], default: "resource|string")] $csr, &$output, bool $no_text = true): bool
@@ -566,7 +565,7 @@ function openssl_csr_export(#[LanguageLevelTypeAware(["8.0" => "OpenSSLCertifica
  * @param string $output_filename <p>
  * Path to the output file.
  * </p>
- * @param bool $no_text [optional] &note.openssl.param-notext;
+ * @param bool $no_text [optional]
  * @return bool true on success or false on failure.
  */
 function openssl_csr_export_to_file(#[LanguageLevelTypeAware(["8.0" => "OpenSSLCertificateSigningRequest|string"], default: "resource|string")] $csr, string $output_filename, bool $no_text = true): bool
@@ -586,7 +585,7 @@ function openssl_csr_export_to_file(#[LanguageLevelTypeAware(["8.0" => "OpenSSLC
  * If <i>cacert</i> is null, the generated certificate
  * will be a self-signed certificate.
  * </p>
- * @param mixed $private_key <p>
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $private_key <p>
  * <i>priv_key</i> is the private key that corresponds to
  * <i>cacert</i>.
  * </p>
@@ -725,7 +724,7 @@ function openssl_cipher_iv_length(string $cipher_algo): int|false
  * If the call was successful the signature is returned in
  * <i>signature</i>.
  * </p>
- * @param mixed $private_key
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $private_key
  * @param string|int $algorithm [optional] <p>
  * For more information see the list of Signature Algorithms.
  * </p>
@@ -739,7 +738,7 @@ function openssl_sign(string $data, &$signature, $private_key, string|int $algor
  * @link https://php.net/manual/en/function.openssl-verify.php
  * @param string $data
  * @param string $signature
- * @param mixed $public_key
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $public_key
  * @param string|int $algorithm [optional] <p>
  * For more information see the list of Signature Algorithms.
  * </p>
@@ -775,7 +774,7 @@ function openssl_seal(string $data, &$sealed_data, &$encrypted_keys, array $publ
  * parameter.
  * </p>
  * @param string $encrypted_key
- * @param mixed $private_key
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $private_key
  * @param string $cipher_algo [optional] The cipher method.
  * @param string|null $iv [optional] The initialization vector.
  * @return bool true on success or false on failure.
@@ -845,7 +844,7 @@ function openssl_pkcs7_verify(string $input_filename, int $flags, ?string $signe
  * <i>outfilename</i>.
  * </p>
  * @param OpenSSLCertificate|string|resource $certificate
- * @param mixed $private_key [optional]
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string|null $private_key [optional]
  * @return bool true on success or false on failure.
  */
 function openssl_pkcs7_decrypt(string $input_filename, string $output_filename, $certificate, $private_key): bool
@@ -857,7 +856,7 @@ function openssl_pkcs7_decrypt(string $input_filename, string $output_filename, 
  * @param string $input_filename
  * @param string $output_filename
  * @param OpenSSLCertificate|string|resource $certificate
- * @param mixed $private_key
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $private_key
  * @param array|null $headers <p>
  * <i>headers</i> is an array of headers that
  * will be prepended to the data after it has been signed (see
@@ -912,7 +911,7 @@ function openssl_pkcs7_encrypt(string $input_filename, string $output_filename, 
  * @link https://php.net/manual/en/function.openssl-private-encrypt.php
  * @param string $data
  * @param string &$encrypted_data
- * @param mixed $private_key
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $private_key
  * @param int $padding [optional] <p>
  * <i>padding</i> can be one of
  * <b>OPENSSL_PKCS1_PADDING</b>,
@@ -928,7 +927,7 @@ function openssl_private_encrypt(string $data, &$encrypted_data, $private_key, i
  * @link https://php.net/manual/en/function.openssl-private-decrypt.php
  * @param string $data
  * @param string &$decrypted_data
- * @param mixed $private_key <p>
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $private_key <p>
  * <i>key</i> must be the private key corresponding that
  * was used to encrypt the data.
  * </p>
@@ -951,7 +950,7 @@ function openssl_private_decrypt(string $data, &$decrypted_data, $private_key, i
  * @param string &$encrypted_data <p>
  * This will hold the result of the encryption.
  * </p>
- * @param mixed $public_key <p>
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $public_key <p>
  * The public key.
  * </p>
  * @param int $padding [optional] <p>
@@ -971,7 +970,7 @@ function openssl_public_encrypt(string $data, &$encrypted_data, $public_key, int
  * @link https://php.net/manual/en/function.openssl-public-decrypt.php
  * @param string $data
  * @param string &$decrypted_data
- * @param mixed $public_key <p>
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $public_key <p>
  * <i>key</i> must be the public key corresponding that
  * was used to encrypt the data.
  * </p>
@@ -1025,9 +1024,10 @@ function openssl_dh_compute_key(string $public_key, #[LanguageLevelTypeAware(["8
 { }
 
 /**
- * @param $public_key
- * @param $private_key
- * @param $key_length
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $public_key
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $private_key
+ * @param int $key_length
+ * @return string|false
  * @since 7.3
  */
 function openssl_pkey_derive($public_key, $private_key, int $key_length): string|false {}
@@ -1035,7 +1035,7 @@ function openssl_pkey_derive($public_key, $private_key, int $key_length): string
 /**
  * Generates a string of pseudo-random bytes, with the number of bytes determined by the length parameter.
  * <p>It also indicates if a cryptographically strong algorithm was used to produce the pseudo-random bytes,
- * and does this via the optional crypto_strong parameter. It's rare for this to be FALSE, but some systems may be broken or old.
+ * and does this via the optional crypto_strong parameter. It's rare for this to be FALSE, but some systems may be broken or old.</p>
  * @link https://php.net/manual/en/function.openssl-random-pseudo-bytes.php
  * @param int $length <p>
  * The length of the desired string of bytes. Must be a positive integer. PHP will
@@ -1099,7 +1099,14 @@ function openssl_cms_verify(string $input_filename, int $flags = 0, ?string $cer
 
 /**
  * Encrypts the message in the file with the certificates and outputs the result to the supplied file.
+ * @param string $input_filename
+ * @param string $output_filename
  * @param resource|string|array $certificate
+ * @param null|array $headers
+ * @param int $flags
+ * @param int $encoding
+ * @param int $cipher_algo
+ * @return bool
  * @since 8.0
  */
 function openssl_cms_encrypt(string $input_filename, string $output_filename, $certificate, ?array $headers, int $flags = 0, int $encoding = OPENSSL_ENCODING_SMIME, int $cipher_algo = OPENSSL_CIPHER_RC2_40): bool {}
@@ -1109,7 +1116,7 @@ function openssl_cms_encrypt(string $input_filename, string $output_filename, $c
  * @param string $input_filename
  * @param string $output_filename
  * @param OpenSSLCertificate|string $certificate
- * @param $private_key
+ * @param OpenSSLAsymmetricKey|OpenSSLCertificate|array|string $private_key
  * @param array|null $headers
  * @param int $flags [optional]
  * @param int $encoding [optional]
@@ -1121,14 +1128,21 @@ function openssl_cms_sign(string $input_filename, string $output_filename, OpenS
 
 /**
  * Decrypts the S/MIME message in the file and outputs the results to the supplied file.
+ * @param string $input_filename
+ * @param string $output_filename
  * @param resource|string $certificate
  * @param resource|string|array $private_key
+ * @param int $encoding
+ * @return bool
  * @since 8.0
  */
 function openssl_cms_decrypt(string $input_filename, string $output_filename, $certificate, $private_key, int $encoding = OPENSSL_ENCODING_SMIME): bool {}
 
 /**
  * Exports the CMS file to an array of PEM certificates.
+ * @param string $input_filename
+ * @param array &$certificates
+ * @return bool
  * @since 8.0
  */
 function openssl_cms_read(string $input_filename, &$certificates): bool {}

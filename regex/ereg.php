@@ -12,7 +12,7 @@ use JetBrains\PhpStorm\Deprecated;
  * @param string $string <p>
  * The input string.
  * </p>
- * @param array &$regs [optional] <p>
+ * @param null|array &$regs [optional] <p>
  * If matches are found for parenthesized substrings of
  * <i>pattern</i> and the function is called with the
  * third argument <i>regs</i>, the matches will be stored
@@ -36,7 +36,7 @@ use JetBrains\PhpStorm\Deprecated;
  * @see preg_match()
  */
 #[Deprecated(reason: "Use preg_match() instead", since: "5.3")]
-function ereg ($pattern, $string, array &$regs = null) {}
+function ereg ($pattern, $string, ?array &$regs = null) {}
 
 /**
  * Replace regular expression
@@ -73,7 +73,7 @@ function ereg_replace ($pattern, $replacement, $string) {}
  * @param string $string <p>
  * The input string.
  * </p>
- * @param array &$regs [optional] <p>
+ * @param null|array &$regs [optional] <p>
  * If matches are found for parenthesized substrings of
  * <i>pattern</i> and the function is called with the
  * third argument <i>regs</i>, the matches will be stored

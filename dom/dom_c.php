@@ -128,7 +128,7 @@ class DOMNode  {
      * @param DOMNode $node <p>
      * The new node.
      * </p>
-     * @param DOMNode $child [optional] <p>
+     * @param null|DOMNode $child [optional] <p>
      * The reference node. If not supplied, newnode is
      * appended to the children.
      * </p>
@@ -309,11 +309,11 @@ class DOMNode  {
      * Canonicalize nodes to a string
      * @param bool $exclusive [optional] Enable exclusive parsing of only the nodes matched by the provided xpath or namespace prefixes.
      * @param bool $withComments [optional] Retain comments in output.
-     * @param array $xpath [optional] An array of xpaths to filter the nodes by.
-     * @param array $nsPrefixes [optional] An array of namespace prefixes to filter the nodes by.
+     * @param null|array $xpath [optional] An array of xpaths to filter the nodes by.
+     * @param null|array $nsPrefixes [optional] An array of namespace prefixes to filter the nodes by.
      * @return string|false Canonicalized nodes as a string or FALSE on failure
      */
-    public function C14N ($exclusive, $withComments, array $xpath = null, $nsPrefixes = null) {}
+    public function C14N ($exclusive, $withComments, array $xpath = null, array $nsPrefixes = null) {}
 
     /**
      * Canonicalize nodes to a file.
@@ -321,11 +321,11 @@ class DOMNode  {
      * @param string $uri Number of bytes written or FALSE on failure
      * @param bool $exclusive [optional] Enable exclusive parsing of only the nodes matched by the provided xpath or namespace prefixes.
      * @param bool $withComments [optional]  Retain comments in output.
-     * @param array $xpath [optional] An array of xpaths to filter the nodes by.
-     * @param array $nsPrefixes [optional] An array of namespace prefixes to filter the nodes by.
+     * @param null|array $xpath [optional] An array of xpaths to filter the nodes by.
+     * @param null|array $nsPrefixes [optional] An array of namespace prefixes to filter the nodes by.
      * @return int|false Number of bytes written or FALSE on failure
      */
-    public function C14NFile ($uri, $exclusive, array $withComments, array $xpath = null, $nsPrefixes = null) {}
+    public function C14NFile ($uri, $exclusive, $withComments = false, array $xpath = null, array $nsPrefixes = null) {}
 
 
 }
@@ -505,12 +505,12 @@ class DOMDocumentFragment extends DOMNode implements DOMParentNode {
     /**
      * {@inheritDoc}
      */
-    public function append(...$nodes): void {}
+    public function append(...$nodes) {}
 
     /**
      * {@inheritDoc}
      */
-    public function prepend(...$nodes): void {}
+    public function prepend(...$nodes) {}
 }
 
 /**
@@ -845,12 +845,12 @@ class DOMDocument extends DOMNode implements DOMParentNode {
     /**
      * {@inheritDoc}
      */
-    public function append(...$nodes): void {}
+    public function append(...$nodes) {}
 
     /**
      * {@inheritDoc}
      */
-    public function prepend(...$nodes): void {}
+    public function prepend(...$nodes) {}
 
     /**
      * Normalizes the document
@@ -914,7 +914,7 @@ class DOMDocument extends DOMNode implements DOMParentNode {
     /**
      * Dumps the internal XML tree back into a string
      * @link https://php.net/manual/en/domdocument.savexml.php
-     * @param DOMNode $node [optional] <p>
+     * @param null|DOMNode $node [optional] <p>
      * Use this parameter to output only a specific node without XML declaration
      * rather than the entire document.
      * </p>
@@ -987,7 +987,7 @@ class DOMDocument extends DOMNode implements DOMParentNode {
     /**
      * Dumps the internal document into a string using HTML formatting
      * @link https://php.net/manual/en/domdocument.savehtml.php
-     * @param DOMNode $node [optional] parameter to output a subset of the document.
+     * @param null|DOMNode $node [optional] parameter to output a subset of the document.
      * @return string|false The HTML, or false if an error occurred.
      */
     public function saveHTML (DOMNode $node = null) {}
@@ -1099,6 +1099,7 @@ class DOMNodeList implements IteratorAggregate, Countable {
 
     /**
      * @since 8.0
+     * @return Traversable
      */
     public function getIterator(){}
 }
@@ -1170,11 +1171,13 @@ class DOMNamedNodeMap implements IteratorAggregate, Countable {
 
     /**
      * @since 7.2
+     * @return int
      */
     public function count() {}
 
     /**
      * @since 8.0
+     * @return Traversable
      */
     public function getIterator(){}
 }
@@ -1275,22 +1278,22 @@ class DOMCharacterData extends DOMNode implements DOMChildNode {
     /**
      * {@inheritDoc}
      */
-    public function remove(): void {}
+    public function remove() {}
 
     /**
      * {@inheritDoc}
      */
-    public function before(...$nodes): void {}
+    public function before(...$nodes) {}
 
     /**
      * {@inheritDoc}
      */
-    public function after(...$nodes): void {}
+    public function after(...$nodes) {}
 
     /**
      * {@inheritDoc}
      */
-    public function replaceWith(...$nodes): void {}
+    public function replaceWith(...$nodes) {}
 }
 
 /**
@@ -1640,32 +1643,32 @@ class DOMElement extends DOMNode implements DOMParentNode, DOMChildNode {
     /**
      * {@inheritDoc}
      */
-    public function remove(): void {}
+    public function remove() {}
 
     /**
      * {@inheritDoc}
      */
-    public function before(...$nodes): void {}
+    public function before(...$nodes) {}
 
     /**
      * {@inheritDoc}
      */
-    public function after(...$nodes): void {}
+    public function after(...$nodes) {}
 
     /**
      * {@inheritDoc}
      */
-    public function replaceWith(...$nodes): void {}
+    public function replaceWith(...$nodes) {}
 
     /**
      * {@inheritDoc}
      */
-    public function append(...$nodes): void {}
+    public function append(...$nodes) {}
 
     /**
      * {@inheritDoc}
      */
-    public function prepend(...$nodes): void {}
+    public function prepend(...$nodes) {}
 
     /**
      * Creates a new DOMElement object
@@ -2109,7 +2112,7 @@ interface DOMParentNode {
      * @return void
      * @since 8.0
      */
-    public function append(...$nodes): void;
+    public function append(...$nodes);
 
     /**
      * Prepends one or many nodes to the list of children before the first
@@ -2119,7 +2122,7 @@ interface DOMParentNode {
      * @return void
      * @since 8.0
      */
-    public function prepend(...$nodes): void;
+    public function prepend(...$nodes);
 }
 
 /**
@@ -2135,7 +2138,7 @@ interface DOMChildNode {
      * @return void
      * @since 8.0
      */
-    public function remove(): void;
+    public function remove();
 
     /**
      * Add passed node(s) before the current node
@@ -2144,7 +2147,7 @@ interface DOMChildNode {
      * @return void
      * @since 8.0
      */
-    public function before(...$nodes): void;
+    public function before(...$nodes);
 
     /**
      * Add passed node(s) after  the current node
@@ -2153,7 +2156,7 @@ interface DOMChildNode {
      * @return void
      * @since 8.0
      */
-    public function after(...$nodes): void;
+    public function after(...$nodes);
 
     /**
      * Replace current node with new node(s), a combination
@@ -2163,5 +2166,5 @@ interface DOMChildNode {
      * @return void
      * @since 8.0
      */
-    public function replaceWith(...$nodes): void;
+    public function replaceWith(...$nodes);
 }

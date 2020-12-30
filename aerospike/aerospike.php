@@ -642,7 +642,7 @@ class Aerospike {
      *     generation => the number of times the record has been written
      *   bins => Array of bin-name => bin-value pairs
      * ```
-     * @param array $select only these bins out of the record (optional)
+     * @param null|array $select only these bins out of the record (optional)
      * @param array $options an optional array of read policy options, whose keys include
      * * Aerospike::OPT_READ_TIMEOUT
      * * Aerospike::OPT_POLICY_KEY
@@ -669,7 +669,7 @@ class Aerospike {
      * @see Aerospike::errorno() errorno()
      * @return int The status code of the operation. Compare to the Aerospike class status constants.
      */
-    public function get(array $key, &$record, array $select = null, array $options = []) {}
+    public function get(array $key, &$record, ?array $select = null, array $options = []) {}
 
     /**
      * Get the metadata of a record with a given key, and store it in $metadata
@@ -3474,13 +3474,13 @@ class Aerospike {
      * @link https://www.aerospike.com/docs/reference/info Info Command Reference
      * @param string $request  a formatted info command
      * @param string &$response a formatted response from the server, filled by reference
-     * @param array  $host     an array holding the cluster node connection information cluster
+     * @param null|array $host an array holding the cluster node connection information cluster
      *                         and manage its connections to them. ```[ 'addr' => $addr , 'port' =>  $port ]```
      * @param array  $options an optional array of policy options, whose keys include
      * * Aerospike::OPT_READ_TIMEOUT
      * @return int The status code of the operation. Compare to the Aerospike class status constants.
      */
-    public function info(string $request, string &$response, array $host = null, array $options = []) {}
+    public function info(string $request, string &$response, ?array $host = null, array $options = []) {}
 
     /**
      * Send an info request to a single cluster node
@@ -3508,7 +3508,7 @@ class Aerospike {
      * ```
      * @link https://www.aerospike.com/docs/reference/info Info Command Reference
      * @param string $request  a formatted info command
-     * @param array  $host     an array of _host_ arrays, each with ```[ 'addr' => $addr , 'port' =>  $port ]```
+     * @param null|array $host an array of _host_ arrays, each with ```[ 'addr' => $addr , 'port' =>  $port ]```
      * @param array  $options an optional array of policy options, whose keys include
      * * Aerospike::OPT_READ_TIMEOUT
      * @return array results in the format
@@ -3517,7 +3517,7 @@ class Aerospike {
      *  NODE-ID => response string
      * ```
      */
-    public function infoMany(string $request, array $host = null, array $options = []) {}
+    public function infoMany(string $request, ?array $host = null, array $options = []) {}
 
     /**
      * Get the addresses of the cluster nodes
@@ -3559,7 +3559,7 @@ class Aerospike {
     /**
      * Set the logging threshold of the Aerospike object
      *
-     * @param $log_level one of `Aerospike::LOG_LEVEL_*` values
+     * @param int $log_level one of `Aerospike::LOG_LEVEL_*` values
      * * Aerospike::LOG_LEVEL_OFF
      * * Aerospike::LOG_LEVEL_ERROR
      * * Aerospike::LOG_LEVEL_WARN
@@ -3661,7 +3661,7 @@ class Aerospike {
     public function setDeserializer ( callable $unserialize_cb ) {}
 
 
-    /**
+    /*
      * Options can be assigned values that modify default behavior
      * Used by the constructor, read, write, scan, query, apply, and info
      * operations.

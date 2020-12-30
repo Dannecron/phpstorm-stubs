@@ -156,10 +156,10 @@ interface Serializable {
     /**
      * Constructs the object.
      * @link https://php.net/manual/en/serializable.unserialize.php
-     * @param string $serialized The string representation of the object.
+     * @param string $data The string representation of the object.
      * @return void
      */
-    public function unserialize($serialized);
+    public function unserialize($data);
 }
 
 
@@ -273,7 +273,7 @@ class Exception implements Throwable {
      * @link https://php.net/manual/en/exception.construct.php
      * @param string $message [optional] The Exception message to throw.
      * @param int $code [optional] The Exception code.
-     * @param Throwable $previous [optional] The previous throwable used for the exception chaining.
+     * @param null|Throwable $previous [optional] The previous throwable used for the exception chaining.
      */
     #[Pure]
     public function __construct($message = "", $code = 0, Throwable $previous = null) { }
@@ -369,7 +369,7 @@ class Error implements Throwable {
      * @link https://php.net/manual/en/error.construct.php
      * @param string $message [optional] The Error message to throw.
      * @param int $code [optional] The Error code.
-     * @param Throwable $previous [optional] The previous throwable used for the exception chaining.
+     * @param null|Throwable $previous [optional] The previous throwable used for the exception chaining.
      */
     public function __construct($message = "", $code = 0, Throwable $previous = null)
     {
@@ -638,9 +638,9 @@ interface Countable {
      * Count elements of an object
      * @link https://php.net/manual/en/countable.count.php
      * @return int The custom count as an integer.
-     * </p>
      * <p>
      * The return value is cast to an integer.
+     * </p>
      */
     public function count();
 }
@@ -777,38 +777,38 @@ final class Attribute {
     /**
      * Marks that attribute declaration is allowed only in functions.
      */
-    const TARGET_FUNCTION = 1 << 1;
+    const TARGET_FUNCTION = 2;
 
     /**
      * Marks that attribute declaration is allowed only in class methods.
      */
-    const TARGET_METHOD = 1 << 2;
+    const TARGET_METHOD = 4;
 
     /**
      * Marks that attribute declaration is allowed only in class properties.
      */
-    const TARGET_PROPERTY = 1 << 3;
+    const TARGET_PROPERTY = 8;
 
     /**
      * Marks that attribute declaration is allowed only in class constants.
      */
-    const TARGET_CLASS_CONSTANT = 1 << 4;
+    const TARGET_CLASS_CONSTANT = 16;
 
     /**
      * Marks that attribute declaration is allowed only in function or method parameters.
      */
-    const TARGET_PARAMETER = 1 << 5;
+    const TARGET_PARAMETER = 32;
 
     /**
      * Marks that attribute declaration is allowed anywhere.
      */
-    const TARGET_ALL = (1 << 6) - 1;
+    const TARGET_ALL = 63;
 
     /**
      * Notes that an attribute declaration in the same place is
      * allowed multiple times.
      */
-    const IS_REPEATABLE = 1 << 10;
+    const IS_REPEATABLE = 64;
 
     /**
      * @param int $flags A value in the form of a bitmask indicating the places
@@ -878,8 +878,12 @@ class PhpToken implements Stringable {
     {
     }
 
-    /** @return static[] */
-    public static function tokenize(string $code, int $flags = 0): array {}
+    /**
+     * @param string $code
+     * @param int $flags
+     * @return static[]
+     */
+    public static function tokenize(string $code, int $flags = 0) {}
 
     /**
      * Whether the token has the given ID, the given text, or has an ID/text

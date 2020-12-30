@@ -47,7 +47,6 @@ function ncurses_getch () {}
  * Check if terminal has colors
  * @link https://php.net/manual/en/function.ncurses-has-colors.php
  * @return bool Return true if the terminal has color capacities, false otherwise.
- * </p>
  */
 function ncurses_has_colors () {}
 
@@ -55,7 +54,6 @@ function ncurses_has_colors () {}
  * Initialize ncurses
  * @link https://php.net/manual/en/function.ncurses-init.php
  * @return void
- * </p>
  */
 function ncurses_init () {}
 
@@ -127,7 +125,6 @@ function ncurses_move ($y, $x) {}
  * x-ccordinate of the origin
  * </p>
  * @return resource a resource ID for the new window.
- * </p>
  */
 function ncurses_newwin ($rows, $cols, $y, $x) {}
 
@@ -180,7 +177,6 @@ function ncurses_beep () {}
  * @link https://php.net/manual/en/function.ncurses-can-change-color.php
  * @return bool Return true if the terminal has color capabilities and you can change
  * the colors, false otherwise.
- * </p>
  */
 function ncurses_can_change_color () {}
 
@@ -188,7 +184,6 @@ function ncurses_can_change_color () {}
  * Switch of input buffering
  * @link https://php.net/manual/en/function.ncurses-cbreak.php
  * @return bool true or NCURSES_ERR if any error occurred.
- * </p>
  */
 function ncurses_cbreak () {}
 
@@ -196,7 +191,6 @@ function ncurses_cbreak () {}
  * Clear screen
  * @link https://php.net/manual/en/function.ncurses-clear.php
  * @return bool
- * </p>
  */
 function ncurses_clear () {}
 
@@ -204,7 +198,6 @@ function ncurses_clear () {}
  * Clear screen from current position to bottom
  * @link https://php.net/manual/en/function.ncurses-clrtobot.php
  * @return bool
- * </p>
  */
 function ncurses_clrtobot () {}
 
@@ -212,7 +205,6 @@ function ncurses_clrtobot () {}
  * Clear screen from current position to end of line
  * @link https://php.net/manual/en/function.ncurses-clrtoeol.php
  * @return bool
- * </p>
  */
 function ncurses_clrtoeol () {}
 
@@ -220,7 +212,6 @@ function ncurses_clrtoeol () {}
  * Saves terminals (program) mode
  * @link https://php.net/manual/en/function.ncurses-def-prog-mode.php
  * @return bool false on success, otherwise true.
- * </p>
  */
 function ncurses_def_prog_mode () {}
 
@@ -235,7 +226,6 @@ function ncurses_reset_prog_mode () {}
  * Saves terminals (shell) mode
  * @link https://php.net/manual/en/function.ncurses-def-shell-mode.php
  * @return bool false on success, true otherwise.
- * </p>
  */
 function ncurses_def_shell_mode () {}
 
@@ -250,7 +240,6 @@ function ncurses_reset_shell_mode () {}
  * Delete character at current position, move rest of line left
  * @link https://php.net/manual/en/function.ncurses-delch.php
  * @return bool false on success, true otherwise.
- * </p>
  */
 function ncurses_delch () {}
 
@@ -258,7 +247,6 @@ function ncurses_delch () {}
  * Delete line at current position, move rest of screen up
  * @link https://php.net/manual/en/function.ncurses-deleteln.php
  * @return bool false on success, otherwise true.
- * </p>
  */
 function ncurses_deleteln () {}
 
@@ -266,7 +254,6 @@ function ncurses_deleteln () {}
  * Write all prepared refreshes to terminal
  * @link https://php.net/manual/en/function.ncurses-doupdate.php
  * @return bool
- * </p>
  */
 function ncurses_doupdate () {}
 
@@ -274,7 +261,6 @@ function ncurses_doupdate () {}
  * Activate keyboard input echo
  * @link https://php.net/manual/en/function.ncurses-echo.php
  * @return bool false on success, true if any error occurred.
- * </p>
  */
 function ncurses_echo () {}
 
@@ -282,7 +268,6 @@ function ncurses_echo () {}
  * Erase terminal screen
  * @link https://php.net/manual/en/function.ncurses-erase.php
  * @return bool
- * </p>
  */
 function ncurses_erase () {}
 
@@ -299,7 +284,6 @@ function ncurses_werase ($window) {}
  * Returns current erase character
  * @link https://php.net/manual/en/function.ncurses-erasechar.php
  * @return string The current erase char, as a string.
- * </p>
  */
 function ncurses_erasechar () {}
 
@@ -307,7 +291,6 @@ function ncurses_erasechar () {}
  * Flash terminal screen (visual bell)
  * @link https://php.net/manual/en/function.ncurses-flash.php
  * @return bool false on success, otherwise true.
- * </p>
  */
 function ncurses_flash () {}
 
@@ -315,7 +298,6 @@ function ncurses_flash () {}
  * Flush keyboard input buffer
  * @link https://php.net/manual/en/function.ncurses-flushinp.php
  * @return bool false on success, otherwise true.
- * </p>
  */
 function ncurses_flushinp () {}
 
@@ -324,7 +306,6 @@ function ncurses_flushinp () {}
  * @link https://php.net/manual/en/function.ncurses-has-ic.php
  * @return bool true if the terminal has insert/delete-capabilities, false
  * otherwise.
- * </p>
  */
 function ncurses_has_ic () {}
 
@@ -333,7 +314,6 @@ function ncurses_has_ic () {}
  * @link https://php.net/manual/en/function.ncurses-has-il.php
  * @return bool true if the terminal has insert/delete-line capabilities,
  * false otherwise.
- * </p>
  */
 function ncurses_has_il () {}
 
@@ -341,7 +321,6 @@ function ncurses_has_il () {}
  * Get character and attribute at current position
  * @link https://php.net/manual/en/function.ncurses-inch.php
  * @return string the character, as a string.
- * </p>
  */
 function ncurses_inch () {}
 
@@ -358,7 +337,6 @@ function ncurses_insertln () {}
  * @return bool true, if ncurses_endwin has been called
  * without any subsequent calls to ncurses_wrefresh,
  * false otherwise.
- * </p>
  */
 function ncurses_isendwin () {}
 
@@ -366,7 +344,6 @@ function ncurses_isendwin () {}
  * Returns current line kill character
  * @link https://php.net/manual/en/function.ncurses-killchar.php
  * @return string the kill character, as a string.
- * </p>
  */
 function ncurses_killchar () {}
 
@@ -381,7 +358,6 @@ function ncurses_nl () {}
  * Switch terminal to cooked mode
  * @link https://php.net/manual/en/function.ncurses-nocbreak.php
  * @return bool true if any error occurred, otherwise false.
- * </p>
  */
 function ncurses_nocbreak () {}
 
@@ -389,7 +365,6 @@ function ncurses_nocbreak () {}
  * Switch off keyboard input echo
  * @link https://php.net/manual/en/function.ncurses-noecho.php
  * @return bool true if any error occurred, false otherwise.
- * </p>
  */
 function ncurses_noecho () {}
 
@@ -404,7 +379,6 @@ function ncurses_nonl () {}
  * Switch terminal out of raw mode
  * @link https://php.net/manual/en/function.ncurses-noraw.php
  * @return bool true if any error occurred, otherwise false.
- * </p>
  */
 function ncurses_noraw () {}
 
@@ -412,7 +386,6 @@ function ncurses_noraw () {}
  * Switch terminal into raw mode
  * @link https://php.net/manual/en/function.ncurses-raw.php
  * @return bool true if any error occurred, otherwise false.
- * </p>
  */
 function ncurses_raw () {}
 
@@ -431,7 +404,6 @@ function ncurses_meta ($window, $bit8) {}
  * Restores saved terminal state
  * @link https://php.net/manual/en/function.ncurses-resetty.php
  * @return bool Always returns false.
- * </p>
  */
 function ncurses_resetty () {}
 
@@ -439,7 +411,6 @@ function ncurses_resetty () {}
  * Saves terminal state
  * @link https://php.net/manual/en/function.ncurses-savetty.php
  * @return bool Always returns false.
- * </p>
  */
 function ncurses_savetty () {}
 
@@ -461,7 +432,6 @@ function ncurses_use_default_colors () {}
  * Returns current soft label key attribute
  * @link https://php.net/manual/en/function.ncurses-slk-attr.php
  * @return int The attribute, as an integer.
- * </p>
  */
 function ncurses_slk_attr () {}
 
@@ -469,7 +439,6 @@ function ncurses_slk_attr () {}
  * Clears soft labels from screen
  * @link https://php.net/manual/en/function.ncurses-slk-clear.php
  * @return bool true on errors, false otherwise.
- * </p>
  */
 function ncurses_slk_clear () {}
 
@@ -677,7 +646,6 @@ function ncurses_slk_color ($intarg) {}
  * index line will be created.
  * </p>
  * @return bool
- * </p>
  */
 function ncurses_slk_init ($format) {}
 
@@ -1005,7 +973,6 @@ function ncurses_insstr ($text) {}
  * The characters. Attributes will be stripped.
  * </p>
  * @return int the number of characters.
- * </p>
  */
 function ncurses_instr (&$buffer) {}
 
@@ -1141,7 +1108,6 @@ function ncurses_keyok ($keycode, $enable) {}
  * @link https://php.net/manual/en/function.ncurses-termname.php
  * @return string|null the shortname of the terminal, truncated to 14 characters.
  * On errors, returns null.
- * </p>
  */
 function ncurses_termname () {}
 
@@ -1150,7 +1116,6 @@ function ncurses_termname () {}
  * @link https://php.net/manual/en/function.ncurses-longname.php
  * @return string|null the description, as a string truncated to 128 characters.
  * On errors, returns null.
- * </p>
  */
 function ncurses_longname () {}
 
@@ -1193,9 +1158,9 @@ function ncurses_getmouse (array &$mevent) {}
  * @link https://php.net/manual/en/function.ncurses-ungetmouse.php
  * @param array $mevent <p>
  * An associative array specifying the event options:
- * <p>"id" : Id to distinguish multiple devices</p>
- * @return bool false on success, true otherwise.
+ * <b>"id"</b> : Id to distinguish multiple devices
  * </p>
+ * @return bool false on success, true otherwise.
  */
 function ncurses_ungetmouse (array $mevent) {}
 
@@ -1499,7 +1464,6 @@ function ncurses_getyx ($window, &$y, &$x) {}
  * This will be set to the window width
  * </p>
  * @return void
- * </p>
  */
 function ncurses_getmaxyx ($window, &$y, &$x) {}
 
@@ -1534,7 +1498,6 @@ function ncurses_panel_below ($panel) {}
  * @param resource $panel <p>
  * </p>
  * @return resource If panel is null, returns the bottom panel in the stack.
- * </p>
  */
 function ncurses_panel_above ($panel) {}
 

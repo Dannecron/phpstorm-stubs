@@ -866,10 +866,10 @@ final class imageObj
      * stdout.
      *
      * @param string $filename
-     * @param MapObj $oMap
+     * @param mapObj $oMap
      * @return int
      */
-    final public function saveImage($filename, MapObj $oMap) {}
+    final public function saveImage($filename, mapObj $oMap) {}
 
     /**
      * Writes image to temp directory.  Returns image URL.
@@ -1550,11 +1550,11 @@ final class layerObj
     /**
      * Old style constructor
      *
-     * @param MapObj $map
+     * @param mapObj $map
      * @param layerObj $layer
      * @return layerObj
      */
-    final public function ms_newLayerObj(MapObj $map, layerObj $layer) {}
+    final public function ms_newLayerObj(mapObj $map, layerObj $layer) {}
 
     /**
      * Add a new feature in a layer. Returns MS_SUCCESS or MS_FAILURE on
@@ -1585,8 +1585,8 @@ final class layerObj
      * layer object. The matching between the sld document and the layer
      * will be done using the layer's name.  If a namedlayer argument is
      * passed (argument is optional), the NamedLayer in the sld that
-     * matchs it will be used to style the layer.  See :ref:`SLD HowTo
-     * <sld>` for more information on the SLD support.
+     * matchs it will be used to style the layer.  See :ref:`SLD HowTo <sld>`
+     * for more information on the SLD support.
      *
      * @param string $sldurl
      * @param string $namedlayer
@@ -2189,7 +2189,7 @@ final class lineObj
     /**
      * Old style constructor
      *
-     * @return LineObj
+     * @return lineObj
      */
     final public function ms_newLineObj() {}
 
@@ -2232,7 +2232,7 @@ final class lineObj
      * Returns a reference to point number i.
      *
      * @param int $i
-     * @return PointObj
+     * @return pointObj
      */
     final public function point($i) {}
 
@@ -2717,8 +2717,8 @@ final class mapObj
     final public function getSymbolObjectById($symbolid) {}
 
     /**
-     * Available only if WMS support is enabled.  Load a :ref:`WMS Map
-     * Context <map_context>` XML file into the current mapObj.  If the
+     * Available only if WMS support is enabled.  Load a :ref:`WMS Map Context <map_context>`
+     * XML file into the current mapObj.  If the
      * map already contains some layers then the layers defined in the
      * WMS Map context document are added to the current map.  The 2nd
      * argument unique_layer_name is optional and if set to MS_TRUE
@@ -2780,8 +2780,8 @@ final class mapObj
      * the map.  Returns MS_DONE (2) if there is no valid OWS request in
      * the req object, MS_SUCCESS (0) if an OWS request was successfully
      * processed and MS_FAILURE (1) if an OWS request was not
-     * successfully processed.  OWS requests include :ref:`WMS
-     * <wms_server>`, :ref:`WFS <wfs_server>`, :ref:`WCS <wcs_server>`
+     * successfully processed.  OWS requests include :ref:`WMS <wms_server>`,
+     * :ref:`WFS <wfs_server>`, :ref:`WCS <wcs_server>`
      * and :ref:`SOS <sos_server>` requests supported by MapServer.
      * Results of a dispatched request are written to stdout and can be
      * captured using the msIO services (ie. ms_ioinstallstdouttobuffer()
@@ -3431,7 +3431,7 @@ final class pointObj
     /**
      * Old style constructor
      *
-     * @return PointObj
+     * @return pointObj
      */
     final public function ms_newPointObj() {}
 
@@ -4354,7 +4354,7 @@ final class shapeObj
      * Returns a reference to line number i.
      *
      * @param int $i
-     * @return LineObj
+     * @return lineObj
      */
     final public function line($i) {}
 
